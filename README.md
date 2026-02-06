@@ -9,8 +9,17 @@ Team Senior Project focusing on:
 - Automate the identification of vulnerabilities with ASM scanning & Python Scripts
 - Create custom tagging for alerts in SIEM & SOAR  
 
-## Structure
-- asm_project
+## Project Structure
+```text
+asm_project/
+├── main.py                # Main application entry point
+├── modules/
+│   ├── db_handler.py      # Database management & Ingestion logic
+│   ├── scanners/          # Subdomain and vulnerability discovery scripts
+│   └── api_clients/       # VirusTotal and external API integrations
+├── data/                  # Local storage for SQLite databases (Git ignored)
+├── logs/                  # System and scan logs
+└── README.md- asm_project
 
 ## Contributors
 - Adam Llado
