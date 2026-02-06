@@ -27,3 +27,16 @@ agent-data/
 
 # Temporary
 tmp/
+# Development Tools & Installers
+go/
+go*.tar.gz
+nuclei-templates/
+
+# Data and Logs
+data/*.db
+logs/*.log
+
+# Miscellaneous
+wazuhtest.txt
+.DS_Store
+__pycache__/
