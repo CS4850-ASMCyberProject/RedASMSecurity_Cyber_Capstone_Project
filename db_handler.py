@@ -54,4 +54,8 @@ def upsert_asset(subdomain, ip_address, tech_stack):
 
     cursor.execute("SELECT id, ip_address, tech_stack FROM assets WHERE subdomain = ?", (subdomain,))
     result = cursor.fetchone()
-    
+
+    if not result:
+        print(f"Inserting new asset: {subdomain}")
+        cursor.execute("INSERT INTO assets (subdomain, ip_address, tech_stack) VALUES (?, ?, ?)",(subdomain, ip_address, tech_stack))
+
