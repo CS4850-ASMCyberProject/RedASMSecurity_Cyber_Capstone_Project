@@ -2,7 +2,7 @@ from zoneinfo import ZoneInfo
 from datetime import datetime
 import json, base64
 import re
-
+import time
 
 #This function returns an integer between 0-3 which scores the wazuh alert level
 #If the wazuh level is greater than 10, then it gets the highest score at 3 and so on
@@ -93,7 +93,7 @@ def parsefile(text: str):
 def parseattr(text: str):
     changed_attributes = ""
     
-    m = re.search(r"Changed attributes:\s*([^r\n]+)", text or "")
+    m = re.search(r"Changed attributes:\s*([^\r\n]+)", text or "")
     if m:
         changed_attributes = m.group(1).strip().split(",")
 
@@ -106,12 +106,16 @@ def parseattr(text: str):
 #Sets the severity emoji color based on the severity rating of the event 
 def severityemoji(severity):
 	if severity == "Critical":
-		return "??"
+		return "🔴"
 	elif severity == "High": 	
-		return "??"
+		return "🟠"
 	else:
-		return "??"
+		return "🟢"
 		
+#CONSTANTS
+TTL_SECONDS = 300
+
+
 
 #group_list is used to capture the list of groups in the metadata
 group_list = []
@@ -152,7 +156,7 @@ text = data.get("text", "")
 title = data.get("title", "")
 
 #Get the rule-id (wazuh alert code)
-rule_id = data.get("rule_id", "")
+rule_id = data.get("rule_id", "unknown_rule")
 
 #Get the timestamp
 ts = data.get("timestamp", "")
@@ -197,11 +201,36 @@ agent_name = agent.get("name", "")
 #Get the agent IP
 agent_ip = agent.get("ip", "")
 
+#Get the agent ID
+agent_id = agent.get("id", "unknown_agent")
+
+#Correlation-key for threading slack events (agent_id + rule_id)
+corrkey = agent_id + ":" + rule_id
+
 #Get the file_path 
 file_path = parsefile(text)
 
 #Get the changed_attributes 
 changed_attributes = parseattr(text)
+
+#Variable that holds the current time
+now = int(time.time())
+
+#TTL timer for threading which is set for 5 mins are threads all related events in Slack
+expiresat = now + TTL_SECONDS
+
+#Found holds True or False if there is a stored thread in get_thread cache node
+found = $get_thread_ts.found
+
+#Get the value (thread_ts & expiresat) for each get thread cache (returns dict)
+raw_thread = $get_thread_ts.value
+
+#Initialize expired to True
+expired = True
+
+#Initialize stored_thread to empty dict and will store raw_thread after checking
+#it's parameters to ensure safe handling
+stored_thread = {}
 
 #Get the wazuhlvl (score 0-3)
 wazuhlvl = getwazuhlvl(level)
@@ -247,8 +276,48 @@ blocks = [
 #Alert is the final payload dictionary that specifies the Slack channel, the header, and the blocks 
 alert = {
     "channel": "C0AB651MRFE",
-    "blocks": blocks
+    "blocks": blocks,
+    "corrkey": corrkey,
+    "nowunix": now,
+    "expiresat": expiresat
 }
+
+#Conditional statement that checks if found and raw_thread are true
+#If so, checks if raw_thread is a dictionary or str, if empty str, stroed_thread
+#stays empty dict, otherwise stored_thread becomes raw_thread
+if found and raw_thread:
+  if isinstance(raw_thread, str):
+    try:
+      stored_thread = json.loads(raw_thread)
+    except Exception:
+      stored_thread = {}
+  elif isinstance(raw_thread, dict):
+    stored_thread = raw_thread
+  
+#Get the stored parameters from stored_thread cached in get_thread node which will be used to 
+#check how alerts should be posted to Slack. If the stored corrkey mateches the corrkey for 
+#the current alert, and there is a timestamp (parent_ts) and expiresat, then set expired
+get_corrkey = stored_thread.get("corrkey", "")
+parent_ts = stored_thread.get("Set_Thread_TS", "")
+get_expiresat = stored_thread.get("expiresat", "")
+
+#If all three return true, set newexpiresat to the current expiresat
+#and check if expired is true or false based on the get_thread expiresat
+#The Threading process has a 5min sliding window and persists as long 
+#as there are alerts from that correlation key coming in.
+if parent_ts and get_expiresat and corrkey == get_corrkey:
+  new_expiresat = int(float(expiresat))
+  expired = now > expiresat
+
+#Check if the stored  expires at time is less than current time
+#If it is, expired becomes true and fails
+#If it is not, expired becomes false and passes. Then add parent_ts and newexpiresat
+#Otherwise, remove thread_ts from alert to ensure a new parent mesasge is posted
+if not expired:
+  alert["thread_ts"] = str(parent_ts)
+  alert["new_expiresat"] = new_expiresat
+else:
+  alert.pop("thread_ts", None)
 
 #Print json.dumps with the alert 
 print(json.dumps(alert))
