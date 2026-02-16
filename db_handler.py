@@ -71,5 +71,20 @@ def upsert_asset(subdomain, ip_address, tech_stack):
         # Add the new asset to the master table
         cursor.execute("INSERT INTO assets (subdomain, ip_address, tech_stack) VALUES (?, ?, ?)",
                        (subdomain, ip_address, tech_stack))
+
+        # Get that ID of the new asset for the history table
+        new_asset_id = cursor.lastrowid
+        # Insert a record into the history table to log this new discovery
+        cursor.excute("""
+        INSERT INTO scan_history (asset_id, change_type, new_value)")
+        VALUES (?, NEW_ASSET',?)
+        """, (new_asset_id, subdomain))
+
+    else:
+        asset_id, old_ip, old_tech = result
+
+        if ip_address != old_ip:
+            print(f"IP address change detected for {subdomain}: {old_ip} -> {ip_address}")
         
         # Note: im going to add the scan_history insert and connection.commit() here next
+
