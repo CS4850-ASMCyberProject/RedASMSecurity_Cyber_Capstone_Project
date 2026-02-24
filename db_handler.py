@@ -5,7 +5,7 @@ import os
 db_dir = '/srv/asm_project/data/'
 db_path = os.path.join(db_dir, 'asm_assets.db') # Note: Fixed os.join to os.path.join for you
 
-def intialize_db():
+def initialize_db():
     # Create the data directory if it doesn't already exist
     if not os.path.exists(db_dir): # Note: Fixed db_dr to db_dir for you
         os.makedirs(db_dir)
@@ -67,17 +67,15 @@ def upsert_asset(subdomain, ip_address, tech_stack):
 
     # If result is empty, this is a brand new discovery
     if not result:
-        print(f"Inserting new asset: {subdomain}")
-        # Add the new asset to the master table
+        print(f"[*] Inserting new asset: {subdomain}")
         cursor.execute("INSERT INTO assets (subdomain, ip_address, tech_stack) VALUES (?, ?, ?)",
                        (subdomain, ip_address, tech_stack))
 
-        # Get that ID of the new asset for the history table
         new_asset_id = cursor.lastrowid
-        # Insert a record into the history table to log this new discovery
-        cursor.excute("""
-        INSERT INTO scan_history (asset_id, change_type, new_value)")
-        VALUES (?, NEW_ASSET',?)
+        
+        cursor.execute("""
+            INSERT INTO scan_history (asset_id, change_type, new_value)
+            VALUES (?, 'INITIAL_DISCOVERY', ?)
         """, (new_asset_id, subdomain))
 
     else:
@@ -85,6 +83,27 @@ def upsert_asset(subdomain, ip_address, tech_stack):
 
         if ip_address != old_ip:
             print(f"IP address change detected for {subdomain}: {old_ip} -> {ip_address}")
-        
-        # Note: im going to add the scan_history insert and connection.commit() here next
+            cursor.execute("UPDATE assets SET ip_address = ?, time_stamp = CURRENT_TIMESTAMP WHERE id = ?",
+            (ip_address, asset_id))
+            
+            cursor.execute("""
+            INSERT INTO scan_history (asset_id, change_type, old_value, new_value)
+            VALUES (?, 'IP_CHANGE', ?, ?)
+            """, (asset_id, old_ip, ip_address))
 
+
+
+        if tech_stack != old_tech:
+            print(f"Tech stack change detected for {subdomain}: {old_tech} -> {tech_stack}")
+            cursor.execute("UPDATE assets SET tech_stack = ?, time_stamp = CURRENT_TIMESTAMP WHERE id = ?",
+            (tech_stack, asset_id))
+            
+            cursor.execute("""
+            INSERT INTO scan_history (asset_id, change_type, old_value, new_value)
+            VALUES (?, 'TECH_STACK_CHANGE', ?, ?)
+            """, (asset_id, old_tech, tech_stack))
+
+    connection.commit()
+    connection.close()
+
+# Example usage:
