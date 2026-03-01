@@ -88,6 +88,13 @@ When a rule triggers:
 2. The Wazuh Manager processes and stores the alert.  
 3. A webhook forwards the alert to Shuffle for automation.
 
+<p align="center">
+  <img src="doc/images/Wazuh_Dashboard.png" width="1200">
+</p>
+<p align="center">
+  <img src="doc/images/Wazuh_Threat_Hunting.png" width="1200">
+</p>
+
 ---
 
 ## 2️⃣ Automation – Shuffle (SOAR Engine)
