@@ -129,6 +129,10 @@ A custom Python script (**"Main Slack SOC Enrichment"**) builds a structured ale
 - `promotescore`
 - Additional metadata fields
 
+<p align="center">
+  <img src="doc/images/Python_Payload.png" width="1200">
+</p>
+
 ### 🧩 Enrichment Decisions
 
 The logic determines:
@@ -160,7 +164,7 @@ This enables frequency-based scoring and intelligent case promotion.
 ## 🔀 Directed Arrow Conditionals
 
 <p align="center">
-  <img src="doc/images/Shuffle_Conditionals.png" width="1200">
+  <img src="doc/images/Shuffle_Conditionals_Promote.png" width="1200">
 </p>
 
 Conditional workflow routing determines:
@@ -242,6 +246,10 @@ Promotion logic mirrors Slack promotion decisions.
 </p>
 
 Observables are individually posted via chained nodes to ensure full enrichment inside TheHive.
+
+<p align="center">
+  <img src="doc/images/TheHive_Observables_Chain.png" width="1200">
+</p>
 
 ---
 
