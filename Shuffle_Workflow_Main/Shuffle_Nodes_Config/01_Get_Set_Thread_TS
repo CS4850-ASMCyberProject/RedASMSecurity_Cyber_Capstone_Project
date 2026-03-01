@@ -1,0 +1,12 @@
+Purpose: Gets stored data cache for each slack thread set
+
+***MAKE START NODE: PRESS THE CHECKERED FLAG WHILE HOVERING OVER IT***
+
+Setup:
+  Name: Get_Set_Thread_TS
+  Action: Get Cache Value
+  Key: slack_thread_$exec.all_fields.agent.id:$exec.rule_id
+  Category: slack_threading
+
+Workflow Path:
+  00_Wazuh_Webhook -> 01_Get_Set_Thread_TS -> 02_Normalize_User_Python_Script
