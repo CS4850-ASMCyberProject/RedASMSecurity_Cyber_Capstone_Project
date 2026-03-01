@@ -189,6 +189,61 @@ def addalert(source_ip, ts, source_user):
         alerts_by_user[source_user].append({"timestamp": ts, "ip": source_ip})
 
     return alerts_by_ip, alerts_by_user
+
+#Get Promote Score is the main logic used to determine whether an alert should be promoted
+#to a case that a soc analyst must investigate and determine a reasonable response. 
+#It returns a dictionary that breaks down the total score of promotescore and scores each alert
+#based on:
+#severity_score - Scored based on whether it's severity is Low, High, or Critical
+#unknown_ip_score - Scored on if the ip is known or unknown, compared against a list of friendly ips
+#burstscore - Scored based on whether the attack has had 3 or more related alerts in the last minute
+#regular_attack_score - Scored on whether the attack has had 5 or more related alerts in the last hour
+#unknown_region_score - Scored based on wether the source ip is from a different region other than Georgia
+#hardpromote - True or False based on whether the alert reaches a severity of Critical
+def getpromotescore(severity, source_ip, source_user, burst, reg_attack):
+    hardpromote = False
+    severityscore = 0
+    unknownipscore = 0
+    burstscore = 0
+    reg_attackscore = 0
+    unknowncountryscore = 0
+
+    if severity == "Critical":
+        hardpromote = True
+        return hardpromote, promotescore
+    elif severity == "High":
+        severityscore += 3
+    elif severity == "Low":
+        severityscore += 1
+
+    if source_ip in friendlyips:
+        unknownipscore -= 3
+    else:
+        unknownipscore += 1
+    if burst:
+        burstscore += 3
+    elif reg_attack:
+        reg_attackscore += 2
+
+    region = getregion(source_ip)
+    if region and region != "Georgia":
+        unknownregionscore += 2
+
+    totalscore = severityscore + unknownipscore + burstscore + reg_attackscore + unknowncountryscore
+
+    promotescore = {
+        "total": totalscore,
+        "severity_score": severityscore,
+        "unknown_ip_score": unknownipscore,
+        "burst_score": burstscore,
+        "regular_attack_score": reg_attackscore,
+        "unknown_region_score": unknownregionscore,
+        "hard_promote": hardpromote
+    }
+
+    return promotescore
+
+
 		
 #CONSTANTS
 TTL_SECONDS = 300
