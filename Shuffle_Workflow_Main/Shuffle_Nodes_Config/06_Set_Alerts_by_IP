@@ -1,9 +1,10 @@
-Purpose: Set stored data cache of a list holding timestamps and ip entries for a specified user
+Purpose: Set stored data cache of a list holding timestamps and users entries for a specified ip
 
 Setup:
   Name: Set_Alerts_by_IP
   Action: Set Cache Value
   Key: alerts_by_ip_$python_slack_script.message.observables.source_ip
+  Value: $python_slack_script.message.alerts_by_ip
   Category: alerts_by_ip
 
 Workflow Path:
