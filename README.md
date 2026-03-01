@@ -10,6 +10,10 @@
   <img src="doc/images/Infinity_Lock.png" width="1200">
 </p>
 
+<p align="center">
+  <img src="doc/images/ASM_Manager_SOC_Workflow_Diagram.png" width="1200">
+</p>
+
 ## 📌 Overview
 
 The `llado_shuffle_slack` branch implements a fully automated, open-source SOC workflow integrating:
