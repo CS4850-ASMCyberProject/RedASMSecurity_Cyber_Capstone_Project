@@ -243,7 +243,17 @@ def getpromotescore(severity, source_ip, source_user, burst, reg_attack):
 
     return promotescore
 
-
+#Function that gets the region (state) from which the ip came from
+def getregion(source_ip):
+    if source_ip == "None":
+        return
+    try:
+        response = requests.get(f"https://ipinfo.io/{source_ip}/json")
+    except requests.RequestException:
+        return "Georgia"
+    data = response.json()
+    region = data.get("region", "")
+    return region
 		
 #CONSTANTS
 TTL_SECONDS = 300
