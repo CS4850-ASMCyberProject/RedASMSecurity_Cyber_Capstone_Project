@@ -1,4 +1,5 @@
 Purpose: Set stored data cache of a list holding timestamps and ip entries for a specified user
+Node Type: Repeat back to me
 
 Setup:
   Name: Shuffle_Buffer_2
@@ -6,11 +7,11 @@ Setup:
   Call: Nothing
 
 Workflow Path:
-  07_Shuffle_Buffer -> 08_Set_Alerts_by_User -> 09_Set_Alerts_by_User
-                                             -> 10_SP-108-RedASM_Alerts
+  07_Shuffle_Buffer -> 09_Shuffle_Buffer_2 -> 10_TheHive_Promote_to_Case
+                                           -> 11_SP-108-RedASM_Alerts
 
 Branching:
-  08_Set_Alerts_by_User -> 09_Set_Alerts_by_User:
+  09_Shuffle_Buffer_2 -> 10_TheHive_Promote_to_Case:
     ($python_slack_script.message.promote_to_case equals true)
-  06_Set_Alerts_by_User -> 10_SP-108-RedASM_Alerts:
+  09_Shuffle_Buffer_2 -> 11_SP-108-RedASM_Alerts:
     ($python_slack_script.message.promote_to_case equals false)
