@@ -7,4 +7,4 @@ Setup:
   Category: alerts_by_ip
 
 Workflow Path:
-  01_Get_Set_Thread_TS -> 02_Get_Alerts_by_IP -> 03_Normalize_User_Python_Script (No Branch Conditional)
+  01_Get_Set_Thread_TS -> 02_Get_Alerts_by_IP -> 03_Normalize_User (No Branch Conditional)
