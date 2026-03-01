@@ -1,0 +1,10 @@
+Purpose: Gets stored data cache of a list holding timestamps and user entries for a specified IP
+
+Setup:
+  Name: Get_Alerts_by_IP
+  Action: Get Cache Value
+  Key: alerts_by_ip_$exec.all_fields.data.srcip
+  Category: alerts_by_ip
+
+Workflow Path:
+  01_Get_Set_Thread_TS -> 02_Get_Alerts_by_IP -> 03_Normalize_User_Python_Script (No Branch Conditional)
