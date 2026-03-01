@@ -276,12 +276,29 @@ def categorizeatt(groups_list):
                 return category
 
     return "other"
-		
-#CONSTANTS
-TTL_SECONDS = 300
 
-#group_list is used to capture the list of groups in the metadata
-group_list = []
+def int_to_float(value: str):
+  try:
+    int(float(value))
+  except (ValueError, TypeError):
+    return 0
+		
+#CONSTANTS / Must add boolean variables because calling the cached datastores from shuffle use true and false which are invalid in Python
+TTL_SECONDS = 300
+true = True 
+false = False
+null = None
+
+friendlyips = [
+    "10.0.0.48",
+    "73.43.228.109",
+    "100.70.35.63",
+    "153.33.195.74",
+    "104.185.200.147",
+    "99.120.241.179",
+    "174.49.72.16",
+    "168.28.186.189"
+]
 
 #msg is used as a base dummy value to pass into json.dumps
 #for messages with level lower than 7. Message is empty so
@@ -321,13 +338,33 @@ title = data.get("title", "")
 #Get the rule-id (wazuh alert code)
 rule_id = data.get("rule_id", "unknown_rule")
 
-#Get the timestamp
-ts = data.get("timestamp", "")
+#Get the source_ip
+source_ip = data.get("all_fields", {}).get("data", {}).get("srcip", "")
+
+#If source_ip does not exist, set it to a string "None"
+if not source_ip:
+  source_ip = "None"
+
+#Get the source_user
+source_user = data.get("all_fields", {}).get("data", {}).get("srcuser", "")
+
+#If source_user does not exist, set it to a string "None"
+if not source_user:
+  source_user = "None"
+
+#Get the current unix timestamp of the alert
+id = data.get("id", "")
+
+#set the id unix timestamp as a float used throughout functions to compare timestamps
+ts = float(id)
+
+#human readable timestamp used for alert cards in slack and converted to pretty_ts
+timestamp = data.get("timestamp", "")
 
 #make ts pretty use datetime & change utc to est
-pretty_ts = ts
+pretty_ts = timestamp
 try:
-    dt_utc = datetime.strptime(ts, "%Y-%m-%dT%H:%M:%S.%f%z")
+    dt_utc = datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S.%f%z")
     dt_est = dt_utc.astimezone(ZoneInfo("America/New_York"))
     pretty_ts = dt_est.strftime("%b %d %Y, %I:%M:%S %p %Z")
 except Exception:
@@ -337,11 +374,13 @@ except Exception:
 groups_list = data.get("all_fields", {}).get("rule", {}).get("groups", [])
 
 #lower case the str for each group
-for g in groups_list:
-    str(g).lower()
+groups_list = [str(g).lower() for g in groups_list]
 
-#make a groups string and join the list into a string delimited by space
-groups = " ".join(groups_list)
+#Dictionary used to associate related alerts to an ip, assigning a list of timestamps and users to an ip
+alerts_by_ip = json.loads('{{ $get_alerts_by_ip.value | default({}) | tojson }}')
+
+#Dictionary used to associate related alerts to a user, assigning a list of timestamps and ips to a user
+alerts_by_user = json.loads('{{ $get_alerts_by_user.value | default({}) | tojson }}')
 
 #get the mitre dictionary
 mitre = data.get("all_fields", {}).get("rule", {}).get("mitre", {})
@@ -379,17 +418,20 @@ changed_attributes = parseattr(text)
 #Variable that holds the current time
 now = int(time.time())
 
-#TTL timer for threading which is set for 5 mins are threads all related events in Slack
-expiresat = now + TTL_SECONDS
-
 #Found holds True or False if there is a stored thread in get_thread cache node
-found = $get_thread_ts.found
+found = $get_set_thread_ts.found
 
 #Get the value (thread_ts & expiresat) for each get thread cache (returns dict)
-raw_thread = $get_thread_ts.value
+raw_thread = $get_set_thread_ts
+
+#Initialize a string that will hold the thread_ts for slack threading
+parent_ts = ""
 
 #Initialize expired to True
 expired = True
+
+#Threading flag used in shuffle workflow to determine if current alert should be threaded
+threading = False
 
 #Initialize stored_thread to empty dict and will store raw_thread after checking
 #it's parameters to ensure safe handling
@@ -407,6 +449,24 @@ severityscore = wazuhlvl + mitrelvl + impactscore
 severity = getseverityscore(severityscore)
 #Get the emoji severity color (Green, Orange, Red)
 emoji = (severityemoji(severity))
+
+#pruncesources of alerts more than an hour ago
+prunesources(alerts_by_ip, alerts_by_user)
+
+#add current alert if it has source_ip or source_user
+addalert(source_ip, ts, source_user)
+
+#Call correlate_alert and determine if the current source_ip or source_user if involved in a regular_attack or burst attack
+reg_attack, burst = correlate_alert(source_ip, source_user, alerts_by_ip, alerts_by_user, ts)
+
+#initialize promotescore dictionary
+promotescore = {}
+
+#Call getpromotescore to determine if alert should be promoted to case
+promotescore = getpromotescore(severity, source_ip, source_user, burst, reg_attack)
+
+#Call attack_group to determine the category of attack based on the groups assocaited with the attack
+attack_group = categorizeatt(groups_list)
 
 #Fields holds information about the wazuh level of each event, the wazuh rule ID, and the time stamp
 fields = [
