@@ -6,8 +6,8 @@ Setup:
   Call: Nothing
 
 Workflow Path:
-  06_Set_Alerts_by_IP -> 07_Shuffle_Buffer -> 08_Set_Alerts_by_User
-                                           -> 09_Shuffle_Buffer_2
+  06_Set_Alerts_by_IP -> 07_Shuffle_Buffer -> 08_Shuffle_Buffer_2
+                                           -> 09_Set_Alerts_by_User
 
 Branching:
   07_Shuffle_Buffer -> 08_Shuffle_Buffer_2:
