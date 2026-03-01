@@ -1,0 +1,19 @@
+Purpose: Set stored data cache of a list holding timestamps and ips entries for a specified user
+Node Type: Set Cache Value
+
+Setup:
+  Name: Set_Alerts_by_User
+  Action: Set Cache Value
+  Key: alerts_by_ip_$python_slack_script.message.observables.source_user
+  Value: $python_slack_script.message.alerts_by_user
+  Category: alerts_by_user
+
+Workflow Path:
+  07_Shuffle_Buffer -> 08_Set_Alerts_by_User -> 10_TheHive_Promote_to_Case
+                                             -> 11_SP-108-RedASM_Alerts
+
+Branching:
+  08_Set_Alerts_by_User -> 10_TheHive_Promote_to_Case:
+    ($python_slack_script.message.promote_to_case equals true)
+  08_Set_Alerts_by_User -> 11_SP-108-RedASM_Alerts:
+    ($python_slack_script.message.promote_to_case equals false)
