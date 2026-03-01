@@ -1,4 +1,5 @@
 START: Add Wazuh Webhook to Shuffle Workflow
+Node Type: Webhook
 
 1. Copy webhook URL
 2. Go To Terminal
