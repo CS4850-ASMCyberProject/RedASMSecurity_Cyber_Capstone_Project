@@ -7,7 +7,7 @@
 ---
 
 <p align="center">
-  <img src="doc/images/Infinity_Lock.png" width="300">
+  <img src="doc/images/Infinity_Lock.png" width="1200">
 </p>
 
 ## 📌 Overview
