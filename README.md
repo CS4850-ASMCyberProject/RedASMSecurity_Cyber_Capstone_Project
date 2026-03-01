@@ -105,6 +105,10 @@ Shuffle acts as the orchestration engine where all enrichment and decision logic
 
 A Wazuh webhook acts as the entry point for alert automation.
 
+<p align="center">
+  <img src="doc/images/Wazuh_Webhook.png" width="1200">
+</p>
+
 ---
 
 ## 🧠 Core Enrichment Logic
