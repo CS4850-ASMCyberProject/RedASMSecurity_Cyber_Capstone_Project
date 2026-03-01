@@ -9,4 +9,4 @@ Setup:
   Category: slack_threading
 
 Workflow Path:
-  00_Wazuh_Webhook -> 01_Get_Set_Thread_TS -> 02_Normalize_User_Python_Script (No Branch Conditional)
+  00_Wazuh_Webhook -> 01_Get_Set_Thread_TS -> 02_Get_Alerts_by_IP (No Branch Conditional)
