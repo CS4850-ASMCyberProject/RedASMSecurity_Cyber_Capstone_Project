@@ -264,6 +264,10 @@ When triggered, Shuffle:
 
 This creates a long-term, immutable audit trail of SOC events.
 
+<p align="center">
+  <img src="doc/images/Cyber_Archive_GitHub.png" width="1200">
+</p>
+
 ---
 
 # ⚙️ Basic Setup & Configuration
