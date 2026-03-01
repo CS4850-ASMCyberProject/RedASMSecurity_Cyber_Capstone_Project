@@ -6,6 +6,10 @@
 
 ---
 
+<p align="center">
+  <img src="docs/images/Infinity_Lock.png" width="300">
+</p>
+
 ## 📌 Overview
 
 The `llado_shuffle_slack` branch implements a fully automated, open-source SOC workflow integrating:
