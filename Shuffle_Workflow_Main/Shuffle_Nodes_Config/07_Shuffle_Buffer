@@ -6,11 +6,11 @@ Setup:
   Call: Nothing
 
 Workflow Path:
-  06_Set_Alerts_by_IP -> 07_Shuffle_Buffer -> 08_Shuffle_Buffer_2
-                                           -> 09_Set_Alerts_by_User
+  06_Set_Alerts_by_IP -> 07_Shuffle_Buffer -> 08_Set_Alerts_by_User
+                                           -> 09_Shuffle_Buffer_2
 
 Branching:
-  07_Shuffle_Buffer -> 08_Shuffle_Buffer_2:
-    ("$python_slack_script.message.observables.source_user" equals "None")
-  07_Shuffle_Buffer -> 09_Set_Alerts_by_User:
+  07_Shuffle_Buffer -> 08_Set_Alerts_by_User:
     ("$python_slack_script.message.observables.source_user" does not equals "None")
+  07_Shuffle_Buffer -> 09_Shuffle_Buffer_2:
+    ("$python_slack_script.message.observables.source_user" equals "None")
