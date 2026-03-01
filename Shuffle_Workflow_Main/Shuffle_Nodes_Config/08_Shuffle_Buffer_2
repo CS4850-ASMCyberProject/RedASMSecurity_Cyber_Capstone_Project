@@ -1,0 +1,16 @@
+Purpose: Set stored data cache of a list holding timestamps and ip entries for a specified user
+
+Setup:
+  Name: Shuffle_Buffer_2
+  Action: Repeat back to me
+  Call: Nothing
+
+Workflow Path:
+  07_Shuffle_Buffer -> 08_Set_Alerts_by_User -> 09_Set_Alerts_by_User
+                                             -> 10_SP-108-RedASM_Alerts
+
+Branching:
+  08_Set_Alerts_by_User -> 09_Set_Alerts_by_User:
+    ($python_slack_script.message.promote_to_case equals true)
+  06_Set_Alerts_by_User -> 10_SP-108-RedASM_Alerts:
+    ($python_slack_script.message.promote_to_case equals false)
