@@ -560,27 +560,39 @@ if found and raw_thread:
 #Get the stored parameters from stored_thread cached in get_thread node which will be used to 
 #check how alerts should be posted to Slack. If the stored corrkey mateches the corrkey for 
 #the current alert, and there is a timestamp (parent_ts) and expiresat, then set expired
-get_corrkey = stored_thread.get("corrkey", "")
-parent_ts = stored_thread.get("Set_Thread_TS", "")
-get_expiresat = stored_thread.get("expiresat", "")
 
 #If all three return true, set newexpiresat to the current expiresat
 #and check if expired is true or false based on the get_thread expiresat
 #The Threading process has a 5min sliding window and persists as long 
 #as there are alerts from that correlation key coming in.
-if parent_ts and get_expiresat and corrkey == get_corrkey:
-  new_expiresat = int(float(expiresat))
-  expired = now > expiresat
+parent_ts = stored_thread.get("value", {}).get("Set_Thread_TS", "")
+get_last_seen = stored_thread.get("value", {}).get("last_seen", "")
+get_corrkey = stored_thread.get("value", {}).get("corrkey", "")
+
+if parent_ts and get_last_seen and corrkey == get_corrkey:
+  get_last_seen = int(float(get_last_seen))
+  expired = (now - get_last_seen) > 300
 
 #Check if the stored  expires at time is less than current time
 #If it is, expired becomes true and fails
 #If it is not, expired becomes false and passes. Then add parent_ts and newexpiresat
 #Otherwise, remove thread_ts from alert to ensure a new parent mesasge is posted
 if not expired:
+  alert["threading"] = "true"
   alert["thread_ts"] = str(parent_ts)
-  alert["new_expiresat"] = new_expiresat
 else:
   alert.pop("thread_ts", None)
+  alert["threading"] = "false"
+
+#If promote score is true, add triage links and respond to slack case for investigation and soc analyst response
+if promotescore.get("total", 0) >= 5 or promotescore.get("hard_promote", False):
+    alert["promote_to_case"] = "true"
+    blocks.append({ "type": "section", "text": { "type": "mrkdwn", "text": "Investigate:" }})
+    blocks.append({ "type": "divider"})
+    blocks.append({ "type": "actions", "elements": triage_links })
+    blocks.append({ "type": "section", "text": { "type": "mrkdwn", "text": "Respond:" }})
+    blocks.append({ "type": "divider"})
+    blocks.append({ "type": "section", "fields": respond })
 
 #Print json.dumps with the alert 
 print(json.dumps(alert))
