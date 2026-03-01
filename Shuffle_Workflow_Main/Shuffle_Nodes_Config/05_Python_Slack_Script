@@ -1,4 +1,5 @@
 Purpose: Main Python Script for building alert payload, threading, promotescore, triage links, etc.
+Node Type: Execute Python
 
 Setup:
   Name: Python_Slack_Script
