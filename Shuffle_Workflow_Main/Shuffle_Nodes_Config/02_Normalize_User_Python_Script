@@ -1,0 +1,9 @@
+Purpose: Normalizes two variables associated with source user: dstuser, srcuser
+
+Setup:
+  Name: Normalize_User
+  Action: Execute Python
+  Code: Add Normalize_User.py from /Shuffle_Workflow_Main/Python_Scripts
+
+Workflow Path:
+  01_Get_Set_Thread_TS -> 02_Normalize_User_Python_Script -> 02_Normalize_User_Python_Script (No Branch Conditional)
