@@ -6,4 +6,4 @@ Setup:
   Code: Add Normalize_User.py from /Shuffle_Workflow_Main/Python_Scripts
 
 Workflow Path:
-  01_Get_Set_Thread_TS -> 02_Normalize_User_Python_Script -> 02_Normalize_User_Python_Script (No Branch Conditional)
+  02_Get_Alerts_by_IP -> 03_Normalize_User_Python_Script -> 04_Get_Alerts_by_User (No Branch Conditional)
