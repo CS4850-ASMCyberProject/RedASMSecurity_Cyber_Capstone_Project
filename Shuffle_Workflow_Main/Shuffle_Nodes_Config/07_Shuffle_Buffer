@@ -1,4 +1,5 @@
 Purpose: Dummy node to pass Set_Alerts_by_IP if IP is "None"
+Node Type: Repeat back to me
 
 Setup:
   Name: Shuffle_Buffer
