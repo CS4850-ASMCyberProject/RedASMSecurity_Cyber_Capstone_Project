@@ -6,7 +6,9 @@
 
 ---
 
-![Infinity Lock](doc/images/Infinity_Lock.png)
+<p align="center">
+  <img src="doc/images/Infinity_Lock.png" width="300">
+</p>
 
 ## 📌 Overview
 
