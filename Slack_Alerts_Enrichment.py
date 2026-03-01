@@ -170,6 +170,25 @@ def prunesources(alerts_by_ip, alerts_by_user):
     alerts_by_ip[ip] = [e for e in alerts_by_ip[ip] if e["timestamp"] >= one_hour_ago]
   for user in alerts_by_user:
     alerts_by_user[user] = [e for e in alerts_by_user[user] if e["timestamp"] >= one_hour_ago]
+
+#Function that adds the current alert to alerts_by_ip or alerts_by_user if they exist.
+#Both are dictionaries with the key the specific ip or user and the value is a list 
+#of dictionaries which hold the timestamp of that alert and the associated ip or user
+def addalert(source_ip, ts, source_user):
+    if source_ip == "None"and source_user == "None":
+      return
+    if source_ip not in alerts_by_ip and source_ip != "None":
+        alerts_by_ip[source_ip] = []
+        alerts_by_ip[source_ip].append({"timestamp": ts, "user": source_user})
+    elif source_ip != "None":
+        alerts_by_ip[source_ip].append({"timestamp": ts, "user": source_user})
+    if source_user not in alerts_by_user and source_user != "None":
+        alerts_by_user[source_user] = []
+        alerts_by_user[source_user].append({"timestamp": ts, "ip": source_ip})
+    elif source_user != "None":
+        alerts_by_user[source_user].append({"timestamp": ts, "ip": source_ip})
+
+    return alerts_by_ip, alerts_by_user
 		
 #CONSTANTS
 TTL_SECONDS = 300
