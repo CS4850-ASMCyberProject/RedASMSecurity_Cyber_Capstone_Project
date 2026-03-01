@@ -1,0 +1,16 @@
+START: Add Wazuh Webhook to Shuffle Workflow
+
+1. Copy webhook URL
+2. Go To Terminal
+3. sudo nano /var/ossec/etc/ossec.conf
+4. Insert Integration code as last entry within <ossec_config>
+
+  <integration>
+  <name>shuffle</name>
+  <hook_url>YOUR_WEBHOOK_URL</hook_url>
+  <level>3</level>
+  <alert_format>json</alert_format>
+  </integration>
+
+Workflow Path:
+  00_Wazuh_Webhook -> 01_Get_Set_Thread_TS (No Branch Conditional)
