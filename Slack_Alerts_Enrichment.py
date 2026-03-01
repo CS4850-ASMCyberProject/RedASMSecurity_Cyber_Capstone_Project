@@ -254,6 +254,28 @@ def getregion(source_ip):
     data = response.json()
     region = data.get("region", "")
     return region
+
+#Categorize Attack uses the groups of the alert to assign a broader category of the type of attack it is.
+#Authentication - ssh attacks, brute force, auth fail and success attacks
+#File_Integrity - file integrity management attacks
+#Web_Attack - Any server, HTTP, or web app attack
+#Recon - Recon scanning
+#Dos - denial of service attacks
+def categorizeatt(groups_list):
+    check_group = {
+    "authentication": ["syslog", "sshd", "authentication failures", "authentication_failed"],
+    "file_integrity": ["ossec", "syscheck", "syscheck_entry_modified", "syscheck_file"],
+    "web_attack": ["web", "apache", "nginx", "sql_injection"],
+    "recon": ["scan", "recon", "portscan"],
+    "dos": ["dos"]
+}
+
+    for category in check_group:
+        for entry in check_group[category]:
+            if entry in groups_list:
+                return category
+
+    return "other"
 		
 #CONSTANTS
 TTL_SECONDS = 300
