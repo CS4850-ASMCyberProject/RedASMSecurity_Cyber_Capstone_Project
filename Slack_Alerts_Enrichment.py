@@ -111,6 +111,53 @@ def severityemoji(severity):
 		return "🟠"
 	else:
 		return "🟢"
+
+#Correlate Alert uses two dictionaries that correlate alerts within the last hour based 
+#on a specific ip or a specific user and determines whether each cached data meets the 
+#threshold to be a regular attack or burst attack. If a source ip or user has 5 alerts 
+#within the last hour, it is a regular attack, if there are 3 alerts within the last minute,
+#then it is a burst attack. This function returns two booleans: reg_attack and burst
+def correlate_alert(source_ip, source_user, alerts_by_ip, alerts_by_user, ts):
+    if source_ip == "None"and source_user == "None":
+      return False, False
+    now = time.time()
+    ip_alerted = []
+    user_alerted = []
+    burst = False
+    reg_attack = False
+    burst_count = 0
+    one_hour_ago = now - 3600
+    sixty_seconds_ago = now - 60
+
+    for entry in alerts_by_ip[source_ip]:
+        if entry["timestamp"] >= one_hour_ago:
+            ip_alerted.append(entry["timestamp"])
+
+    if len(ip_alerted) >= 5:
+        reg_attack = True
+
+    for ts in ip_alerted:
+        if ts >= sixty_seconds_ago:
+            burst_count = burst_count + 1
+    if burst_count >= 3:
+        burst = True
+
+    burst_count = 0
+
+    for entry in alerts_by_user[source_user]:
+        if entry["timestamp"] >= one_hour_ago:
+            user_alerted.append(entry["timestamp"])
+
+    if len(user_alerted) >= 5:
+        reg_attack = True
+
+    for ts in user_alerted:
+        if ts >= sixty_seconds_ago:
+            burst_count = burst_count + 1
+    if burst_count >= 3:
+        burst = True
+
+    return reg_attack, burst
 		
 #CONSTANTS
 TTL_SECONDS = 300
