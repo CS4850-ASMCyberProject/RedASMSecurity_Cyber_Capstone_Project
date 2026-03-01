@@ -40,7 +40,7 @@ The system leverages intelligent alert correlation, cached enrichment logic, and
 </p>
 
 <p align="center">
-  <img src="doc/images/Shuffle_Workflow_Inactive.png" width="1200">
+  <img src="doc/images/Shuffle_Workflow_Active.png" width="1200">
 </p>
 
 ## 🏗️ High-Level Architecture Flow
@@ -159,6 +159,10 @@ This enables frequency-based scoring and intelligent case promotion.
 
 ## 🔀 Directed Arrow Conditionals
 
+<p align="center">
+  <img src="doc/images/Shuffle_Conditionals.png" width="1200">
+</p>
+
 Conditional workflow routing determines:
 
 - Thread vs. new Slack parent message  
@@ -181,11 +185,19 @@ Two Slack channels are used:
 
 ### 🟢 SOC Alerts Channel
 
+<p align="center">
+  <img src="doc/images/Slack_Alerts_Threading.png" width="1200">
+</p>
+
 - General internet noise  
 - Threaded alerts within a 5-minute window  
 - Used for baseline monitoring  
 
 ### 🔴 SOC Cases Channel
+
+<p align="center">
+  <img src="doc/images/Slack_Cases_Triage.png" width="1200">
+</p>
 
 - High-confidence or high-frequency alerts  
 - Includes:
@@ -210,6 +222,10 @@ Two Slack channels are used:
 
 Shuffle integrates with TheHive using chained HTTP nodes.
 
+<p align="center">
+  <img src="doc/images/TheHive_Alert.png" width="1200">
+</p>
+
 ### 🔧 Capabilities
 
 - Create alert  
@@ -220,6 +236,10 @@ Shuffle integrates with TheHive using chained HTTP nodes.
 - Query and update alerts dynamically  
 
 Promotion logic mirrors Slack promotion decisions.
+
+<p align="center">
+  <img src="doc/images/TheHive_Case.png" width="1200">
+</p>
 
 Observables are individually posted via chained nodes to ensure full enrichment inside TheHive.
 
