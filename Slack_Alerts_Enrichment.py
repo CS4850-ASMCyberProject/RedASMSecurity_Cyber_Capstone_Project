@@ -475,6 +475,20 @@ fields = [
 	{ "type": "mrkdwn", "text": f"*Time*: {pretty_ts or ''}" },
 ]
 
+#A list of triage links used for investigation into a recently promoted case
+#Will include a call to ipinfo.com using source_ip to determine maliciousness
+#A full event dump of the alert linked in GitHub
+#A runbook for the type of attack based on the attack_group
+triage_links = [
+
+]
+
+#Tells the soc analyst how to respond to cases to close them as benign or escalate to level 2
+respond = [
+  { "type": "mrkdwn", "text": f"Close As Benign: React with ✅ & reply in thread with reason."},  
+  { "type": "mrkdwn", "text": f"Escalate to L2: React with 🚨 & reply in thread with reason."}
+]
+
 #If the agent_ip is collected, insert this field markdown as the first field
 if agent_ip:
     fields.insert(0, { "type": "mrkdwn", "text": f"*Name & IP*: {agent_name or ''} - {agent_ip}" })
@@ -496,13 +510,39 @@ blocks = [
 	{ "type": "section", "fields": fields }
 ]
 
+#if source_ip exists, create a button linked to a query of the source_ip on ipinfo.com, a malicious i database
+if source_ip:
+  triage_links.append({ "type": "button", 
+  "text": { "type": "plain_text", "text": "🌍 IPInfo"},
+  "url": f"https://ipinfo.io/{source_ip}"})
+
 #Alert is the final payload dictionary that specifies the Slack channel, the header, and the blocks 
 alert = {
-    "channel": "C0AB651MRFE",
+    "text": f"[{severity}] - {title}",
+    "description": f"Wazuh Alert: Target - {agent_ip} Attack: {title}",
+    "channel": "C0AB0J5V9QE" if promotescore.get("total", 0) >= 5 or promotescore.get("hard_promote", False) else "C0AB651MRFE",
     "blocks": blocks,
     "corrkey": corrkey,
-    "nowunix": now,
-    "expiresat": expiresat
+    "last_seen": now,
+    "timestamp": pretty_ts,
+    "promote_to_case": "false",
+    "threading": "false",
+    "mitre_id": mitre_id,
+    "mitre_tactic": mitre_tactic,
+    "mitre_technique": mitre_technique,
+    "alerts_by_ip": alerts_by_ip,
+    "alerts_by_user": alerts_by_user,
+    "observables": {
+        "agent_ip": agent_ip,
+        "source_ip": source_ip,
+        "source_user": source_user,
+        "attack_group": attack_group,
+        "rule_id": rule_id,
+        "file_path": file_path,
+        "severity": severity,
+        "severity_score": severityscore,
+        "mitre": mitre
+    }
 }
 
 #Conditional statement that checks if found and raw_thread are true
