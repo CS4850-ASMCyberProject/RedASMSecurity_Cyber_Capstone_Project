@@ -1,4 +1,5 @@
 Purpose: Set stored data cache of a list holding timestamps and users entries for a specified ip
+Node Type: Set Cache Value
 
 Setup:
   Name: Set_Alerts_by_IP
