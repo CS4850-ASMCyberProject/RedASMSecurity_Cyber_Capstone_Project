@@ -6,7 +6,7 @@
 
 ---
 
-![Infinity Lock](docs/images/Infinity_Lock.png)
+![Infinity Lock](doc/images/Infinity_Lock.png)
 
 ## 📌 Overview
 
