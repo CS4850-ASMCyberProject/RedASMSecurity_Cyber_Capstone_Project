@@ -1,1 +1,17 @@
+Purpose: Set stored data cache of a list holding timestamps and ip entries for a specified user
 
+Setup:
+  Name: Set_Alerts_by_IP
+  Action: Set Cache Value
+  Key: alerts_by_ip_$python_slack_script.message.observables.source_ip
+  Category: alerts_by_ip
+
+Workflow Path:
+  05_Python_Slack_Script -> 06_Set_Alerts_by_IP -> 07_Shuffle_Buffer
+                                                -> 08_Set_Alerts_by_User
+
+Branching:
+  06_Set_Alerts_by_IP -> 07_Shuffle_Buffer:
+    ("$python_slack_script.message.observables.source_user" -> equals "None")
+  06_Set_Alerts_by_IP -> 08_Set_Alerts_by_User:
+    ("$python_slack_script.message.observables.source_user" does not equals "None")
