@@ -1,4 +1,5 @@
 Purpose: Gets stored data cache of a list holding timestamps and user entries for a specified IP
+Node Type: Get Cache Value
 
 Setup:
   Name: Get_Alerts_by_IP
