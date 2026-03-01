@@ -158,11 +158,21 @@ def correlate_alert(source_ip, source_user, alerts_by_ip, alerts_by_user, ts):
         burst = True
 
     return reg_attack, burst
+
+#Prune Sources keeps a cache limit in Shuffle on the data it stores for the
+#dictionaries alerts_by_ip and alerts_by_user (used for correlate_alert). 
+#It only holds alerts correlated to an ip or user within the last hour, and removes 
+#older entries otherwise.
+def prunesources(alerts_by_ip, alerts_by_user):
+  now = time.time()
+  one_hour_ago = now - 3600
+  for ip in alerts_by_ip:
+    alerts_by_ip[ip] = [e for e in alerts_by_ip[ip] if e["timestamp"] >= one_hour_ago]
+  for user in alerts_by_user:
+    alerts_by_user[user] = [e for e in alerts_by_user[user] if e["timestamp"] >= one_hour_ago]
 		
 #CONSTANTS
 TTL_SECONDS = 300
-
-
 
 #group_list is used to capture the list of groups in the metadata
 group_list = []
