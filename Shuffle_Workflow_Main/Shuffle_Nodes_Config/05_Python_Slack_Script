@@ -1,0 +1,15 @@
+Purpose: Main Python Script for building alert payload, threading, promotescore, triage links, etc.
+
+Setup:
+  Name: Python_Slack_Script
+  Action: Execute Python
+  Code: Add Slack_Soc_Enrichment_Main.py from /Shuffle_Workflow_Main/Python_Scripts
+
+Workflow Path: FORK & CONDITIONAL BRANCHING
+  04_Get_Alerts_by_User -> 05_Python_Slack_Script -> 06_Set_Alerts_by_IP 
+                                                  -> 07_Shuffle_Buffer
+Branching:
+  05_Python_Slack_Script -> 06_Set_Alerts_by_IP
+    ("$python_slack_script.message.observables.source_ip" does not equal "None")
+  05_Python_Slack_Script -> 07_Shuffle_Buffer
+    ("$python_slack_script.message.observables.source_ip" equals "None")
