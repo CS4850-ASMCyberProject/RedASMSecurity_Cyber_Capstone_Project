@@ -1,4 +1,5 @@
 Purpose: Normalizes two variables associated with source user: dstuser, srcuser
+Node Type: Execute Python
 
 Setup:
   Name: Normalize_User
