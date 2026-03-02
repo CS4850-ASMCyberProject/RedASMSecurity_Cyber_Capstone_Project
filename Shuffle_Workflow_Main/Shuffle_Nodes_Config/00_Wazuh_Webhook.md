@@ -1,7 +1,7 @@
 # START: Add Wazuh Webhook to Shuffle Workflow
 
 ## Node Type
-`Webhook`
+`Webhook` <p><img src="doc/images/Wazuh_Webhook_Icon.png" width="100"></p>
 
 ---
 
