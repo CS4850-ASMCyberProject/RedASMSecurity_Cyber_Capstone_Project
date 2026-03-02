@@ -1,0 +1,19 @@
+Purpose: Posts Alerts to Soc Alerts Channel in Slack w/ Threading
+Node Type: Slack Node 
+
+Setup:
+  Name: SP-108-RedASM_Alerts
+  Authentication: OAuth2 w/ chat:write channels:read
+  URL: http://172.17.0.1:9000/thehive/api/v1/case
+  Body: {{$python_slack_script.message}}
+  Headers: Nothing
+
+ Workflow Path:
+  08_Set_Alerts_by_User -> 11_SP-108-RedASM_Alerts -> 13_Set_Thread_TS
+  09_Shuffle_Buffer_2   ->                         -> 14_Set_Thread_TS_Copy
+
+ Branching:
+   11_SP-108-RedASM_Alerts -> 13_Set_Thread_TS:
+     ($python_slack_script.message.threading equals false)
+   11_SP-108-RedASM_Alerts -> 14_Set_Thread_TS_Copy:
+     ($python_slack_script.message.threading equals true)
