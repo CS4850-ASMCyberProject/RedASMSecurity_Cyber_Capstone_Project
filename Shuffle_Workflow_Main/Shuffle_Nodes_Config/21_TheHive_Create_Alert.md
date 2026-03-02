@@ -48,6 +48,8 @@ Content-Type: application/json
 Authorization: Bearer YOUR_THEHIVE_TOKEN
 ```
 
+---
+
 ## Workflow Path
 
 ```text
