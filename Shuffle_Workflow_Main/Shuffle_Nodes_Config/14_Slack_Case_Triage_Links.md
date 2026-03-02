@@ -5,7 +5,7 @@ Node Type: Execute Python
 Setup:
   Name: Get_TS_Copy
   Action: Execute Python
-  Code: Add Add_Triage_Links.py from /Shuffle_Workflow_Main/Python_Scripts
+  Code: Add Slack_Case_Triage_Links.py from /Shuffle_Workflow_Main/Python_Scripts
 
 Workflow Path: FORK & CONDITIONAL BRANCHING
   13_GitHub_Cyber_Event_Archive -> 14_Get_TS_Copy -> 15_SP-108-RedASM_Cases (No Conditional Branching)
