@@ -6,7 +6,7 @@ Gets stored data cache of a list holding timestamps and IP entries for a specifi
 ---
 
 ## Node Type
-`Get Cache Value` <p><img src="../../doc/images/Get_Cache_Icon.png" width="100" width="400"></p>
+`Get Cache Value` <p><img src="../../doc/images/Get_Cache_Icon.png" width="400"></p>
 
 ---
 
