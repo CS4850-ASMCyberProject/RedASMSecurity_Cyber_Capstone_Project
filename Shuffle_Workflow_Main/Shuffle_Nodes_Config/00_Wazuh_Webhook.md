@@ -31,11 +31,10 @@ Add inside `<ossec_config>` (last entry):
 
 ---
 
-## Workflow Path
+## Workflow Path (No Conditional Branching)
 
 ```text
 00_Wazuh_Webhook
     ↓
 01_Get_Set_Thread_TS
-(No Branch Conditional)
 ```
