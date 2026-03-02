@@ -27,12 +27,6 @@ POST
 http://172.17.0.1:9000/thehive/api/v1/case
 ```
 
-**Headers:**
-```text
-Content-Type: application/json
-Authorization: Bearer YOUR_THEHIVE_TOKEN
-```
-
 **Body:**
 ```json
 {
@@ -44,6 +38,12 @@ Authorization: Bearer YOUR_THEHIVE_TOKEN
     "$python_slack_script.message.corrkey"
   ]
 }
+```
+
+**Headers:**
+```text
+Content-Type: application/json
+Authorization: Bearer YOUR_THEHIVE_TOKEN
 ```
 
 ---
