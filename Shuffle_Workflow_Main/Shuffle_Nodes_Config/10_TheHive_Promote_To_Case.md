@@ -55,5 +55,5 @@ Authorization: Bearer YOUR_THEHIVE_TOKEN
     ↓
 10_TheHive_Promote_To_Case
     ↓
-12_Get_TS
+12_GitHub_Archive_Payload
 ```
