@@ -63,7 +63,7 @@ true
 
 ---
 
-## Branch Condition → 17_Set_Thread_TS_Alerts
+## Branch Condition → 19_Set_Thread_TS_Alerts
 
 Left Value:
 ```text
