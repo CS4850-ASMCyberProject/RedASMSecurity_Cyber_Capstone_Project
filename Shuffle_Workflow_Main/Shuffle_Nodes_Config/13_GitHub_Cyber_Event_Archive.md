@@ -52,5 +52,5 @@ Content-Type: application/json
     ↓
 13_GitHub_Cyber_Event_Archive
     ↓
-14_Get_TS_Copy
+14_Slack_Case_Triage_Links
 ```
