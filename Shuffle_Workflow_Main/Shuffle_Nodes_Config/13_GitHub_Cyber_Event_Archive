@@ -1,0 +1,14 @@
+Purpose: Sends an HTTP Put Request to GitHub to upload the full event archive of a soc case for investigation and helpful aid.
+Node Type: Http Node
+
+Setup:
+  Name: GitHub_Cyber_Event_Archive
+  Action: PUT
+  URL: https://api.github.com/repos/CS4850-ASMCyberProject/cyber_event_archive/contents/$get_ts.message.path
+  Body: {"message":"$get_ts.message.commit_msg","content":"$get_ts.message.github_event","branch":"main"}
+  Headers: Authorization: Bearer YOUR_GITHUB_TOKEN
+           Accept: application/vnd.github+json
+           Content-Type: application/json
+
+Workflow Path:
+  12_Get_TS -> 13_GitHub_Cyber_Event_Archive -> 14_Get_TS_Copy (No Conditional Branching)
