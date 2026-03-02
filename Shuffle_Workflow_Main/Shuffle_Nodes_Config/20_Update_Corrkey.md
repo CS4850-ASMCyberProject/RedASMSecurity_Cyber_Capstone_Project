@@ -1,7 +1,7 @@
 # Update Alert Payload Corrkey
 
 ## Purpose
-Update the correlation key (Corrkey) of the alert payload with the slack thread timestamp.\n
+Update the correlation key (Corrkey) of the alert payload with the slack thread timestamp.  
 Do this so that alerts in TheHive don't explode and threading is possible.
 
 ---
