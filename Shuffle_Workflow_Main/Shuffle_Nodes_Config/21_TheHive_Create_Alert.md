@@ -62,7 +62,7 @@ Authorization: Bearer YOUR_THEHIVE_TOKEN
 
 ---
 
-## Branch Condition → 22_Set_TheHive_IP_Observable
+## Branch Condition → 22_TheHive_IP_Observable
 
 Left Value:
 ```text
@@ -79,7 +79,7 @@ Right Value:
 
 ---
 
-## Branch Condition → 23_Set_TheHive_User_Observable
+## Branch Condition → 23_TheHive_User_Observable
 
 Left Value:
 ```text
