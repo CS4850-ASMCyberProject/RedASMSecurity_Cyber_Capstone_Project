@@ -6,7 +6,7 @@ Normalizes two variables associated with source user: `dstuser`, `srcuser`.
 ---
 
 ## Node Type
-`Execute Python`
+`Execute Python` <p><img src="../../doc/images/Execute_Python_Icon.png" width="100" width="400"></p>
 
 ---
 
