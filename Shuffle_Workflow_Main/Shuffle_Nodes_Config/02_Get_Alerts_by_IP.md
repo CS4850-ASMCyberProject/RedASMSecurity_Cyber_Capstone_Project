@@ -34,7 +34,7 @@ alerts_by_ip
 
 ---
 
-## Workflow Path
+## Workflow Path (No Conditional Branching)
 
 ```text
 01_Get_Set_Thread_TS
@@ -42,5 +42,4 @@ alerts_by_ip
 02_Get_Alerts_by_IP
     ↓
 03_Normalize_User
-(No Branch Conditional)
 ```
