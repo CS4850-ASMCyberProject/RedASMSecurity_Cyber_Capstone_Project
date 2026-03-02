@@ -1,7 +1,7 @@
 # 01_Get_Set_Thread_TS
 
 ## Purpose
-Gets stored data cache for each Slack thread set.
+Gets stored data cache for each Slack thread, holding the Slack thread timsetamp, the correlation key, and last seen.
 
 ---
 
