@@ -27,11 +27,9 @@ Execute Python
 /Shuffle_Workflow_Main/Python_Scripts/GitHub_Cyber_Archive.py
 ```
 
-(Optional: Replace the path above with a clickable GitHub link if stored in the repo.)
-
 ---
 
-## Workflow Path
+## Workflow Path (No Conditional Branching)
 
 ```text
 10_Get_TheHive_Promote_to_Case
@@ -39,5 +37,4 @@ Execute Python
 12_Get_TS
     ↓
 13_GitHub_Cyber_Event_Archive
-(No Conditional Branching)
 ```
