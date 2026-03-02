@@ -45,30 +45,13 @@ None
 14_Slack_Case_Triage_Links
     ↓
 15_SP-108-RedASM_Cases
-    ├── 16_Set_Thread_TS_Alerts
-    └── 17_Set_Thread_TS_Cases
+    ├── 16_Set_Thread_TS_Cases
+    └── 17_Set_Thread_TS_Alerts
 ```
 
 ---
 
-## Branch Condition → 16_Set_Thread_TS_Alerts
-
-Left Value:
-```text
-$python_slack_script.message.threading
-```
-
-Operator:
-> equals
-
-Right Value:
-```text
-false
-```
-
----
-
-## Branch Condition → 17_Set_Thread_TS_Cases
+## Branch Condition → 16_Set_Thread_TS_Cases
 
 Left Value:
 ```text
@@ -81,4 +64,21 @@ Operator:
 Right Value:
 ```text
 true
+```
+
+---
+
+## Branch Condition → 17_Set_Thread_TS_Alerts
+
+Left Value:
+```text
+$python_slack_script.message.threading
+```
+
+Operator:
+> equals
+
+Right Value:
+```text
+false
 ```
