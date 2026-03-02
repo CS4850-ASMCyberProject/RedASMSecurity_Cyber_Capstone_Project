@@ -34,7 +34,7 @@ slack_threading
 
 ---
 
-## Workflow Path
+## Workflow Path (No Conditional Branching)
 
 ```text
 00_Wazuh_Webhook
@@ -42,5 +42,4 @@ slack_threading
 01_Get_Set_Thread_TS
     ↓
 02_Get_Alerts_by_IP
-(No Branch Conditional)
 ```
