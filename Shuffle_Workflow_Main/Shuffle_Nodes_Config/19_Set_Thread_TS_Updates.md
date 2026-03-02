@@ -48,7 +48,7 @@ slack_threading_new
 ```text
 15_SP-108-RedASM_Cases
     ↓
-16_Set_New_Thread_TS_
+16_Set_New_Thread_TS
     ↓
 18_TheHive_Query_Alert
 ```
