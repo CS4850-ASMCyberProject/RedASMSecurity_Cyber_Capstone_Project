@@ -40,13 +40,13 @@ None
 08_Set_Alerts_by_User | 09_Shuffle_Buffer_2
     ↓                       ↓
 11_SP-108-RedASM_Alerts
-    ├── 16_Set_Thread_TS_Cases
-    └── 19_Set_Thread_TS_Alerts
+    ├── 16_Set_Thread_TS_Updates
+    └── 19_Set_New_Thread_TS
 ```
 
 ---
 
-## Branch Condition → 16_Set_Thread_TS_Cases
+## Branch Condition → 16_Set_Thread_TS_Updates
 
 Left Value:
 ```text
@@ -63,7 +63,7 @@ true
 
 ---
 
-## Branch Condition → 19_Set_Thread_TS_Alerts
+## Branch Condition → 19_Set_New_Thread_TS
 
 Left Value:
 ```text
