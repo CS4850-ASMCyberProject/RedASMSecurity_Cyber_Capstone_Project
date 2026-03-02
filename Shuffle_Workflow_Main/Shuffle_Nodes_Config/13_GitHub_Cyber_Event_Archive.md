@@ -45,7 +45,7 @@ Content-Type: application/json
 
 ---
 
-## Workflow Path
+## Workflow Path (No Conditional Branching)
 
 ```text
 12_Get_TS
@@ -53,5 +53,4 @@ Content-Type: application/json
 13_GitHub_Cyber_Event_Archive
     ↓
 14_Get_TS_Copy
-(No Conditional Branching)
 ```
