@@ -8,6 +8,8 @@ Main Python script for building alert payload, Slack threading, promote score ha
 ## Node Type
 `Execute Python` <p><img src="../../doc/images/Execute_Python_Icon.png" width="100" width="400"></p>
 
+https://github.com/CS4850-ASMCyberProject/CS4850_Red_ASMCyberProject/blob/Llado_shuffle_slack/Shuffle_Workflow_Main/Python_Scripts/Slack_Soc_Enrichment_Main.py
+
 ---
 
 ## Setup
