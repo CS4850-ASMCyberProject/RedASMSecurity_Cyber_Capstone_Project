@@ -48,7 +48,7 @@ Authorization: Bearer YOUR_THEHIVE_TOKEN
 
 ---
 
-## Workflow Path
+## Workflow Path (No Conditional Branching)
 
 ```text
 08_Set_Alerts_by_User
@@ -56,5 +56,4 @@ Authorization: Bearer YOUR_THEHIVE_TOKEN
 10_TheHive_Promote_To_Case
     ↓
 12_Get_TS
-(No Conditional Branching)
 ```
