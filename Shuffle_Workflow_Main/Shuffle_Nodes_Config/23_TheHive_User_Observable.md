@@ -1,4 +1,4 @@
-# TheHive IP Observable
+# TheHive User Observable
 
 ## Purpose
 Sends an HTTP POST request to TheHive to post the source user as an observable for the current alert.
