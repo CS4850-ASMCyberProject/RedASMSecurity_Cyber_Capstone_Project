@@ -23,7 +23,7 @@ Update_Corrkey
 Execute Python
 ```
 
-**Code Source:** [View Update_Corrkey.py on GitHub]([https://github.com/CS4850-ASMCyberProjck/Shuff](https://github.com/CS4850-ASMCyberProject/CS4850_Red_ASMCyberProject/blob/Llado_shuffle_slack/Shuffle_Workflow_Main/Python_Scripts/Update_Corrkey.py))
+**Code Source:** [View Update_Corrkey.py on GitHub](https://github.com/CS4850-ASMCyberProject/CS4850_Red_ASMCyberProject/blob/Llado_shuffle_slack/Shuffle_Workflow_Main/Python_Scripts/Update_Corrkey.py)
 ```text
 /Shuffle_Workflow_Main/Python_Scripts/Update_Corrkey.py
 ```
