@@ -48,7 +48,7 @@ slack_threading_cases
 ```text
 15_SP-108-RedASM_Cases
     ↓
-06_Set_Thread_TS_Cases
+16_Set_Thread_TS_Cases
     ↓
 18_TheHive_Query_Alert
 ```
