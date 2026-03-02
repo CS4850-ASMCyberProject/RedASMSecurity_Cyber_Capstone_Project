@@ -48,7 +48,7 @@ Content-Type: application/json
 ## Workflow Path (No Conditional Branching)
 
 ```text
-12_Get_TS
+12_Cyber_Archive_Payload
     ↓
 13_GitHub_Cyber_Event_Archive
     ↓
