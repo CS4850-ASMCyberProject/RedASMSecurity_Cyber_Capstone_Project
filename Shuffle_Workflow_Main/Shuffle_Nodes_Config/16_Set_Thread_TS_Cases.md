@@ -1,4 +1,4 @@
-# Set Slack Cases by Slack Thread Timestamp Cache
+# Set Slack Case Threads Timestamp Cache
 
 ## Purpose
 Set stored data cache of the Slack thread timestamp following the creation of a Slack case.
