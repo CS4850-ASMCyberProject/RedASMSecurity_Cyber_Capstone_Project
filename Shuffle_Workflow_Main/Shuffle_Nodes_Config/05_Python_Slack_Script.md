@@ -42,11 +42,12 @@ Execute Python
 ---
 
 ## Branch Conditions
-## Branch Condition → 06_Set_Alerts_by_IP
+
+**Branch → 06_Set_Alerts_by_IP**
 
 Left Value:
 ```text
-$python_slack_script.message.observables.source_ip
+"$python_slack_script.message.observables.source_ip"
 ```
 
 Operator:
@@ -54,10 +55,20 @@ Operator:
 
 Right Value:
 ```text
-None
+"None"
 ```
 
 **Branch → 07_Shuffle_Buffer**
+
+Left Value:
 ```text
-"$python_slack_script.message.observables.source_ip" equals "None"
+"$python_slack_script.message.observables.source_ip"
+```
+
+Operator:
+> equals
+
+Right Value:
+```text
+"None"
 ```
