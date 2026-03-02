@@ -6,7 +6,7 @@ Set stored data cache of a list holding timestamps and IP entries for a specifie
 ---
 
 ## Node Type
-`Set Cache Value`
+`Set Cache Value` <p><img src="../../doc/images/Set_Cache_Icon.png" width="100" width="400"></p>
 
 ---
 
