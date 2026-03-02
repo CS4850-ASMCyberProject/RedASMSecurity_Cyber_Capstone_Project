@@ -41,8 +41,7 @@ Execute Python
 
 ---
 
-## Branch Condition → 06_Set_Alerts_by_IP 
-<p><img src="../../doc/images/Set_Cache_Icon.png" width="50"></p>
+## Branch Condition → 06_Set_Alerts_by_IP <p><img src="../../doc/images/Set_Cache_Icon.png" width="50"></p>
 
 Left Value:
 ```text
