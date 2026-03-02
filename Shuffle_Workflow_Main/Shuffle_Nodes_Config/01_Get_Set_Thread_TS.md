@@ -6,7 +6,7 @@ Gets stored data cache for each Slack thread, holding the Slack thread timsetamp
 ---
 
 ## Node Type
-`Get Cache Value`
+`Get Cache Value` <p><img src="../../doc/images/Get_Cache_Icon.png" width="100" width="400"></p>
 
 ---
 
