@@ -1,0 +1,84 @@
+# SP-108 RedASM Cases (Slack)
+
+## Purpose
+Posts alerts to the SOC Cases Slack channel with optional threading support.
+
+---
+
+## Node Type
+`Slack Node` <p><img src="../../doc/images/Slack_Icon.png" width="100" width="400"></p>
+
+---
+
+## Setup
+
+**Name:**
+```text
+SP-108-RedASM_Cases
+```
+
+**Authentication:**
+```text
+OAuth2 (chat:write, channels:read)
+```
+
+**Action:**
+```text
+Chat postmessage
+```
+
+**Body:**
+```text
+{{$slack_case_triage_links.message}}
+```
+
+**Headers:**
+```text
+None
+```
+
+---
+
+## Workflow Path
+
+```text
+14_Get_TS_Copy
+    ↓
+15_SP-108-RedASM_Cases
+    ├── 16_Set_Thread_TS
+    └── 17_Set_Thread_TS_Copy
+```
+
+---
+
+## Branch Condition → 16_Set_Thread_TS
+
+Left Value:
+```text
+$python_slack_script.message.threading
+```
+
+Operator:
+> equals
+
+Right Value:
+```text
+false
+```
+
+---
+
+## Branch Condition → 17_Set_Thread_TS_Copy
+
+Left Value:
+```text
+$python_slack_script.message.threading
+```
+
+Operator:
+> equals
+
+Right Value:
+```text
+true
+```
