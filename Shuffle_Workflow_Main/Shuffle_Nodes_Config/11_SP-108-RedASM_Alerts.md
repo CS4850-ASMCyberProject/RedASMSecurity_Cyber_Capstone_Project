@@ -1,4 +1,4 @@
-# SP-108 RedASM Alerts (Slack)
+# Slack Alerts Channel
 
 ## Purpose
 Posts alerts to the SOC Alerts Slack channel with optional threading support.
