@@ -26,7 +26,6 @@ Execute Python
 ```text
 /Shuffle_Workflow_Main/Python_Scripts/Normalize_User.py
 ```
-**Code Source:**
 [View Normalize_User.py on GitHub](https://github.com/CS4850-ASMCyberProject/CS4850_Red_ASMCyberProject/blob/Llado_shuffle_slack/Shuffle_Workflow_Main/Python_Scripts/Normalize_User.py)
 
 ---
