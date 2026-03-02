@@ -1,5 +1,10 @@
 # START: Add Wazuh Webhook to Shuffle Workflow
 
+## Purpose
+The webhook is the entrypoint for alerts stored in the Wazuh Manager. This data is sent via the webhook where Shuffle can start alert automation.
+
+---
+
 ## Node Type
 `Webhook` <p><img src="../../doc/images/Wazuh_Webhook_Icon.png" width="100" width="400"></p>
 
