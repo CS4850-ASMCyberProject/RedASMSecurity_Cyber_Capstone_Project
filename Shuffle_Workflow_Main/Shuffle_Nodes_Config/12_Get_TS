@@ -1,0 +1,10 @@
+Purpose: Python Script that defines a GitHub path and alters original python alert to post full event archive to GitHub
+Node Type: Execute Python
+
+Setup:
+  Name: Get_TS
+  Action: Execute Python
+  Code: Add GitHub_Cyber_Archive.py from /Shuffle_Workflow_Main/Python_Scripts
+
+Workflow Path: FORK & CONDITIONAL BRANCHING
+  10_Get_TheHive_Promote_to_Case -> 12_Get_TS -> 15_GitHub_Cyber_Event_Archive (No Conditional Branching)
