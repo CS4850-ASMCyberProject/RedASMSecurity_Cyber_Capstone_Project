@@ -1,4 +1,4 @@
-# Get TS (GitHub Cyber Archive Prep)
+# Cyber Archive Payload (GitHub Upload Prep)
 
 ## Purpose
 Python script that defines a GitHub path and alters the original alert payload to post the full event archive to GitHub.
