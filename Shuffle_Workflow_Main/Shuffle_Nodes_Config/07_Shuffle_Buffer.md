@@ -1,7 +1,7 @@
 # Shuffle Buffer
 
 ## Purpose
-Dummy node used to pass `Set_Alerts_by_IP` when IP is `None`.
+Dummy node used to pass `Set_Alerts_by_IP` when IP is `"None"`.
 
 ---
 
