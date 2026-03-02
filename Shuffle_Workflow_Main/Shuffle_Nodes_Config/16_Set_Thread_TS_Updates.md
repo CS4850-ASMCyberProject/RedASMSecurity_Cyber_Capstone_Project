@@ -1,7 +1,7 @@
-# Set Slack Case Threads Timestamp Cache
+# Update Slack Threads Timestamp Cache
 
 ## Purpose
-Set stored data cache of the Slack case thread timestamp following the creation of a Slack case.
+Update stored data cache for a Slack thread timestamp following the creation of a Slack case or alert.
 
 ---
 
@@ -14,7 +14,7 @@ Set stored data cache of the Slack case thread timestamp following the creation 
 
 **Name:**
 ```text
-Set_Thread_TS_Cases
+Set_Thread_TS_Updates
 ```
 
 **Action:**
@@ -24,7 +24,7 @@ Set Cache Value
 
 **Key:**
 ```text
-slack_thread_cases_$python_slack_script.message.corrkey
+slack_thread_updates_$python_slack_script.message.corrkey
 ```
 
 **Value:**
@@ -48,7 +48,7 @@ slack_threading_cases
 ```text
 15_SP-108-RedASM_Cases
     ↓
-16_Set_Thread_TS_Cases
+16_Set_Thread_TS_Updates
     ↓
 18_TheHive_Query_Alert
 ```
