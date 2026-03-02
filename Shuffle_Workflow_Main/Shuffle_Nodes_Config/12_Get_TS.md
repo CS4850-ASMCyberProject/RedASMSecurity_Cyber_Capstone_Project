@@ -6,7 +6,7 @@ Python script that defines a GitHub path and alters the original alert payload t
 ---
 
 ## Node Type
-`Execute Python`
+`Execute Python` <p><img src="../../doc/images/Execute_Python_Icon.png" width="100" width="400"></p>
 
 ---
 
