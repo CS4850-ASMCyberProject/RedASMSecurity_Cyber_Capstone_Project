@@ -15,7 +15,7 @@ The enriched payload is then posted to the Slack Case card along with additional
 
 **Name:**
 ```text
-Get_TS_Copy
+Slack_Case_Triage_Links
 ```
 
 **Action:**
@@ -30,7 +30,7 @@ Execute Python
 
 ---
 
-## Workflow Path
+## Workflow Path (No Conditional Branching)
 
 ```text
 13_GitHub_Cyber_Event_Archive
@@ -38,5 +38,4 @@ Execute Python
 14_Get_TS_Copy
     ↓
 15_SP-108-RedASM_Cases
-(No Conditional Branching)
 ```
