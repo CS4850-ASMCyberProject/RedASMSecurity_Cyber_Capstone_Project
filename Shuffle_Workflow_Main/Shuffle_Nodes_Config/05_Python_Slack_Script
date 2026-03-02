@@ -1,16 +1,56 @@
-Purpose: Main Python Script for building alert payload, threading, promotescore, triage links, etc.
-Node Type: Execute Python
+# Python Slack SOC Enrichment
 
-Setup:
-  Name: Python_Slack_Script
-  Action: Execute Python
-  Code: Add Slack_Soc_Enrichment_Main.py from /Shuffle_Workflow_Main/Python_Scripts
+## Purpose
+Main Python script for building alert payload, Slack threading, promote score handling, triage links, and enrichment logic.
 
-Workflow Path: FORK & CONDITIONAL BRANCHING
-  04_Get_Alerts_by_User -> 05_Python_Slack_Script -> 06_Set_Alerts_by_IP 
-                                                  -> 07_Shuffle_Buffer
-Branching:
-  05_Python_Slack_Script -> 06_Set_Alerts_by_IP
-    ("$python_slack_script.message.observables.source_ip" does not equal "None")
-  05_Python_Slack_Script -> 07_Shuffle_Buffer
-    ("$python_slack_script.message.observables.source_ip" equals "None")
+---
+
+## Node Type
+`Execute Python`
+
+---
+
+## Setup
+
+**Name:**
+```text
+Python_Slack_Script
+```
+
+**Action:**
+```text
+Execute Python
+```
+
+**Code:**
+```text
+/Shuffle_Workflow_Main/Python_Scripts/Slack_Soc_Enrichment_Main.py
+```
+
+(Optional: Replace with a clickable GitHub link if stored in the repo.)
+
+---
+
+## Workflow Path (Fork & Conditional Branching)
+
+```text
+04_Get_Alerts_by_User
+    ↓
+05_Python_Slack_Script
+    ├── 06_Set_Alerts_by_IP
+    └── 07_Shuffle_Buffer
+```
+
+---
+
+## Branch Conditions
+
+**Branch → 06_Set_Alerts_by_IP**
+```text
+$python_slack_script.message.observables.source_ip != "None"
+```
+
+**Branch → 07_Shuffle_Buffer**
+```text
+$python_slack_script.message.observables.source_ip == "None"
+```
