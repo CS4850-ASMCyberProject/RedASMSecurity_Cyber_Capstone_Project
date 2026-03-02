@@ -6,7 +6,7 @@ Set stored data cache of a list holding timestamps and user entries for a specif
 ---
 
 ## Node Type
-`Set Cache Value` <p><img src="../../doc/images/Set_Cache_Icon.png" width="100" width="400"></p>
+`Set Cache Value` <p><img src="../../doc/images/Set_Cache_Icon.png" width="400"></p>
 
 ---
 
