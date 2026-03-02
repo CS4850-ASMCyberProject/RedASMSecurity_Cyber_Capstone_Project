@@ -13,7 +13,7 @@ Setup:
   09_Shuffle_Buffer_2   ->                         -> 17_Set_Thread_TS_Copy
 
  Branching:
-   11_SP-108-RedASM_Alerts -> 13_Set_Thread_TS:
+   11_SP-108-RedASM_Alerts -> 16_Set_Thread_TS:
      ($python_slack_script.message.threading equals false)
-   11_SP-108-RedASM_Alerts -> 14_Set_Thread_TS_Copy:
+   11_SP-108-RedASM_Alerts -> 17_Set_Thread_TS_Copy:
      ($python_slack_script.message.threading equals true)
