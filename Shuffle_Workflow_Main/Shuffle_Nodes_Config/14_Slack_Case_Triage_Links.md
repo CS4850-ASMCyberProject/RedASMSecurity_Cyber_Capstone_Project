@@ -1,4 +1,4 @@
-# Get TS Copy (Slack Case Triage Links)
+# Slack Case Triage Links
 
 ## Purpose
 Python script that retrieves the GitHub Cyber Event Archive URL and appends it to the alert payload.  
