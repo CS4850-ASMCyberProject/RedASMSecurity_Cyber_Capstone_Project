@@ -14,7 +14,7 @@ Python script that defines a GitHub path and alters the original alert payload t
 
 **Name:**
 ```text
-Get_TS
+Cyber_Archive_Payload
 ```
 
 **Action:**
