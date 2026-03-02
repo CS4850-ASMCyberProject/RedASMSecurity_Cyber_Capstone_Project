@@ -6,7 +6,7 @@ Main Python script for building alert payload, Slack threading, promote score ha
 ---
 
 ## Node Type
-`Execute Python`
+`Execute Python` <p><img src="../../doc/images/Execute_Python_Icon.png" width="100" width="400"></p>
 
 ---
 
