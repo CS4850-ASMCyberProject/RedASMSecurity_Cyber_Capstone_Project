@@ -57,8 +57,7 @@ Right Value:
 "None"
 ```
 
-## Branch Condition → 07_Shuffle_Buffer
-<p><img src="../../doc/images/Repeat_Back_to_Me_Icon.png" width="100"></p>
+## Branch Condition → 07_Shuffle_Buffer <p><img src="../../doc/images/Repeat_Back_to_Me_Icon.png" width="100"></p>
 
 Left Value:
 ```text
