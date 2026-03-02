@@ -45,10 +45,10 @@ Execute Python
 
 **Branch → 06_Set_Alerts_by_IP**
 ```text
-"$python_slack_script.message.observables.source_ip" != "None"
+"$python_slack_script.message.observables.source_ip" does not equals "None"
 ```
 
 **Branch → 07_Shuffle_Buffer**
 ```text
-"$python_slack_script.message.observables.source_ip" == "None"
+"$python_slack_script.message.observables.source_ip" equals "None"
 ```
