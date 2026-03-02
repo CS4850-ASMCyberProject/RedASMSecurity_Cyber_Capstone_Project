@@ -1,13 +1,40 @@
-Purpose: Gets stored data cache for each slack thread set
-Node Type: Get Cache Value
+# Get Stored Slack Thread Cache
 
-***MAKE START NODE: PRESS THE CHECKERED FLAG WHILE HOVERING OVER IT***
+## Purpose
+Gets stored data cache for each Slack thread set.
 
-Setup:
-  Name: Get_Set_Thread_TS
-  Action: Get Cache Value
-  Key: slack_thread_$exec.all_fields.agent.id:$exec.rule_id
-  Category: slack_threading
+---
 
-Workflow Path:
-  00_Wazuh_Webhook -> 01_Get_Set_Thread_TS -> 02_Get_Alerts_by_IP (No Branch Conditional)
+## Node Type
+`Get Cache Value`
+
+---
+
+## Setup
+
+**Name:**  
+`Get_Set_Thread_TS`
+
+**Action:**  
+`Get Cache Value`
+
+**Key:**
+```text
+slack_thread_$exec.all_fields.agent.id:$exec.rule_id
+```
+
+**Category:**  
+`slack_threading`
+
+---
+
+## Workflow Path
+
+```text
+00_Wazuh_Webhook
+    ↓
+01_Get_Set_Thread_TS
+    ↓
+02_Get_Alerts_by_IP
+(No Branch Conditional)
+```
