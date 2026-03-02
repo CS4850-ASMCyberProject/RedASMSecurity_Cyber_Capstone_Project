@@ -1,4 +1,4 @@
-# Get Stored Slack Thread Cache
+# 01_Get_Set_Thread_TS
 
 ## Purpose
 Gets stored data cache for each Slack thread set.
@@ -13,10 +13,14 @@ Gets stored data cache for each Slack thread set.
 ## Setup
 
 **Name:**  
-`Get_Set_Thread_TS`
+```text
+Get_Set_Thread_TS
+```
 
 **Action:**  
-`Get Cache Value`
+```text
+Get Cache Value
+```
 
 **Key:**
 ```text
@@ -24,7 +28,9 @@ slack_thread_$exec.all_fields.agent.id:$exec.rule_id
 ```
 
 **Category:**  
-`slack_threading`
+```text
+slack_threading
+```
 
 ---
 
