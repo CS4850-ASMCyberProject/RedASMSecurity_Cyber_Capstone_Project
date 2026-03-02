@@ -28,7 +28,7 @@ Execute Python
 ```
 ---
 
-## Workflow Path
+## Workflow Path (No Conditional Branching)
 
 ```text
 02_Get_Alerts_by_IP
@@ -36,5 +36,4 @@ Execute Python
 03_Normalize_User
     ↓
 04_Get_Alerts_by_User
-(No Branch Conditional)
 ```
