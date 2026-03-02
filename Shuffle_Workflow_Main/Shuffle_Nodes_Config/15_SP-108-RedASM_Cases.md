@@ -1,4 +1,4 @@
-# SP-108 RedASM Cases (Slack)
+# Slack Cases Channel
 
 ## Purpose
 Posts alerts to the SOC Cases Slack channel with optional threading support.
