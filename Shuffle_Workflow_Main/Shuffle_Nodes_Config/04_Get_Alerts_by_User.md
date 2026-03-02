@@ -34,7 +34,7 @@ alerts_by_user
 
 ---
 
-## Workflow Path
+## Workflow Path (No Conditional Branching)
 
 ```text
 03_Normalize_User
@@ -42,5 +42,4 @@ alerts_by_user
 04_Get_Alerts_by_User
     ↓
 05_Python_Slack_Script
-(No Branch Conditional)
 ```
