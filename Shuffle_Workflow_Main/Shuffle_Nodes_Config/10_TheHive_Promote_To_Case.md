@@ -6,7 +6,7 @@ Sends an HTTP POST request to TheHive to create a new case.
 ---
 
 ## Node Type
-`Http Node`
+`Http Node` <p><img src="../../doc/images/Http_Icon.png" width="100" width="400"></p>
 
 ---
 
