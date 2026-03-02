@@ -2,7 +2,7 @@
 
 ## Node Type
 `Webhook` <p>
-<img src="doc/images/Wazuh_Webhook_Icon.png" width="100">
+<img src="doc/images/Wazuh_Webhook_Icon.png" width="400">
 </p>
 
 ---
