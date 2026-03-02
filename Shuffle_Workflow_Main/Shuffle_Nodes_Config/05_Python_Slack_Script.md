@@ -50,7 +50,7 @@ $python_slack_script.message.observables.source_ip
 ```
 
 Operator:
-does not equal
+> does not equal
 
 Right Value:
 ```text
