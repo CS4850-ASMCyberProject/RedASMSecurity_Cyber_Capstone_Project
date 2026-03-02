@@ -41,9 +41,7 @@ Execute Python
 
 ---
 
-## Branch Conditions
-
-**Branch → 06_Set_Alerts_by_IP**
+## Branch Condition → 06_Set_Alerts_by_IP**
 
 Left Value:
 ```text
@@ -58,7 +56,7 @@ Right Value:
 "None"
 ```
 
-**Branch → 07_Shuffle_Buffer**
+## Branch Condition → 07_Shuffle_Buffer**
 
 Left Value:
 ```text
