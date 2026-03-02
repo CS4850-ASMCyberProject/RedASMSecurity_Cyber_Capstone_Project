@@ -23,7 +23,7 @@ Get_TS_Copy
 Execute Python
 ```
 
-**Source Code:**[View Slack_Case_Triage_Links.py on GitHub](https://github.com/CS4850-ASMCyberProject/CS4850_Red_ASMCyberProject/blob/Llado_shuffle_slack/Shuffle_Workflow_Main/Python_Scripts/Slack_Case_Triage_Links.py)
+**Source Code:** [View Slack_Case_Triage_Links.py on GitHub](https://github.com/CS4850-ASMCyberProject/CS4850_Red_ASMCyberProject/blob/Llado_shuffle_slack/Shuffle_Workflow_Main/Python_Scripts/Slack_Case_Triage_Links.py)
 ```text
 /Shuffle_Workflow_Main/Python_Scripts/Slack_Case_Triage_Links.py
 ```
