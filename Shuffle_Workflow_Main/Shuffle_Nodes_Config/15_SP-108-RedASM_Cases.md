@@ -42,16 +42,16 @@ None
 ## Workflow Path
 
 ```text
-14_Get_TS_Copy
+14_Slack_Case_Triage_Links
     ↓
 15_SP-108-RedASM_Cases
-    ├── 16_Set_Thread_TS
-    └── 17_Set_Thread_TS_Copy
+    ├── 16_Set_Thread_TS_Alerts
+    └── 17_Set_Thread_TS_Cases
 ```
 
 ---
 
-## Branch Condition → 16_Set_Thread_TS
+## Branch Condition → 16_Set_Thread_TS_Alerts
 
 Left Value:
 ```text
@@ -68,7 +68,7 @@ false
 
 ---
 
-## Branch Condition → 17_Set_Thread_TS_Copy
+## Branch Condition → 17_Set_Thread_TS_Cases
 
 Left Value:
 ```text
