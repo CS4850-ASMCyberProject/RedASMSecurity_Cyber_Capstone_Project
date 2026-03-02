@@ -40,30 +40,13 @@ None
 08_Set_Alerts_by_User | 09_Shuffle_Buffer_2
     ↓                       ↓
 11_SP-108-RedASM_Alerts
-    ├── 16_Set_Thread_TS
-    └── 17_Set_Thread_TS_Copy
+    ├── 16_Set_Thread_TS_Cases
+    └── 17_Set_Thread_TS_Alerts
 ```
 
 ---
 
-## Branch Condition → 16_Set_Thread_TS
-
-Left Value:
-```text
-$python_slack_script.message.threading
-```
-
-Operator:
-> equals
-
-Right Value:
-```text
-false
-```
-
----
-
-## Branch Condition → 17_Set_Thread_TS_Copy
+## Branch Condition → 16_Set_Thread_TS_Cases
 
 Left Value:
 ```text
@@ -76,4 +59,21 @@ Operator:
 Right Value:
 ```text
 true
+```
+
+---
+
+## Branch Condition → 17_Set_Thread_TS_Alerts
+
+Left Value:
+```text
+$python_slack_script.message.threading
+```
+
+Operator:
+> equals
+
+Right Value:
+```text
+false
 ```
