@@ -38,7 +38,7 @@ None
 
 ```text
 08_Set_Alerts_by_User | 09_Shuffle_Buffer_2
-    ↓
+    ↓                       ↓
 11_SP-108-RedASM_Alerts
     ├── 16_Set_Thread_TS
     └── 17_Set_Thread_TS_Copy
