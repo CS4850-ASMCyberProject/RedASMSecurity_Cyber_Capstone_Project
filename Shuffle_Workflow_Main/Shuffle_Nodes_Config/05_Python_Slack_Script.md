@@ -24,7 +24,7 @@ Python_Slack_Script
 Execute Python
 ```
 
-**Code:**
+**Source Code:** [View Slack_Soc_Enrichment_Main.py on GitHub](https://github.com/CS4850-ASMCyberProject/CS4850_Red_ASMCyberProject/blob/Llado_shuffle_slack/Shuffle_Workflow_Main/Python_Scripts/Slack_Soc_Enrichment_Main.py)
 ```text
 /Shuffle_Workflow_Main/Python_Scripts/Slack_Soc_Enrichment_Main.py
 ```
