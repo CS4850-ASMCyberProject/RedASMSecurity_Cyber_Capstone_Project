@@ -47,7 +47,7 @@ Authorization: Bearer YOUR_THEHIVE_TOKEN
 ```text
 21_TheHive_Create_Alert
     ↓ 
-22_Set_TheHive_IP_Observable
+22_TheHive_IP_Observable
     ├── 23_TheHive_User_Observable
     └── 24_TheHive_Agent_Observable
 ```
