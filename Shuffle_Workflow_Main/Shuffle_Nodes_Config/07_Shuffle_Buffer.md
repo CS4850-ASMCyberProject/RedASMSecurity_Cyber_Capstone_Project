@@ -45,7 +45,7 @@ Nothing
 
 Left Value:
 ```text
-$python_slack_script.message.observables.source_user
+"$python_slack_script.message.observables.source_user"
 ```
 
 Operator:
@@ -53,7 +53,7 @@ Operator:
 
 Right Value:
 ```text
-None
+"None"
 ```
 
 ---
@@ -62,7 +62,7 @@ None
 
 Left Value:
 ```text
-$python_slack_script.message.observables.source_user
+"$python_slack_script.message.observables.source_user"
 ```
 
 Operator:
@@ -70,5 +70,5 @@ Operator:
 
 Right Value:
 ```text
-None
+"None"
 ```
