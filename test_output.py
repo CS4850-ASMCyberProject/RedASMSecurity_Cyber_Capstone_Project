@@ -1,4 +1,4 @@
-from modules.resolver import resolve_details
+from modules.resolver import resolve_details, save_to_json
 
 TARGET_SITES = [
     'google.com',
@@ -7,9 +7,9 @@ TARGET_SITES = [
     'localhost',
 ]
 
-print("\n" + "="*110)
-print(f"{'SUBDOMAIN':<25} | {'IP ADDRESS':<15} | {'TECHNOLOGY':<15} | {'CODE':<5} | {'PAGE TITLE'}")
-print("="*110)
+print("\n" + "="*70)
+print(f"{'SUBDOMAIN':<25} | {'IP ADDRESS':<15} | {'TECHNOLOGY':<15}")
+print("="*70)
 
 results = resolve_details(TARGET_SITES)
 
@@ -17,11 +17,11 @@ results = resolve_details(TARGET_SITES)
 for r in results:
     sub = str(r['subdomain'])[:25]
     ip = str(r['ip']) if r['ip'] else "FAILED"
-    tech = str(r['tech'])[:15]
-    status = str(r['status']) if r['status'] else "---"
-    title = str(r['title'])[:40]
+    tech = str(r['tech'])[:15] 
 
-    print(f"{sub:<25} | {ip:<15} | {tech:<15} | {status:<5} | {title}")
+    print(f"{sub:<25} | {ip:<15} | {tech:<15}")
 
-print("="*110)
+print("="*70)
 print(f"Scan complete. Processed {len(TARGET_SITES)} targets\n")
+
+save_to_json(results)   
