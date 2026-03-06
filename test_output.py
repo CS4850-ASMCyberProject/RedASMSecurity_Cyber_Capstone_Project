@@ -1,4 +1,4 @@
-from modules.resolver import resolve_details, save_to_json
+from modules.resolver import resolve_details
 
 TARGET_SITES = [
     'google.com',
@@ -23,5 +23,4 @@ for r in results:
 
 print("="*70)
 print(f"Scan complete. Processed {len(TARGET_SITES)} targets\n")
-
-save_to_json(results)   
+   
