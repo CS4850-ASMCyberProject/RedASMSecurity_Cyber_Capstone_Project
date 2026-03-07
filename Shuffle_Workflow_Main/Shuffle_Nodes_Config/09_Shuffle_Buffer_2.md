@@ -6,7 +6,7 @@ Dummy node used to continue workflow when user-based cache updates are skipped.
 ---
 
 ## Node Type
-`Repeat back to me` <p><img src="../../doc/images/Repeat_Back_to_Me_Icon.png" width="100" width="400"></p>
+`Check Cache Contains` <p><img src="../../doc/images/Check_Cache_Contains_Icon.png" width="100" width="400"></p>
 
 ---
 
@@ -14,19 +14,28 @@ Dummy node used to continue workflow when user-based cache updates are skipped.
 
 **Name:**
 ```text
-Shuffle_Buffer_2
+Shuffle_Buffer
 ```
 
 **Action:**
 ```text
-Repeat back to me
+Check Cache Contains
 ```
 
-**Call:**
+**Key:**
 ```text
-Nothing
+$get_alerts_by_user.key
 ```
 
+**Value:**
+```text
+$exec.all_fields.agent.ip
+```
+
+**Append:**
+```text
+False
+```
 ---
 
 ## Workflow Path
