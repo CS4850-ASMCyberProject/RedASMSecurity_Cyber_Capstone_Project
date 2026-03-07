@@ -6,7 +6,7 @@ Dummy node used to pass `Set_Alerts_by_IP` when IP is `"None"`.
 ---
 
 ## Node Type
-`Repeat back to me` <p><img src="../../doc/images/Repeat_Back_to_Me_Icon.png" width="100" width="400"></p>
+`Check Cache Contains` <p><img src="../../doc/images/Check_Cache_Contains.png" width="100" width="400"></p>
 
 ---
 
@@ -19,7 +19,7 @@ Shuffle_Buffer
 
 **Action:**
 ```text
-Repeat back to me
+Check Cache Contains
 ```
 
 **Call:**
