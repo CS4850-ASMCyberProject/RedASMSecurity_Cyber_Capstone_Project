@@ -27,7 +27,7 @@ $get_alerts_by_user.key
 $exec.all_fields.agent.ip
 ```
 
-**Appen:**
+**Append:**
 ```text
 False
 ```
