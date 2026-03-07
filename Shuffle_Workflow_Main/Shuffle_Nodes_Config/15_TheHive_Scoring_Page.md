@@ -1,4 +1,4 @@
-# TheHive Case History Page
+# TheHive Scoring Page
 
 ## Purpose
 Sends an HTTP POST request to TheHive to append a page to the current case showing the scoring of the case and why it was promoted to a case.
