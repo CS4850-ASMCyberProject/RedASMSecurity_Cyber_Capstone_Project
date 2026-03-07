@@ -24,7 +24,7 @@ Set Cache Value
 
 **Key:**
 ```text
-slack_thread_updates_$python_slack_script.message.corrkey
+slack_thread_$exec.all_fields.agent.id:$exec.rule_id
 ```
 
 **Value:**
@@ -32,7 +32,8 @@ slack_thread_updates_$python_slack_script.message.corrkey
 {
 "Set_Thread_TS":"$get_set_thread_ts.value.Set_Thread_TS",
 "last_seen":"$python_slack_script.message.last_seen",
-"corrkey":"$get_set_thread_ts.value.corrkey"
+"corrkey":"$get_set_thread_ts.value.corrkey",
+"source_ip":"$python_slack_script.message.observables.source_ip"
 }
 ```
 
