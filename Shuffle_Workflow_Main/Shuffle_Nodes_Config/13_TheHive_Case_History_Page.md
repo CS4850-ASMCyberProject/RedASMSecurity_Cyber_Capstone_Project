@@ -30,7 +30,6 @@ http://172.17.0.1:9000/thehive/api/v1/case/$thehive_promote_to_case.body._id/pag
 **Body:**
 ```text
 $thehive_case_history_page_script.message
-}
 ```
 
 **Headers:**
