@@ -69,9 +69,9 @@ Authorization: Bearer YOUR_THEHIVE_TOKEN
 ## Workflow Path (No Conditional Branching)
 
 ```text
-16_Set_Thread_TS_Updates.md
+21_Set_Thread_TS_Updates
     ↓
-17_TheHive_Query_Alert.md
+22_TheHive_Query_Alert
     ↓
-18_TheHive_Update_Alert
+23_TheHive_Update_Alert
 ```
