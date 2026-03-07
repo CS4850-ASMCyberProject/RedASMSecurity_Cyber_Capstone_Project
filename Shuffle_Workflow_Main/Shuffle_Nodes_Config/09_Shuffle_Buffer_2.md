@@ -41,8 +41,8 @@ False
 ## Workflow Path
 
 ```text
-07_Shuffle_Buffer
-    ↓
+06 Set_Alerts_By_IP | 07_Shuffle_Buffer
+    ↓                     ↓
 09_Shuffle_Buffer_2
     ├── 10_TheHive_Promote_to_Case
     └── 11_SP-108-RedASM_Alerts
