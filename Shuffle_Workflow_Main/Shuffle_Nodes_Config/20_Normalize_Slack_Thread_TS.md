@@ -23,7 +23,7 @@ Normalize_Slack_Thread_TS
 Execute Python
 ```
 
-**Source Code:** [View Normalize_Slack_Thread_TS.py on GitHub]([Scripts/TheHive_Case_History_Page_Script.py](https://github.com/CS4850-ASMCyberProject/CS4850_Red_ASMCyberProject/blob/Llado_shuffle_slack/Shuffle_Workflow_Main/Python_Scripts/Normalize_Slack_Thread_TS.py)
+**Source Code:** [View Normalize_Slack_Thread_TS.py on GitHub](https://github.com/CS4850-ASMCyberProject/CS4850_Red_ASMCyberProject/blob/Llado_shuffle_slack/Shuffle_Workflow_Main/Python_Scripts/Normalize_Slack_Thread_TS.py)
 ```text
 /Shuffle_Workflow_Main/Python_Scripts/Normalize_Slack_Thread_TS.py
 ```
