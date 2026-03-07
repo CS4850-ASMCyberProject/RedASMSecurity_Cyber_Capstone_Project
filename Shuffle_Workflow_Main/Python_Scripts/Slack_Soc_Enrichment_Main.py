@@ -206,7 +206,7 @@ def getpromotescore(severity, source_ip, source_user, burst, reg_attack):
     unknownipscore = 0
     burstscore = 0
     reg_attackscore = 0
-    unknowncountryscore = 0
+    unknownregionscore = 0
 
     if severity == "Critical":
         hardpromote = True
@@ -229,7 +229,7 @@ def getpromotescore(severity, source_ip, source_user, burst, reg_attack):
     if region and region != "Georgia":
         unknownregionscore += 2
 
-    totalscore = severityscore + unknownipscore + burstscore + reg_attackscore + unknowncountryscore
+    totalscore = severityscore + unknownipscore + burstscore + reg_attackscore + unknownregionscore
 
     promotescore = {
         "total": totalscore,
@@ -376,11 +376,25 @@ groups_list = data.get("all_fields", {}).get("rule", {}).get("groups", [])
 #lower case the str for each group
 groups_list = [str(g).lower() for g in groups_list]
 
-#Dictionary used to associate related alerts to an ip, assigning a list of timestamps and users to an ip
-alerts_by_ip = json.loads('{{ $get_alerts_by_ip.value | default({}) | tojson }}')
+alerts_by_ip_raw =r''' $get_alerts_by_ip.value | default({}) | tojson '''
 
-#Dictionary used to associate related alerts to a user, assigning a list of timestamps and ips to a user
-alerts_by_user = json.loads('{{ $get_alerts_by_user.value | default({}) | tojson }}')
+if not alerts_by_ip_raw or alerts_by_ip_raw.strip() == "":
+    alerts_by_ip = {}
+else:
+    try:
+        alerts_by_ip = json.loads(alerts_by_ip_raw)
+    except json.JSONDecodeError:
+        alerts_by_ip = {}
+
+alerts_by_user_raw =r''' $get_alerts_by_ip.value | default({}) | tojson '''
+
+if not alerts_by_user_raw or alerts_by_user_raw.strip() == "":
+    alerts_by_user = {}
+else:
+    try:
+        alerts_by_user = json.loads(alerts_by_user_raw)
+    except json.JSONDecodeError:
+        alerts_by_user = {}
 
 #get the mitre dictionary
 mitre = data.get("all_fields", {}).get("rule", {}).get("mitre", {})
