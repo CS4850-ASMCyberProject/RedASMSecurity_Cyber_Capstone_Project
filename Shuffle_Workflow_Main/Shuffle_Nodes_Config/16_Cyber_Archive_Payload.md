@@ -32,9 +32,9 @@ Execute Python
 ## Workflow Path (No Conditional Branching)
 
 ```text
-10_Get_TheHive_Promote_to_Case
+15_TheHive_Scoring_Page
     ↓
-12_Cyber_Archive_Payload
+16_Cyber_Archive_Payload
     ↓
-13_GitHub_Cyber_Event_Archive
+17_GitHub_Cyber_Event_Archive
 ```
