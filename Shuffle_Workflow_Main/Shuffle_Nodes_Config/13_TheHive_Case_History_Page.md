@@ -1,4 +1,4 @@
-# TheHive Promote to Case
+# TheHive Case History Page
 
 ## Purpose
 Sends an HTTP POST request to TheHive to append a page to the current case showing related alerts by source_ip and source_user.
