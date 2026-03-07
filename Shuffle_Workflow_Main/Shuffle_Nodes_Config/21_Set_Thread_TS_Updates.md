@@ -46,9 +46,9 @@ slack_threading_cases
 ## Workflow Path (No Conditional Branching)
 
 ```text
-15_SP-108-RedASM_Cases
+20_Normalize_Slack_Thread_TS
     ↓
-16_Set_Thread_TS_Updates
+21_Set_Thread_TS_Updates.md
     ↓
-18_TheHive_Query_Alert
+22_TheHive_Query_Alert
 ```
