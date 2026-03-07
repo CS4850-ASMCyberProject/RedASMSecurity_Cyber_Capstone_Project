@@ -36,5 +36,5 @@ Execute Python
     ↓
 12_TheHive_Case_History_Page_Script
     ↓
-13_GitHub_Cyber_Event_Archive
+13_TheHive_Case_History_Page
 ```
