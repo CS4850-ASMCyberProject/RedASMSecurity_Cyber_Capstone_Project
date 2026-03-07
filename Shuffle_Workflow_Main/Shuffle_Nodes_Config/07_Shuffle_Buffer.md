@@ -6,7 +6,7 @@ Dummy node used to pass `Set_Alerts_by_IP` when IP is `"None"`.
 ---
 
 ## Node Type
-`Check Cache Contains` <p><img src="../../doc/images/Check_Cache_Contains.png" width="100" width="400"></p>
+`Check Cache Contains` <p><img src="../../doc/images/Check_Cache_Contains_Icon.png" width="100" width="400"></p>
 
 ---
 
