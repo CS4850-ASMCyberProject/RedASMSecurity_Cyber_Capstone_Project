@@ -19,7 +19,7 @@ Shuffle_Buffer
 
 **Action:**
 ```text
-Check cache contains
+Check Cache Contains
 ```
 
 **Key:**
