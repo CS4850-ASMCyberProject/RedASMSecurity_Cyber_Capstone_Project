@@ -42,43 +42,9 @@ None
 ## Workflow Path
 
 ```text
-14_Slack_Case_Triage_Links
+18_Slack_Case_Triage_Links
     ↓
-15_SP-108-RedASM_Cases
-    ├── 16_Set_Thread_TS_Updates
-    └── 19_Set_New_Thread_TS
-```
-
----
-
-## Branch Condition → 16_Set_Thread_TS_Updates
-
-Left Value:
-```text
-$python_slack_script.message.threading
-```
-
-Operator:
-> equals
-
-Right Value:
-```text
-true
-```
-
----
-
-## Branch Condition → 19_Set_New_Thread_TS
-
-Left Value:
-```text
-$python_slack_script.message.threading
-```
-
-Operator:
-> equals
-
-Right Value:
-```text
-false
+19_SP-108-RedASM_Cases
+    ↓
+20_Normalize_Slack_Thread_TS
 ```
