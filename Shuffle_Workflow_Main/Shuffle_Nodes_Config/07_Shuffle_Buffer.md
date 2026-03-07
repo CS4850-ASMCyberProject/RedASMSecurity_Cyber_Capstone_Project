@@ -37,8 +37,8 @@ False
 ## Workflow Path
 
 ```text
-06_Set_Alerts_by_IP | 05_Shuffle_Python_Script
-    ↓                     ↓
+05_Shuffle_Python_Script | 06_Set_Alerts_by_IP
+    ↓                          ↓
 07_Shuffle_Buffer
     ├── 08_Set_Alerts_by_User
     └── 09_Shuffle_Buffer_2
