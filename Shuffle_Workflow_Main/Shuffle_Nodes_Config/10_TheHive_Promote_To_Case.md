@@ -31,9 +31,9 @@ http://172.17.0.1:9000/thehive/api/v1/case
 ```json
 {
   "title": "## 🟠 $python_slack_script.message.text",
-  "description": "### Attacker Information\n- User: $exec.all_fields.data.srcuser\n- IP: $exec.all_fields.data.srcip\n- Port: $exec.all_fields.data.srcport\n\n### Host Information\n- Name: $exec.all_fields.agent.name\n- IP: $exec.all_fields.agent.ip\n- Rule ID: $exec.all_fields.rule.id\n- Level: $exec.all_fields.rule.level\n- Time: $python_slack_script.message.timestamp\n\n### MITRE ATT&CK\n- Technique ID: $python_slack_script.message.mitre_id\n- Tactic: $python_slack_script.message.mitre_tactic\n- Technique: $python_slack_script.message.mitre_technique\n",
+  "description": "### Attacker Information\n- User: $exec.all_fields.data.srcuser\n- IP: $exec.all_fields.data.srcip\n- Port: $exec.all_fields.data.srcport\n\n### Host Information\n- *Name:* $exec.all_fields.agent.name\n- IP: $exec.all_fields.agent.ip\n- Rule ID: $exec.all_fields.rule.id\n- Level: $exec.all_fields.rule.level\n- Time: $python_slack_script.message.timestamp\n\n### MITRE ATT&CK\n- Technique ID: $python_slack_script.message.mitre_id\n- Tactic: $python_slack_script.message.mitre_tactic\n- Technique: $python_slack_script.message.mitre_technique\n\n### Attack Group\n- *Group*: $python_slack_script.message.observables.attack_group\n",
   "severity": 2,
-  "status": "${status}",
+  "status": "New",
   "tags": [
     "$python_slack_script.message.corrkey"
   ]
