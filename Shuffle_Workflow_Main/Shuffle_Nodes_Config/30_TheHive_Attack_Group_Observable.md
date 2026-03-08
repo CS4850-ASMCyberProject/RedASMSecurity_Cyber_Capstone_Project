@@ -48,8 +48,8 @@ Authorization: Bearer YOUR_THEHIVE_TOKEN
 29_TheHive_Agent_Observable
     ↓ 
 30_TheHive_Attack_Group_Observable
-    ├── 31_TheHive_File_Path_Observable
-    └── 32_Shuffle_Buffer_3
+    ├── 31_Shuffle_Buffer_3
+    └── 32_TheHive_File_Path_Observable
 ```
 
 ---
