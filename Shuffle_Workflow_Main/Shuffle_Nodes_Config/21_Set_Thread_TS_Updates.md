@@ -39,7 +39,7 @@ slack_thread_$exec.all_fields.agent.id:$exec.rule_id
 
 **Category:**
 ```text
-slack_threading_cases
+slack_threading
 ```
 
 ---
