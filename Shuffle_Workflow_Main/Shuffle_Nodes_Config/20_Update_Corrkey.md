@@ -32,9 +32,9 @@ Execute Python
 ## Workflow Path (No Conditional Branching)
 
 ```text
-19_Set_New_Thread_TS
+24_Set_New_Thread_TS
     ↓
-20_Update_Corrkey
+25_Update_Corrkey
     ↓
-21_TheHive_Create_Alert
+26_TheHive_Create_Alert
 ```
