@@ -24,7 +24,7 @@ Set Cache Value
 
 **Key:**
 ```text
-new_slack_thread_$python_slack_script.message.corrkey
+slack_thread_$exec.all_fields.agent.id:$exec.rule_id
 ```
 
 **Value:**
@@ -32,13 +32,14 @@ new_slack_thread_$python_slack_script.message.corrkey
 {
 "Set_Thread_TS":"$get_set_thread_ts.value.Set_Thread_TS",
 "last_seen":"$python_slack_script.message.last_seen",
-"corrkey":"$get_set_thread_ts.value.corrkey"
+"corrkey":"$get_set_thread_ts.value.corrkey",
+"source_ip":"$python_slack_script.message.observables.source_ip"
 }
 ```
 
 **Category:**
 ```text
-slack_threading_new
+slack_threading
 ```
 
 ---
@@ -46,9 +47,9 @@ slack_threading_new
 ## Workflow Path (No Conditional Branching)
 
 ```text
-15_SP-108-RedASM_Cases
+19_SP-108-RedASM_Cases
     ↓
-16_Set_New_Thread_TS
+24_Set_New_Thread_TS
     ↓
-18_TheHive_Query_Alert
+25_Update_Corrkey
 ```
