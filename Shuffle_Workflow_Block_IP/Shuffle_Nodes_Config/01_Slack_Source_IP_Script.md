@@ -46,7 +46,7 @@ Execute Python
 
 
 
-**Code Source:** [View Slack_Source_IP_Script.py on GitHub(https://github.com/CS4850-ASMCyberProject/CS4850_Red_ASMCyberProject/blob/Llado_shuffle_slack/Shuffle_Workflow_Block_IP/Python_Scripts/Slack_Source_IP_Script.py)
+**Code Source:** [View Slack_Source_IP_Script.py on GitHub](https://github.com/CS4850-ASMCyberProject/CS4850_Red_ASMCyberProject/blob/Llado_shuffle_slack/Shuffle_Workflow_Block_IP/Python_Scripts/Slack_Source_IP_Script.py)
 
 ```text
 
