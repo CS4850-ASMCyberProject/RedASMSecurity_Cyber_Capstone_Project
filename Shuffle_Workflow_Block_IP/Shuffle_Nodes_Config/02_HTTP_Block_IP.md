@@ -1,7 +1,8 @@
 # HTTP Block IP 
 
 ## Purpose
-Sends an HTTP POST request to Slack to block an ip using the block IP button. 
+Sends an HTTP POST request to Slack to block an ip using the block IP button.  
+It sends the request to the docker container gateway 172.0.19.1 which redirects to the intended destination.
 
 ---
 
