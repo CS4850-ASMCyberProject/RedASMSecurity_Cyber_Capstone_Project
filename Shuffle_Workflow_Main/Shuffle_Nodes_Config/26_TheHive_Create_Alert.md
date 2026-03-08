@@ -53,11 +53,11 @@ Authorization: Bearer YOUR_THEHIVE_TOKEN
 ## Workflow Path
 
 ```text
-20_Update_Corrkey
+25_Update_Corrkey
     ↓ 
-21_TheHive_Create_Alert
-    ├── 22_Set_TheHive_IP_Observable
-    └── 23_Set_TheHive_User_Observable
+26_TheHive_Create_Alert
+    ├── 27_Set_TheHive_IP_Observable
+    └── 28_Set_TheHive_User_Observable
 ```
 
 ---
