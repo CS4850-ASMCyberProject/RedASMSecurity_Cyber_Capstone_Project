@@ -14,7 +14,7 @@ Posts the block ip reply that states the ip was successfully blocked or was alre
 
 **Name:**
 ```text
-Slack_Blocked_Reply
+Slack_Blocked_IP_Reply
 ```
 
 **Authentication:**
