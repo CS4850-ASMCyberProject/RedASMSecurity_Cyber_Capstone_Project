@@ -1,4 +1,4 @@
-# Shuffle Buffer
+# Shuffle Buffer 3
 
 ## Purpose
 Dummy node used to pass `TheHive Attack Group Observable` when Attack Group is `other`.
