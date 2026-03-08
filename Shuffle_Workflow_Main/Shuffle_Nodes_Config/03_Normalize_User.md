@@ -1,4 +1,4 @@
-# Normalize User Variables
+# Normalize User Variables Script
 
 ## Purpose
 Normalizes two variables associated with source user: `dstuser`, `srcuser`.
