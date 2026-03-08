@@ -45,16 +45,16 @@ Authorization: Bearer YOUR_THEHIVE_TOKEN
 ## Workflow Path
 
 ```text
-21_TheHive_Create_Alert
+26_TheHive_Create_Alert
     ↓ 
-22_TheHive_IP_Observable
-    ├── 23_TheHive_User_Observable
-    └── 24_TheHive_Agent_Observable
+27_TheHive_IP_Observable
+    ├── 28_TheHive_User_Observable
+    └── 29_TheHive_Agent_Observable
 ```
 
 ---
 
-## Branch Condition → 23_TheHive_User_Observable
+## Branch Condition → 28_TheHive_User_Observable
 
 Left Value:
 ```text
@@ -71,7 +71,7 @@ Right Value:
 
 ---
 
-## Branch Condition → 24_TheHive_Agent_Observable
+## Branch Condition → 29_TheHive_Agent_Observable
 
 Left Value:
 ```text
