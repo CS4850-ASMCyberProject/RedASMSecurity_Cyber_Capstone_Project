@@ -40,6 +40,14 @@ Content-Type: application/json
 Authorization: Bearer YOUR_THEHIVE_TOKEN
 ```
 
+## Workflow Path
+
+```text
+29_TheHive_Agent_Observable | 30_TheHive_Attack_Group_Observable
+    ↓                              ↓
+31_TheHive_File_Path_Observable.md
+```
+
 ---
 
 ## Workflow Path Completed for New Alerts
