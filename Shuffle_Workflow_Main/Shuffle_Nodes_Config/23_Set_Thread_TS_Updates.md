@@ -47,9 +47,9 @@ slack_threading
 ## Workflow Path (No Conditional Branching)
 
 ```text
-20_Normalize_Slack_Thread_TS
+22_Normalize_Slack_Thread_TS
     ↓
-21_Set_Thread_TS_Updates.md
+23_Set_Thread_TS_Updates.md
     ↓
-22_TheHive_Query_Alert
+24_TheHive_Query_Alert
 ```
