@@ -33,15 +33,15 @@ Execute Python
 ## Workflow Path (No Conditional Branching)
 
 ```text
-11_SP-108-RedASM_Alerts | 19_SP-108-RedASM_Cases
+11_SP-108-RedASM_Alerts | 21_SP-108-RedASM_Cases
     ↓                        ↓
-20_Normalize_Slack_Thread_TS
-    ├── 21_Set_Thread_TS_Updates
-    └── 22_Set_New_Thread_TS
+22_Normalize_Slack_Thread_TS
+    ├── 23_Set_Thread_TS_Updates
+    └── 24_Set_New_Thread_TS
 ```
 ---
 
-## Branch Condition → 21_Set_Thread_TS_Updates
+## Branch Condition → 23_Set_Thread_TS_Updates
 
 Left Value:
 ```text
@@ -58,7 +58,7 @@ true
 
 ---
 
-## Branch Condition → 22_Set_New_Thread_TS
+## Branch Condition → 24_Set_New_Thread_TS
 
 Left Value:
 ```text
