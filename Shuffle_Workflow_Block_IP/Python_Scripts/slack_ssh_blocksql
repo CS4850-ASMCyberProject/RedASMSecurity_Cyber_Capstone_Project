@@ -1,18 +1,15 @@
 #!/bin/sh
 set -e
 
+#User ssh into the target vm from the manager vm using the blocker key and user blocker
+#Then perform CLI commands on target vm.
+#Block all URIs that include SQL Injection queries and return a 403 error page. 
+#Output a message saying the path has successfully been blocked from cyber attacks. 
 ssh -T -i /home/adam/.ssh/blocker_key blocker@10.0.0.48 > /dev/null 2>&1 <<'EOF'
 sudo -n tee /etc/nginx/sites-enabled-block-rules/juice-shop-search-block > /dev/null <<'NGINX'
 if ($request_uri ~* "^/rest/products/search\?.*(union|select|sql|sqlite_master|or[[:space:]]+1=1)") {
         return 403;
     }
-
-error_page 403 /slack_ssh_blocksql.html;
-
-location = /slack_ssh_blocksql.html {
-    root /usr/share/nginx/html;
-    internal;
-}
 NGINX
 
 sudo -n nginx -t > /dev/null 2>&1
