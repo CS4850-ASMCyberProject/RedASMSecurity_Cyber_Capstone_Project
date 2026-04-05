@@ -38,7 +38,7 @@ Accept=application/json
 ## Workflow Path
 
 ```text
-03_Blocked_IP_Reply_Script
+04_Blocked_IP_Reply_Script
     ↓
-04_Slack_Blocked_IP_Reply
+05_Slack_Blocked_IP_Reply
 ```
