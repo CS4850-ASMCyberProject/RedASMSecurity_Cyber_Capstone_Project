@@ -2,7 +2,7 @@
 
 ## Purpose
 Sends an HTTP POST request to Slack to block an ip using the block IP button.  
-It sends the request to the docker container gateway 172.0.19.1 which redirects to the intended destination.
+It sends the request to the docker container gateway 172.18.0.1 which redirects to the intended destination.
 
 ---
 
@@ -25,12 +25,12 @@ POST
 
 **URL:**
 ```text
-http://172.19.0.1:8787
+http://172.18.0.1:8787
 ```
 
 **Body:**
 ```text
-$slack_source_ip.message
+$slack_source_ip_action_id.message
 ```
 
 **Headers:**
@@ -43,7 +43,7 @@ Content-Type: application/json
 ## Workflow Path (No Conditional Branching)
 
 ```text
-01_Slack_Source_IP_Script
+01_Slack_Source_IP_Action_ID_Script
     ↓
 02_HTTP_Block_IP
     ↓
