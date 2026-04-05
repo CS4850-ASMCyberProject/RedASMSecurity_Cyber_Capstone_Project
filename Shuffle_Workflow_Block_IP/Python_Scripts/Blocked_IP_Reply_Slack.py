@@ -16,11 +16,11 @@ payload = json.loads(decoded)
 
 action_id = payload.get("actions", [{}])[0].get("action_id", "")
 
-if action_id != "block_ip":
+if action_id not in ["block_ip", "block_sql"]:
   print(json.dumps({"status": "ignored", "reason": "not block_ip button"}))
   raise SystemExit
     
-source_ip = "$slack_source_ip.message"
+source_ip = "$slack_source_ip_action_id.message.source_ip"
 
 thread_ts = payload.get("message", {}).get("ts", "")
 channel = payload.get("channel", {}).get("id", "")
@@ -39,12 +39,19 @@ slack_blocked_reply = {
   ]
 }
 
-blocked_string = "$http_block_ip.body"
+blocked_ip = "$http_block_ip.body"
+blocked_sql = "$http_block_sql.body"
+
+blocked_string = blocked_ip if blocked_ip else blocked_sql
 
 if blocked_string.startswith("Blocked"):
   message = f"🚫 *IP {source_ip} has been blocked.*\nFirewall rule deployed."
-else:
+elif blocked_string.startswith("IP"):
   message = f"🛡 *No Action Needed — IP {source_ip} is already blocked.*"
+elif blocked_string.startswith("/rest"):
+  message = "*🚧 shop.redasmsecurity.cloud/rest/products/search has temporarily blocked malicious cyber attacks while the service is fixed*."
+else:
+  message = "Unknown Error Occured. Check the Internal system to determine the cause."
   
 slack_blocked_reply["blocks"][0]["text"]["text"] = message
   
