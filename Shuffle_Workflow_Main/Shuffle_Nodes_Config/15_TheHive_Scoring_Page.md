@@ -40,12 +40,46 @@ Authorization: Bearer YOUR_THEHIVE_TOKEN
 
 ---
 
-## Workflow Path (No Conditional Branching)
+## Workflow Path
 
 ```text
 14_TheHive_Scoring_Page_Script
     ↓
 15_TheHive_Scoring_Page
-    ↓
-16_Cyber_Archive_Payload
+    ├── 16_TheHive_SQL_Payload_Script
+    └── 18_Cyber_Archive_Payload
+```
+
+---
+
+## Branch Condition → 16_TheHive_SQL_Payload_Script
+
+Left Value:
+```text
+$python_slack_script.message.text
+```
+
+Operator:
+> contains
+
+Right Value:
+```text
+SQL
+```
+
+---
+
+## Branch Condition → 18_Cyber_Archive_Payload
+
+Left Value:
+```text
+$python_slack_script.message.text
+```
+
+Operator:
+> contains (Change the = at the beginning to !) = does not conatin
+
+Right Value:
+```text
+SQL
 ```
