@@ -1,6 +1,7 @@
 # TheHive SQL Payload Page
 
 ## Purpose
+
 Sends
 ---
 
