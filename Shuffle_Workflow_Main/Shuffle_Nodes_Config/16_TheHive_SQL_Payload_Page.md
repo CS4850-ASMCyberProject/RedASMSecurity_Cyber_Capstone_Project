@@ -1,4 +1,4 @@
-# TheHive SQL Payload Page
+# TheHive SQL Payload Page Script
 
 ## Purpose
 Python script that adds a page to thehive case showcasing the SQL injection attack, the http protocol, the status code that returned,  and a link displaing the data that leaked. 
