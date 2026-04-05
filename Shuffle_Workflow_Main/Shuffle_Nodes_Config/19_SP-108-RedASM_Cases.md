@@ -42,9 +42,9 @@ None
 ## Workflow Path
 
 ```text
-18_Slack_Case_Triage_Links
+20_Slack_Case_Triage_Links
     ↓
-19_SP-108-RedASM_Cases
+21_SP-108-RedASM_Cases
     ↓
-20_Normalize_Slack_Thread_TS
+22_Normalize_Slack_Thread_TS
 ```
