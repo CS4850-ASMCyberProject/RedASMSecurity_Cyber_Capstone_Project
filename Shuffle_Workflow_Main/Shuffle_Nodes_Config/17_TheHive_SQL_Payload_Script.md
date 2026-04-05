@@ -1,9 +1,9 @@
 # TheHive SQL Payload Page
 
 ## Purpose
-```text
 Sends an HTTP POST request to TheHive to append a page to the current case showing the Data that was Leaked via SQL Injection.
-```
+
+
 ---
 
 ## Node Type
