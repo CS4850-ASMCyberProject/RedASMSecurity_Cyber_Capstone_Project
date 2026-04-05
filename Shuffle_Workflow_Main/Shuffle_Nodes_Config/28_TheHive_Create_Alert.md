@@ -53,16 +53,16 @@ Authorization: Bearer YOUR_THEHIVE_TOKEN
 ## Workflow Path
 
 ```text
-25_Update_Corrkey
+27_Update_Corrkey
     ↓ 
-26_TheHive_Create_Alert
-    ├── 27_Set_TheHive_IP_Observable
-    └── 28_Set_TheHive_User_Observable
+28_TheHive_Create_Alert
+    ├── 29_Set_TheHive_IP_Observable
+    └── 30_Set_TheHive_User_Observable
 ```
 
 ---
 
-## Branch Condition → 27_TheHive_IP_Observable
+## Branch Condition → 29_TheHive_IP_Observable
 
 Left Value:
 ```text
@@ -79,7 +79,7 @@ Right Value:
 
 ---
 
-## Branch Condition → 28_TheHive_User_Observable
+## Branch Condition → 30_TheHive_User_Observable
 
 Left Value:
 ```text
