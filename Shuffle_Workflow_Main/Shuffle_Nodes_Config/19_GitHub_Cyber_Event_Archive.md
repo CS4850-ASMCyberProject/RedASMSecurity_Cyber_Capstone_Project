@@ -48,9 +48,9 @@ Content-Type: application/json
 ## Workflow Path (No Conditional Branching)
 
 ```text
-16_Cyber_Archive_Payload
+18_Cyber_Archive_Payload
     ↓
-17_GitHub_Cyber_Event_Archive
+19_GitHub_Cyber_Event_Archive
     ↓
-18_Slack_Case_Triage_Links
+20_Slack_Case_Triage_Links
 ```
