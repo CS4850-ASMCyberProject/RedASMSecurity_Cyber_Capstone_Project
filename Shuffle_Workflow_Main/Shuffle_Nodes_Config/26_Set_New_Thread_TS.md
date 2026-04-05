@@ -47,7 +47,7 @@ slack_threading
 ## Workflow Path (No Conditional Branching)
 
 ```text
-21_SP-108-RedASM_Cases
+22_Normalize_Slack_Thread_TS
     ↓
 26_Set_New_Thread_TS
     ↓
