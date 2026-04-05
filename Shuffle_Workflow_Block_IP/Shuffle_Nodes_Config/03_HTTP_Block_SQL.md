@@ -43,7 +43,7 @@ Content-Type: application/json
 ## Workflow Path (No Conditional Branching)
 
 ```text
-01_Slack_Source_IP_Script
+01_Slack_Source_IP_Action_ID_Script
     ↓
 03_HTTP_Block_SQL
     ↓
