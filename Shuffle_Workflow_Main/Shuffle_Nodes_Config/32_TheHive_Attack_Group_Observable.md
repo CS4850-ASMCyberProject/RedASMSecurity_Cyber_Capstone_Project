@@ -45,16 +45,16 @@ Authorization: Bearer YOUR_THEHIVE_TOKEN
 ## Workflow Path
 
 ```text
-29_TheHive_Agent_Observable
+31_TheHive_Agent_Observable
     ↓ 
-30_TheHive_Attack_Group_Observable
-    ├── 31_TheHive_File_Path_Observable
-    └── 32_Shuffle_Buffer_3
+32_TheHive_Attack_Group_Observable
+    ├── 33_TheHive_File_Path_Observable
+    └── 34_Shuffle_Buffer_3
 ```
 
 ---
 
-## Branch Condition → 31_TheHive_File_Path_Observable
+## Branch Condition → 33_TheHive_File_Path_Observable
 
 Left Value:
 ```text
@@ -71,7 +71,7 @@ Right Value:
 
 ---
 
-## Branch Condition → 32_Shuffle_Buffer_3
+## Branch Condition → 34_Shuffle_Buffer_3
 
 Left Value:
 ```text
