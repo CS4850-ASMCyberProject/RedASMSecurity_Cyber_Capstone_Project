@@ -43,9 +43,9 @@ Authorization: Bearer YOUR_THEHIVE_TOKEN
 ## Workflow Path
 
 ```text
-29_TheHive_Agent_Observable | 30_TheHive_Attack_Group_Observable
+31_TheHive_Agent_Observable | 32_TheHive_Attack_Group_Observable
     ↓                              ↓
-31_TheHive_File_Path_Observable.md
+33_TheHive_File_Path_Observable.md
 ```
 
 ---
