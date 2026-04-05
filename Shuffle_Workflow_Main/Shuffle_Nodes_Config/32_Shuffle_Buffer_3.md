@@ -42,9 +42,9 @@ False
 ## Workflow Path
 
 ```text
-30_TheHive_Attack_Group_Observable
+32_TheHive_Attack_Group_Observable
     ↓
-32_Shuffle_Buffer_3 
+34_Shuffle_Buffer_3 
 ```
 
 ---
