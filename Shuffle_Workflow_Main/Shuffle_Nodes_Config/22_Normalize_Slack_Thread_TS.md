@@ -37,7 +37,7 @@ Execute Python
     ↓                        ↓
 22_Normalize_Slack_Thread_TS
     ├── 23_Set_Thread_TS_Updates
-    └── 24_Set_New_Thread_TS
+    └── 25_Set_New_Thread_TS
 ```
 ---
 
@@ -58,7 +58,7 @@ true
 
 ---
 
-## Branch Condition → 24_Set_New_Thread_TS
+## Branch Condition → 25_Set_New_Thread_TS
 
 Left Value:
 ```text
