@@ -14,7 +14,7 @@ Python script that adds a page to thehive case showcasing the SQL injection atta
 
 **Name:**
 ```text
-TheHive_SQL_Payload_Script
+TheHive_SQL_Payload_Page_Script
 ```
 
 **Action:**
@@ -34,7 +34,7 @@ Execute Python
 ```text
 15_TheHive_Scoring_Page
     ↓
-16_TheHive_SQL_Payload_Page
+16_TheHive_SQL_Payload_Page_Script
     ↓
 17_TheHive_SQL_Payload_Page
 ```
