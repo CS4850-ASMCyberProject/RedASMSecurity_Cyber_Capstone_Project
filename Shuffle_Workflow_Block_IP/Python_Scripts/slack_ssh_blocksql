@@ -1,0 +1,22 @@
+#!/bin/sh
+set -e
+
+ssh -T -i /home/adam/.ssh/blocker_key blocker@10.0.0.48 > /dev/null 2>&1 <<'EOF'
+sudo -n tee /etc/nginx/sites-enabled-block-rules/juice-shop-search-block > /dev/null <<'NGINX'
+if ($request_uri ~* "^/rest/products/search\?.*(union|select|sql|sqlite_master|or[[:space:]]+1=1)") {
+        return 403;
+    }
+
+error_page 403 /slack_ssh_blocksql.html;
+
+location = /slack_ssh_blocksql.html {
+    root /usr/share/nginx/html;
+    internal;
+}
+NGINX
+
+sudo -n nginx -t > /dev/null 2>&1
+sudo -n systemctl reload nginx > /dev/null 2>&1
+EOF
+
+echo '/rest/products/search has been blocked to the public while the service is fixed.'
