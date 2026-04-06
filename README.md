@@ -1,7 +1,7 @@
 # 🔍 ASM Scanning Database & Automation Framework  
 ## Attack Surface Management (ASM) Pipeline with Discovery, Enumeration & Vulnerability Scanning
 
-**Author:** Adam Llado, Kimani Gordon
+**Author:** Adam Llado, Kimani Gordon  
 **Project:** ASM_Scanning_Database_Llado_Upgrades  
 
 ---
