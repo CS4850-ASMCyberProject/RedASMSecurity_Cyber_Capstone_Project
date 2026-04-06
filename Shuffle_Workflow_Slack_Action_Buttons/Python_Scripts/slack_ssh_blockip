@@ -1,0 +1,18 @@
+#!/bin/sh
+TARGET_IP="$1"
+
+#Get the Target IP and determine if it's missing. If it is, exit.
+[ -z "$TARGET_IP" ] && echo "missing ip" && exit 1
+
+#User ssh into the target vm from the manager vm using the blocker key and user blocker
+#Then perform CLI commands on target vm. ua0df99f
+#Check if ip is in iptabíes. If it is, say IP already blocked
+#Else write a CLI command droping all network traffic from the target ip and state is was blocked.
+ssh -i /home/adam/.ssh/blocker_key blocker@10.0.0.48 "
+if
+ sudo iptables -L INPUT -n | grep -q $TARGET_IP; then echo 'IP already blocked: $TARGET_IP'
+else 
+ sudo iptables -I INPUT 1 -s $TARGET_IP -j DROP 
+ echo 'Blocked $TARGET_IP on 10.0.0.48'
+fi
+"
