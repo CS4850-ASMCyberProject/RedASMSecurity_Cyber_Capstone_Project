@@ -19,57 +19,69 @@ def getwazuhlvl(level):
 #This function returns an integer between 0-3 which scores the mitre tactic score 
 #if the tactic is of high privilige, it gets the highest score at 3 and so on
 def getmitrelvl(mitre_tactic):
-	Mitre_Tactic_Score = {
+    mitre_tactic = mitre_tactic.split(", ")
+    score = []
+    for tactic in mitre_tactic:
+        
+        Mitre_Tactic_Score = {
 
-    "Reconnaissance": 0,
-    "Resource Development": 0,
+        "Reconnaissance": 0,
+        "Resource Development": 0,
 
-    "Initial Access": 1,
-    "Discovery": 1,
+        "Initial Access": 1,
+        "Discovery": 1,
 
-    "Execution": 2,
-    "Collection": 2,
+        "Execution": 2,
+        "Collection": 3,
 
-    "Persistence": 3,
-    "Privilege Escalation": 3,
-    "Defense Evasion": 3,
-    "Credential Access": 3,
-    "Lateral Movement": 3,
-    "Command and Control": 3,
-    "Exfiltration": 3,
-    "Impact": 3,
-    }
+        "Persistence": 3,
+        "Privilege Escalation": 3,
+        "Defense Evasion": 3,
+        "Credential Access": 3,
+        "Lateral Movement": 3,
+        "Command and Control": 3,
+        "Exfiltration": 3,
+        "Impact": 3,
+        }
+        score.append(Mitre_Tactic_Score.get(tactic,0))
 
-	score = Mitre_Tactic_Score.get(mitre_tactic,0)
-
-	return score
+    maxscore = max(score)
+    return maxscore
 
 
 #This function returns an integer between 0-3 which determines if the CIA triad has been affected
-#If the tactic score is a 3, this means that a tactic was used that affected confidentiality, and we add C to the set cia
+# If the tactic score is a 3, this means that a tactic was used that affected confidentiality, and we add c to the set cia
+# Since confidentiality mostly deals with web attacks, if the web_status_code is 200 or 304, meaning data was leaked or returned
+# Then we capitalize the C and if it's capitalized, we return 3
 #if a file has been changed and checksum or integrity is in the text of an event, add I to the set cia
 #if denial or service is in text, add A to cia which affects availability
 #a score is returned based on the length of the set cia
-def getimpactscore(tactic_score, text, file_path):
+#If the length is greater than or equal to 2, return 3, else if it's 1, return 2, and if it's 0, return 0
+def getimpactlvl(tactic_score, text, file_path, web_status_code):
     cia = set()
     
     if tactic_score == 3:
-        cia.add("C")
+      cia.add("c")
+      if web_status_code in ("200", "304"):
+        cia = {c.upper() for c in cia}
     if "checksum" in text.lower() or "integrity" in text.lower() or file_path:
         cia.add("I")
-    if "denial" in text.lower() or "service" in text.lower():
+    if "denial" in text.lower() or "dos" in text.lower():
         cia.add("A")
         
     if len(cia) >= 2:
         return 3
     if len(cia) == 1:
+      if "C" in cia:
+        return 3
+      else:
         return 2
     else:
         return 0
 
 #Returns a string that determines the severity of each alert based on the
 #severity_score which is calculated by the sum of the impactscore, wazuhlvl, and mitrelvl
-def getseverityscore(severity_score):
+def getseveritylvl(severity_score):
 	if severity_score >= 9:
 		severity = "Critical"
 	elif severity_score >= 6:
@@ -115,10 +127,11 @@ def severityemoji(severity):
 #Correlate Alert uses two dictionaries that correlate alerts within the last hour based 
 #on a specific ip or a specific user and determines whether each cached data meets the 
 #threshold to be a regular attack or burst attack. If a source ip or user has 5 alerts 
-#within the last hour, it is a regular attack, if there are 3 alerts within the last minute,
+#within the last hour, it is a regular attack, if there are 3 alerts within the last 3 minutes,
 #then it is a burst attack. This function returns two booleans: reg_attack and burst
 def correlate_alert(source_ip, source_user, alerts_by_ip, alerts_by_user, ts):
-    if source_ip == "None"and source_user == "None":
+	#Check if source_ip or source_user is empty
+    if source_ip == "None" and source_user == "None":
       return False, False
     now = time.time()
     ip_alerted = []
@@ -127,35 +140,42 @@ def correlate_alert(source_ip, source_user, alerts_by_ip, alerts_by_user, ts):
     reg_attack = False
     burst_count = 0
     one_hour_ago = now - 3600
-    sixty_seconds_ago = now - 60
+    three_minutes_ago = now - 180
 
-    for entry in alerts_by_ip[source_ip]:
-        if entry["timestamp"] >= one_hour_ago:
-            ip_alerted.append(entry["timestamp"])
+	#If source_ip not empty and the timestamp in alerts_by_ip is within the last hour, add the ip_alerted for the source_ip
+    if source_ip != "None":
+      for entry in alerts_by_ip[source_ip]:
+          if entry["timestamp"] >= one_hour_ago:
+              ip_alerted.append(entry["timestamp"])
 
-    if len(ip_alerted) >= 5:
-        reg_attack = True
+	  #If the length of ip_alerted is greater than or equal to 5, it is a regular attack 
+      if len(ip_alerted) >= 5:
+          reg_attack = True
 
-    for ts in ip_alerted:
-        if ts >= sixty_seconds_ago:
-            burst_count = burst_count + 1
-    if burst_count >= 3:
-        burst = True
+	  # Check if it's a burst attack. If the timestamps in ip_alerted are within the last 3 minutes and there are three
+	  # Then this is a burst attack
+      for ts in ip_alerted:
+          if ts >= three_minutes_ago:
+              burst_count = burst_count + 1
+      if burst_count >= 3:
+          burst = True
+  
+      burst_count = 0
 
-    burst_count = 0
-
-    for entry in alerts_by_user[source_user]:
-        if entry["timestamp"] >= one_hour_ago:
-            user_alerted.append(entry["timestamp"])
-
-    if len(user_alerted) >= 5:
-        reg_attack = True
-
-    for ts in user_alerted:
-        if ts >= sixty_seconds_ago:
-            burst_count = burst_count + 1
-    if burst_count >= 3:
-        burst = True
+	#Do the same above for the user 
+    if source_user != "None":
+      for entry in alerts_by_user[source_user]:
+          if entry["timestamp"] >= one_hour_ago:
+              user_alerted.append(entry["timestamp"])
+  
+      if len(user_alerted) >= 5:
+          reg_attack = True
+  
+      for ts in user_alerted:
+          if ts >= sixty_seconds_ago:
+              burst_count = burst_count + 1
+      if burst_count >= 3:
+          burst = True
 
     return reg_attack, burst
 
@@ -200,17 +220,19 @@ def addalert(source_ip, ts, source_user):
 #regular_attack_score - Scored on whether the attack has had 5 or more related alerts in the last hour
 #unknown_region_score - Scored based on wether the source ip is from a different region other than Georgia
 #hardpromote - True or False based on whether the alert reaches a severity of Critical
-def getpromotescore(severity, source_ip, source_user, burst, reg_attack):
+#webattackscore - Checks if the attack group is in web_attack, and if the text includes SQL injection related words, add 1
+def getpromotescore(severity, source_ip, source_user, burst, reg_attack, attack_group, text):
     hardpromote = False
     severityscore = 0
     unknownipscore = 0
     burstscore = 0
     reg_attackscore = 0
     unknownregionscore = 0
+    webattackscore = 0
+    database_leak_words = ["cards", "wallets", "sqlite_master", "addresses", "basketitems", "baskets", "captchas", "users"]
 
     if severity == "Critical":
         hardpromote = True
-        return hardpromote, promotescore
     elif severity == "High":
         severityscore += 3
     elif severity == "Low":
@@ -228,8 +250,12 @@ def getpromotescore(severity, source_ip, source_user, burst, reg_attack):
     region = getregion(source_ip)
     if region and region != "Georgia":
         unknownregionscore += 2
+        
+    if attack_group == "web_attack": 
+      if any(word in text.lower() for word in database_leak_words):
+        webattackscore += 1
 
-    totalscore = severityscore + unknownipscore + burstscore + reg_attackscore + unknownregionscore
+    totalscore = severityscore + unknownipscore + burstscore + reg_attackscore + unknownregionscore + webattackscore 
 
     promotescore = {
         "total": totalscore,
@@ -238,6 +264,7 @@ def getpromotescore(severity, source_ip, source_user, burst, reg_attack):
         "burst_score": burstscore,
         "regular_attack_score": reg_attackscore,
         "unknown_region_score": unknownregionscore,
+        "web_attack_score": webattackscore,
         "hard_promote": hardpromote
     }
 
@@ -290,7 +317,6 @@ false = False
 null = None
 
 friendlyips = [
-    "10.0.0.48",
     "73.43.228.109",
     "100.70.35.63",
     "153.33.195.74",
@@ -311,15 +337,16 @@ msg = {"success": True, "message": ""}
 #Also we use a r string so that the formatting is more legible.
 exec_b64 = r'''{{ $exec | tojson | base64_encode }}'''
 
+#Convert base64 to a Json String
 data = json.loads(base64.b64decode(exec_b64).decode("utf-8"))
 
-#Get the level for the message (0-16)
+#Get the wazuh level for the message (0-16)
 level = data.get("all_fields", {}).get("rule", {}).get("level", 0)
 
-#Filter Packets and show only alerts above level 7
-if level < 7:
+#Filter Packets and show only alerts above level 6
+if level < 6:
 
-    #Must make print statement even for alerts less than 7
+    #Must make print statement even for alerts less than 6
     #because data passed in Shuffle is based on the previous alert
     #You don't run a print statement an error occurs
     print(json.dumps(msg))
@@ -337,6 +364,9 @@ title = data.get("title", "")
 
 #Get the rule-id (wazuh alert code)
 rule_id = data.get("rule_id", "unknown_rule")
+
+#Get the web status code for web attacks 
+web_status_code = data.get("all_fields", {}).get("data", {}).get("id", "")
 
 #Get the source_ip
 source_ip = data.get("all_fields", {}).get("data", {}).get("srcip", "")
@@ -376,8 +406,12 @@ groups_list = data.get("all_fields", {}).get("rule", {}).get("groups", [])
 #lower case the str for each group
 groups_list = [str(g).lower() for g in groups_list]
 
-alerts_by_ip_raw =r''' $get_alerts_by_ip.value | default({}) | tojson '''
+# Get the alerts by ip dictionary
+alerts_by_ip_raw =r'''{{$get_alerts_by_ip.value | default({}) | tojson}}'''
 
+#Normalize  alerts_by_ip and convert it to an empty dictionary if no results
+#Must do this because calling the shuffle variable $get_alerts_by_ip.value could be empty and it'll cause an error 
+#If it's not handled and converted to an empty string 
 if not alerts_by_ip_raw or alerts_by_ip_raw.strip() == "":
     alerts_by_ip = {}
 else:
@@ -386,7 +420,8 @@ else:
     except json.JSONDecodeError:
         alerts_by_ip = {}
 
-alerts_by_user_raw =r''' $get_alerts_by_ip.value | default({}) | tojson '''
+#Do the same thing about but with alerts by user
+alerts_by_user_raw =r'''{{$get_alerts_by_user.value | default({}) | tojson}}'''
 
 if not alerts_by_user_raw or alerts_by_user_raw.strip() == "":
     alerts_by_user = {}
@@ -403,7 +438,7 @@ mitre = data.get("all_fields", {}).get("rule", {}).get("mitre", {})
 mitre_id = ", ".join(mitre.get("id", ""))
 
 #Get the mitre tactic
-mitre_tactic = ", ".join(mitre.get("tactic", ""))
+mitre_tactic = ", ".join(mitre.get("tactic", []))
 
 #Get the mitre technique
 mitre_technique = ", ".join(mitre.get("technique", "")) 
@@ -435,7 +470,7 @@ now = int(time.time())
 #Found holds True or False if there is a stored thread in get_thread cache node
 found = $get_set_thread_ts.found
 
-#Get the value (thread_ts & expiresat) for each get thread cache (returns dict)
+#Get the value (thread timestamp, last seen, source_ip, corrkey) for each get thread cache (returns dict)
 raw_thread = $get_set_thread_ts
 
 #Initialize a string that will hold the thread_ts for slack threading
@@ -454,13 +489,16 @@ stored_thread = {}
 #Get the wazuhlvl (score 0-3)
 wazuhlvl = getwazuhlvl(level)
 #Get the mitrelvl (score 0-3)
-mitrelvl = getmitrelvl(mitre_tactic)
+if mitre_tactic:
+  mitrelvl = getmitrelvl(mitre_tactic)
+else:
+  mitrelvl = 0
 #Get the impact score (score 0-3)
-impactscore = getimpactscore(mitrelvl, text, file_path)
+impactlvl = getimpactlvl(mitrelvl, text, file_path, web_status_code)
 #Add the wazuhlvl, mitrelvl, and impactscore together to get severity score which categorizes each even as Low, High, Critical
-severityscore = wazuhlvl + mitrelvl + impactscore
+severitylvl = wazuhlvl + mitrelvl + impactlvl
 #Get the severity level for each event which is a string between Low, High, and Critical
-severity = getseverityscore(severityscore)
+severity = getseveritylvl(severitylvl)
 #Get the emoji severity color (Green, Orange, Red)
 emoji = (severityemoji(severity))
 
@@ -476,11 +514,11 @@ reg_attack, burst = correlate_alert(source_ip, source_user, alerts_by_ip, alerts
 #initialize promotescore dictionary
 promotescore = {}
 
-#Call getpromotescore to determine if alert should be promoted to case
-promotescore = getpromotescore(severity, source_ip, source_user, burst, reg_attack)
-
 #Call attack_group to determine the category of attack based on the groups assocaited with the attack
 attack_group = categorizeatt(groups_list)
+
+#Call getpromotescore to determine if alert should be promoted to case
+promotescore = getpromotescore(severity, source_ip, source_user, burst, reg_attack, attack_group, text)
 
 #Fields holds information about the wazuh level of each event, the wazuh rule ID, and the time stamp
 fields = [
@@ -492,6 +530,8 @@ fields = [
 #A list of triage links used for investigation into a recently promoted case
 #Will include a call to ipinfo.com using source_ip to determine maliciousness
 #A full event dump of the alert linked in GitHub
+#A case link to TheHive case 
+#A wazuh in the last 24 hours for a specific ip if alert has a source_ip
 #A runbook for the type of attack based on the attack_group
 triage_links = [
 
@@ -503,6 +543,14 @@ respond = [
   { "type": "mrkdwn", "text": f"Escalate to L2: React with 🚨 & reply in thread with reason."}
 ]
 
+#A List of Action buttons if an alert gets promoted to a case
+#Contain Path to contain path from SQL Injection 
+#Block IP for any attack with a source_ip
+action_buttons = [
+  
+]
+
+
 #If the agent_ip is collected, insert this field markdown as the first field
 if agent_ip:
     fields.insert(0, { "type": "mrkdwn", "text": f"*Name & IP*: {agent_name or ''} - {agent_ip}" })
@@ -510,7 +558,7 @@ else:
     fields.insert(0, { "type": "mrkdwn", "text": f"*Name*: {agent_name or ''}" })
 #If the mitre information is collected, add the Mitre ID, Tactic, and technique to the fields
 if mitre:
-	fields.append({ "type": "mrkdwn", "text": f"*MITRE ATT&CK* - *ID*: {mitre_id or ''} *Tactic*: {mitre_tactic or ''} *Technique*: {mitre_technique or ''}" })
+	fields.append({ "type": "mrkdwn", "text": f"*MITRE ATT&CK - ID*: {mitre_id or ''} *Tactic*: {mitre_tactic or ''} *Technique*: {mitre_technique or ''}" })
 #If the file_path is collected, add the field_path to the fields
 if file_path:
 	fields.append({ "type": "mrkdwn", "text": f"*File Path*: {file_path or ''}" })
@@ -524,11 +572,25 @@ blocks = [
 	{ "type": "section", "fields": fields }
 ]
 
-#if source_ip exists, create a button linked to a query of the source_ip on ipinfo.com, a malicious i database
-if source_ip:
+#if source_ip exists, create a button linked to a query of the source_ip on ipinfo.com, a malicious ip database
+if source_ip and source_ip != "None":
   triage_links.append({ "type": "button", 
   "text": { "type": "plain_text", "text": "🌍 IPInfo"},
   "url": f"https://ipinfo.io/{source_ip}"})
+  action_buttons.append({ "type": "button", 
+  "text": { "type": "plain_text", "text": "🚫 Block IP"},
+  "style": "danger",
+  "action_id": "block_ip",
+  "value": source_ip})
+
+#If any of the alerts comes from the custom alerts made for SQL injection, then add a button used to contain 
+#the path /rest/products/search in the exposed service OWASP juice shop from shop.redasmsecurity.cloud
+if rule_id in ["100313", "100314", "100316"]:
+  action_buttons.insert(0, {"type": "button",
+  "text": { "type": "plain_text", "text": "🔐 Contain Path"},
+  "style": "danger",
+  "action_id": "block_sql"
+  })
 
 #Alert is the final payload dictionary that specifies the Slack channel, the header, and the blocks 
 alert = {
@@ -546,6 +608,7 @@ alert = {
     "mitre_technique": mitre_technique,
     "alerts_by_ip": alerts_by_ip,
     "alerts_by_user": alerts_by_user,
+    "severity_emoji": emoji,
     "observables": {
         "agent_ip": agent_ip,
         "source_ip": source_ip,
@@ -554,13 +617,13 @@ alert = {
         "rule_id": rule_id,
         "file_path": file_path,
         "severity": severity,
-        "severity_score": severityscore,
+        "severity_level": severitylvl,
         "mitre": mitre
     }
 }
 
 #Conditional statement that checks if found and raw_thread are true
-#If so, checks if raw_thread is a dictionary or str, if empty str, stroed_thread
+#If so, checks if raw_thread is a dictionary or str, if empty str, stored_thread
 #stays empty dict, otherwise stored_thread becomes raw_thread
 if found and raw_thread:
   if isinstance(raw_thread, str):
@@ -571,26 +634,23 @@ if found and raw_thread:
   elif isinstance(raw_thread, dict):
     stored_thread = raw_thread
   
-#Get the stored parameters from stored_thread cached in get_thread node which will be used to 
-#check how alerts should be posted to Slack. If the stored corrkey mateches the corrkey for 
-#the current alert, and there is a timestamp (parent_ts) and expiresat, then set expired
-
-#If all three return true, set newexpiresat to the current expiresat
-#and check if expired is true or false based on the get_thread expiresat
-#The Threading process has a 5min sliding window and persists as long 
-#as there are alerts from that correlation key coming in.
+#Check to see if stored thread holds the information needed from the get cache node to determine if the current alert 
+#needs to be threaded or not.
+#There must be a parent timestamp, a last seen value, and a corrkey
 parent_ts = stored_thread.get("value", {}).get("Set_Thread_TS", "")
 get_last_seen = stored_thread.get("value", {}).get("last_seen", "")
 get_corrkey = stored_thread.get("value", {}).get("corrkey", "")
 
+#If there is all three of these, then set expired, a boolean which determines if the last related alert was within 5 minutes
+#If it is, then set expired to False.
+#If it is not, then set expired to True
 if parent_ts and get_last_seen and corrkey == get_corrkey:
   get_last_seen = int(float(get_last_seen))
   expired = (now - get_last_seen) > 300
 
-#Check if the stored  expires at time is less than current time
-#If it is, expired becomes true and fails
-#If it is not, expired becomes false and passes. Then add parent_ts and newexpiresat
-#Otherwise, remove thread_ts from alert to ensure a new parent mesasge is posted
+#If the last related alert has not expired, then set threading to true
+#Add the parent thread timestamp to the current alert to be threaded 
+#Else remove the thread timestamp value from the current alert and set threading to false 
 if not expired:
   alert["threading"] = "true"
   alert["thread_ts"] = str(parent_ts)
@@ -598,15 +658,29 @@ else:
   alert.pop("thread_ts", None)
   alert["threading"] = "false"
 
-#If promote score is true, add triage links and respond to slack case for investigation and soc analyst response
+#If promote score is true, add triage links dictionary list, action buttons dictionary list, and respond list
+#If hard promote is True, set it to "true" because of Shuffle handling which uses lowercase true not uppercase Python True
+#Same thing with false
 if promotescore.get("total", 0) >= 5 or promotescore.get("hard_promote", False):
-    alert["promote_to_case"] = "true"
-    blocks.append({ "type": "section", "text": { "type": "mrkdwn", "text": "Investigate:" }})
+  alert["promote_score"] = promotescore
+  if promotescore.get("hard_promote", False):
+    alert["promote_score"]["hard_promote"] = "true"
+  else:
+    alert["promote_score"]["hard_promote"] = "false"
+  alert["promote_to_case"] = "true"
+  get_source_ip = stored_thread.get("source_ip", "")
+  if source_ip == "None" or source_ip != get_source_ip:
+    alert["threading"] = "false"
+  blocks.append({ "type": "section", "text": { "type": "mrkdwn", "text": "Investigate:" }})
+  blocks.append({ "type": "divider"})
+  blocks.append({ "type": "actions", "elements": triage_links })
+  if not source_ip or source_ip != "None":
+    blocks.append({ "type": "section", "text": { "type": "mrkdwn", "text": "Take Action:" }})
     blocks.append({ "type": "divider"})
-    blocks.append({ "type": "actions", "elements": triage_links })
-    blocks.append({ "type": "section", "text": { "type": "mrkdwn", "text": "Respond:" }})
-    blocks.append({ "type": "divider"})
-    blocks.append({ "type": "section", "fields": respond })
+    blocks.append({ "type": "actions", "elements": action_buttons })
+  blocks.append({ "type": "section", "text": { "type": "mrkdwn", "text": "Respond:" }})
+  blocks.append({ "type": "divider"})
+  blocks.append({ "type": "section", "fields": respond })
 
 #Print json.dumps with the alert 
 print(json.dumps(alert))
