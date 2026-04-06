@@ -1,6 +1,8 @@
 import mysql.connector
 from datetime import datetime
 
+#DB_Handler Creates a connection to the MySQL database and updates the database
+
 # --- VM CONNECTION CONFIG ---
 DB_HOST = "127.0.0.1"
 DB_PORT = 3307
