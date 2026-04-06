@@ -1,28 +1,68 @@
-# CS4850 ASM Cyber Project
+# 🔍 ASM Scanning Database & Automation Framework  
+## Attack Surface Management (ASM) Pipeline with Discovery, Enumeration & Vulnerability Scanning
 
-Team Senior Project focusing on:
-- Attack Surface Management (ASM)
-- Security Detection & Response with SIEM & SOAR Tools
-- Implementation of MITRE ATT&CK Matrix, showcasing red/blue team tactics 
-- Simulate Configuration & Software Drift with ASM scanning and Threat Detection
-- Secure System Hardening
-- Automate the identification of vulnerabilities with ASM scanning & Python Scripts
-- Create custom tagging for alerts in SIEM & SOAR  
+**Author:** Adam Llado, Kimani Gordon
+**Project:** ASM_Scanning_Database_Llado_Upgrades  
 
-## Project Structure
-```text
-asm_project/
-├── main.py                # Main application entry point
-├── modules/
-│   ├── db_handler.py      # Database management & Ingestion logic
-│   ├── scanners/          # Subdomain and vulnerability discovery scripts
-│   └── api_clients/       # VirusTotal and external API integrations
-├── data/                  # Local storage for SQLite databases (Git ignored)
-├── logs/                  # System and scan logs
-└── README.md- asm_project
+---
 
-## Contributors
-- Adam Llado
-- Kimani Gordon
-- Alec Sundby
-- Austin Abeln
+## 📌 Overview
+
+This project implements a **modular Attack Surface Management (ASM) pipeline** designed to:
+
+- Discover external-facing assets  
+- Enumerate subdomains and services  
+- Perform content and endpoint discovery  
+- Run automated vulnerability scanning  
+- Aggregate results into structured datasets  
+
+The system is built using **Python automation scripts + industry-standard security tools** such as:
+
+- **Subfinder** – passive subdomain enumeration  
+- **DNSX** – active brute-force subdomain resolution
+- **HTTPX** – service probing    
+- **Nuclei** – vulnerability scanning
+- **FFUF** – content discovery
+
+---
+
+## 🎯 Objectives
+
+This framework is designed to:
+
+- Automate external attack surface discovery  
+- Identify exposed services and endpoints  
+- Detect vulnerabilities across discovered assets  
+- Normalize and store results for analysis  
+- Enable repeatable scanning workflows  
+
+---
+
+## 🏗️ High-Level Architecture
+
+### 🔄 Workflow Pipeline
+
+1. **Discovery Phase**
+   - Passive subdomain enumeration (**Subfinder**)  
+   - Active brute-force enumeration (**DNSX**)  
+
+2. **Validation Phase**
+   - HTTP probing (**HTTPX**)  
+   - Live host filtering  
+
+3. **Vulnerability Scanning**
+   - **Nuclei** template-based scanning  
+   - CVE & misconfiguration detection
+
+4. **Enumeration Phase**
+   - Directory and endpoint discovery (**FFUF**)  
+   - Path enumeration  
+
+5. **Data Processing**
+   - Python scripts aggregate results  
+   - Output stored in structured files  
+
+---
+
+## 📂 Project Structure
+
