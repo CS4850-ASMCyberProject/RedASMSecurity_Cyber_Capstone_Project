@@ -41,32 +41,39 @@ def main():
     # 6. DATABASE SYNC PHASE (The Cloud Link)
     print(f"\n[*] Syncing {len(final_assets_data)} assets to Oracle Cloud VM...")
     
-    success_count = 0
+    asset_count = 0
     for asset in final_assets_data:
         try:
             # Pushing to the VM via db_handler
             db_handler.upsert_asset(asset['subdomain'], asset['ip_address'], asset['title'], asset['status_code'], asset['webserver'], asset['tech_stack'], asset['port'], asset['cdn'], asset['url'])
             print(f"    [+] Synced: {asset['subdomain']}")
-            success_count += 1
+            asset_count += 1
         except Exception as e:
             print(f"    [!] Failed to sync {asset['subdomain']}: {e}")
             
+    vulnerability_count = {}
     for vulnerability in final_vulnerability_data:
         try:
             # Pushing to the VM via db_handler
+            subdomain = vulnerability['subdomain']
             db_handler.upsert_vulnerability(vulnerability['subdomain'], vulnerability['vulnerability_id'], vulnerability['type'], vulnerability['severity'], vulnerability['matched_at'], vulnerability['extracted_results'], vulnerability['vulnerability_score'])
             print(f"    [+] Synced: {vulnerability['vulnerability_id']}")
+            if subdomain not in vulnerability_count:
+                vulnerability_count['subdomain'] = 0
+            vulnerability_count['subdomain'] += 1
         except Exception as e:
             print(f"    [!] Failed to sync {vulnerability['subdomain']}: {e}")
             
+    path_count = 0
     for path in final_ffuf_data:
         try:
             # Pushing to the VM via db_handler
             db_handler.upsert_url_paths(path['subdomain'], path['url_path'], path['status'], path['size'], path['words'], path['line_count'], path['duration'])
             print(f"    [+] Synced: {path['url_path']}")
+            path_count += 1
         except Exception as e:
             print(f"    [!] Failed to sync {path['url_path']}: {e}")
-            
+       
     try:
         # Pushing to the VM via db_handler
         subdomain = "shop.redasmsecurity.cloud"
@@ -74,11 +81,34 @@ def main():
     except Exception as e:
         print(f"    [!] Failed to sync Juice Shop Paths: {e}")
 
+    print(f"**[SUCCESS] Scan Complete!**")
     print("\n" + "="*70)
-    print(f"[SUCCESS] Scan Complete!")
+    print(f"ASSETS")
     print(f"Total Assets Found: {len(targets)}")
-    print(f"Successfully Synced to Cloud: {success_count}")
+    print(f"Successfully Synced to Database: {asset_count}")
+    print("="*70)
+    
+    total_vulnerabilities = sum(vulnerability_count.values())
+    total_subdomains = len(vulnerability_count)
+    print("\n" + "="*70)
+    print(f"VULNERABILITIES")
+    print(f"Vulnerability Count By Subdomain:")
+    for subdomain, count in vulnerability_count.items():
+        print(f"{subdomain}: {count}")
+    print(f"Successfully Synced {total_vulnerabilities} for {total_subdomains} subdomains")
+    print("="*70)
+    
+    print("\n" + "="*70)
+    print(f"POSSIBLE PATHS")
+    print(f"Total Possible Paths Found: {path_count}")
+    print(f"Successfully Synced {path_count} total possible paths to legitimize.")
+    print("="*70)
+    
+    print("\n" + "="*70)
+    print(f"EXPLOITABLE PATHS")
+    print(f"Total Exploitable Paths Found: {confirmed_paths}")
+    print(f"Successfully Synced {confirmed_paths} total exploitable paths.")
     print("="*70)
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     main()

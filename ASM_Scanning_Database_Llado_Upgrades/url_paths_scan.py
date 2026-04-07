@@ -2,7 +2,7 @@ from terminal_run import run_cmd
 import json
 
 def expose_url_paths(subdomain):
-    WORDLIST = r"~/SecLists/Discovery/DNS/subdomains-top1-million-5000.txt"
+    WORDLIST = r"~/srv/asm_project/subdomains-top1-million-5000.txt"
     results = []
     try:
         run_cmd("Fuff URL Paths Scan", f"ffuf -u http://{subdomain}/FUZZ -w {WORDLIST} -mc 500 -of json -o ffuf_output.txt")
