@@ -4,7 +4,6 @@
 .DS_Store
 
 # Logs (runtime only)
-logs/*
 !logs/README.md
 *.log
 
