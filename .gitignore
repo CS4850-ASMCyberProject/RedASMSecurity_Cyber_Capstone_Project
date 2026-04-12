@@ -3,10 +3,6 @@
 *.bak
 .DS_Store
 
-# Logs (runtime only)
-!logs/README.md
-*.log
-
 # Scan outputs (generated only)
 scans/*
 reports/*
