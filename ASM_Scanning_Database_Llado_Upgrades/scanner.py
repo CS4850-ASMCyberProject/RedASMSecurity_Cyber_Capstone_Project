@@ -5,7 +5,7 @@ import db_handler  # This is the bridge to your Cloud VM
 
 # CONFIGURATION 
 DOMAIN = "redasmsecurity.cloud"
-WORDLIST = r"~/SecLists/Discovery/DNS/subdomains-top1million-5000.txt"
+WORDLIST = r"/srv/asm_project/subdomains-top1million-5000.txt"
 
 def main():
     print(f"=== RedASM Cloud-Linked Discovery Scanner: {DOMAIN} ===")
@@ -19,7 +19,7 @@ def main():
 
     # 3. ACTIVE BRUTE FORCE PHASE
     print("[*] Running 110k Brute Force hunt...")
-    run_cmd("DNS Brute-Force", f"dnsx -d {DOMAIN} -w {WORDLIST} -t 100 -silent -o brute_results.txt")
+    run_cmd("DNS Brute-Force", f"dnsx -d {DOMAIN} -w {WORDLIST} -silent -o brute_results.txt")
 
     # 4. MERGE & DEDUPLICATE
     print("[*] Merging all unique findings...")
@@ -59,8 +59,8 @@ def main():
             db_handler.upsert_vulnerability(vulnerability['subdomain'], vulnerability['vulnerability_id'], vulnerability['type'], vulnerability['severity'], vulnerability['matched_at'], vulnerability['extracted_results'], vulnerability['vulnerability_score'])
             print(f"    [+] Synced: {vulnerability['vulnerability_id']}")
             if subdomain not in vulnerability_count:
-                vulnerability_count['subdomain'] = 0
-            vulnerability_count['subdomain'] += 1
+                vulnerability_count[subdomain] = 0
+            vulnerability_count[subdomain] += 1
         except Exception as e:
             print(f"    [!] Failed to sync {vulnerability['subdomain']}: {e}")
             
@@ -81,6 +81,7 @@ def main():
     except Exception as e:
         print(f"    [!] Failed to sync Juice Shop Paths: {e}")
 
+    print("\n" + "="*70)
     print(f"**[SUCCESS] Scan Complete!**")
     print("\n" + "="*70)
     print(f"ASSETS")
@@ -95,7 +96,7 @@ def main():
     print(f"Vulnerability Count By Subdomain:")
     for subdomain, count in vulnerability_count.items():
         print(f"{subdomain}: {count}")
-    print(f"Successfully Synced {total_vulnerabilities} for {total_subdomains} subdomains")
+    print(f"Successfully Synced {total_vulnerabilities} vulnerabilities for {total_subdomains} subdomains")
     print("="*70)
     
     print("\n" + "="*70)
@@ -104,11 +105,12 @@ def main():
     print(f"Successfully Synced {path_count} total possible paths to legitimize.")
     print("="*70)
     
+    legit_path_count = len(confirmed_paths)
     print("\n" + "="*70)
     print(f"EXPLOITABLE PATHS")
-    print(f"Total Exploitable Paths Found: {confirmed_paths}")
-    print(f"Successfully Synced {confirmed_paths} total exploitable paths.")
+    print(f"Total Exploitable Paths Found: {legit_path_count}")
+    print(f"Successfully Synced {legit_path_count} total exploitable paths.")
     print("="*70)
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()

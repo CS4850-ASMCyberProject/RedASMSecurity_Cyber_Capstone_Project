@@ -1,0 +1,53 @@
+#!/bin/bash
+
+set -euo pipefail
+
+PROJECT_DIR="/srv/asm_project"
+
+RESULTS_DIR="$PROJECT_DIR/results"
+
+LOG_DIR="$PROJECT_DIR/logs"
+
+TIMESTAMP="$(date '+%Y-%m-%d_%H-%M-%S')"
+
+RUN_DIR="$RESULTS_DIR/$TIMESTAMP"
+
+mkdir -p "$RUN_DIR" "$LOG_DIR"
+
+{
+
+  echo "=== Scan started at $(date) ==="
+
+  echo "Run directory: $RUN_DIR"
+
+} >> "$LOG_DIR/scan.log"
+
+cd "$PROJECT_DIR/ASM_Scanning_Database_Llado_Upgrades"
+
+if /usr/bin/python3 scanner.py >> "$LOG_DIR/scan.log" 2>&1; then
+
+  # Copy output files to run directory
+  cp -v \
+    discovery.txt \
+    verified_discovery.txt \
+    brute_results.txt \
+    final_targets.txt \
+    httpx.json \
+    nuclei.json \
+    nuclei_subdomain_list.txt \
+    ffuf_output.txt \
+    "$RUN_DIR"/ 2>/dev/null
+
+  ln -sfn "$RUN_DIR" "$PROJECT_DIR/latest"
+
+  echo "=== Scan succeeded at $(date) ===" >> "$LOG_DIR/scan.log"
+
+else
+
+  echo "=== Scan failed at $(date) ===" >> "$LOG_DIR/scan.log"
+
+  exit 1
+
+fi
+
+echo "" >> "$LOG_DIR/scan.log"

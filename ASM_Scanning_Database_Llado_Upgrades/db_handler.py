@@ -5,7 +5,7 @@ from datetime import datetime
 
 # --- VM CONNECTION CONFIG ---
 DB_HOST = "127.0.0.1"
-DB_PORT = 3307
+DB_PORT = 3306
 DB_USER = "asm_user"
 DB_PASS = "073334K" # Set this on the VM
 DB_NAME = "asm_database"

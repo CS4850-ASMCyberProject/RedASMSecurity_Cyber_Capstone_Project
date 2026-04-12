@@ -10,15 +10,12 @@ def resolve_details(subdomain_list):
     corr_keys = set()
     try:
         #Run HTTPX to get a json object which resolves the fields for a subdomain in the database.
-        run_cmd("HTTPX Subdomain Resolver", "httpx -l final_targets.txt -silent -json -threads 200 > httpx.json")
+        run_cmd("HTTPX Subdomain Resolver", "httpx -l final_targets.txt -silent -json > httpx.json")
         
         with open("httpx.json", "r") as f:
             rows = [json.loads(line) for line in f if line.strip()]
 
-            rows.sort(key=lambda row: (
-            0 if row.get("input") == "shop.redasmsecurity.cloud" else 1,
-            row.get("input", "")
-            ))
+            rows.sort(key=lambda row: (0 if row.get("input") == "shop.redasmsecurity.cloud" else 1, row.get("input", "")))
 
             with open("httpx.json", "w") as f:
                 for row in rows:
@@ -62,17 +59,18 @@ def resolve_details(subdomain_list):
                     'url': url
                 }
                 
+                
                 assets.append(data)
                 
                 content_length = httpx_data.get("content_length", -1)
                 
-                corr_key = ip_address + ":" + f"{status_code}" + ":" + f"{port}" + ":" + f"{content_length}" + ":" + webserver + ":" + tech_stack
+                corr_key = f"{status_code}" + ":" + f"{port}" + ":" + f"{content_length}" + ":" + webserver + ":" + tech_stack
                 
                 if corr_key not in corr_keys:
                     corr_keys.add(corr_key)
                     with open("nuclei_subdomain_list.txt", "a") as f:
                         f.write(subdomain + "\n")
-                        
+                
         nuclei_data = expose_vulnerabilities()
         ffuf_data = expose_url_paths("shop.redasmsecurity.cloud")
         juice_shop_paths = expose_juice_shop_paths("shop.redasmsecurity.cloud")
@@ -81,3 +79,4 @@ def resolve_details(subdomain_list):
         print(f"[!] Resolver error: {e}")
     
     return assets, nuclei_data, ffuf_data, juice_shop_paths
+
