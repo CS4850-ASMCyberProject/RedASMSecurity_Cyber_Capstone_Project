@@ -30,7 +30,7 @@ def resolve_details(subdomain_list):
                 #Get subdomain
                 subdomain = httpx_data.get("input")
                 #Get IP
-                ip_address = httpx_data.get("host_ip", '0.0.0.0')
+                ip_address = (httpx_data.get("host_ip") or httpx_data.get("a")[0] or "0.0.0.0")
                 #Get Title
                 title = httpx_data.get("title", 'Unknown')
                 #Get Status Code
@@ -57,8 +57,7 @@ def resolve_details(subdomain_list):
                     'port': port,
                     'cdn': cdn,
                     'url': url
-                }
-                
+                }                
                 
                 assets.append(data)
                 
