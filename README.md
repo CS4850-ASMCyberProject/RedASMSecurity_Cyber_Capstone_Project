@@ -89,8 +89,8 @@ This project demonstrates a full **Attack Surface Management (ASM)** pipeline in
 
 - 💬 **Slack**
   - Main Hub to Investigate Active Cyber Threats
-  - `Alerts Channel → Low priority threats`  
-  - `Cases Channel → High priority incidents` 
+    - `Alerts Channel → Low priority threats`  
+    - `Cases Channel → High priority incidents` 
 
 - ☁️ **Cloudflare**
   - DNS + subdomain management  
