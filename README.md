@@ -17,7 +17,7 @@ This project demonstrates a full **Attack Surface Management (ASM)** pipeline in
   Implementation of:
   - **SIEM** (Wazuh)
   - **SOAR** (Shuffle)
-  - **Case Management** (TheHive)
+  - **Case Management** (Slack, TheHive)
 
 - ⚔️ **Red vs Blue Team Simulation**  
   Demonstrating attacker pipelines and defender response workflows  
@@ -62,7 +62,7 @@ This project demonstrates a full **Attack Surface Management (ASM)** pipeline in
   → Automates incident response workflows  
 
 - **TheHive (Case Management)**  
-  → Central hub for investigation & case tracking  
+  → Response hub for investigation & case tracking  
 
 - **Python Automation Server**
   - Listens for Shuffle responses  
@@ -88,12 +88,13 @@ This project demonstrates a full **Attack Surface Management (ASM)** pipeline in
   - `redasmsecurity.cloud`
 
 - 💬 **Slack**
-  - Alerts Channel → Low priority threats  
-  - Cases Channel → High priority incidents  
+  - Main Hub to Investigate Active Cyber Threats
+  - `Alerts Channel → Low priority threats`  
+  - `Cases Channel → High priority incidents` 
 
 - ☁️ **Cloudflare**
   - DNS + subdomain management  
-  - Secure tunnel for private services  
+  - Secure tunnel to access private ASM_Manager services via Internet 
 
 - ⏱️ **Crontab**
   - Automates daily ASM scanning  
