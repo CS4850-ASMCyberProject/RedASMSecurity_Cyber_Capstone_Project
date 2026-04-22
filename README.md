@@ -112,4 +112,12 @@ This project demonstrates a full **Attack Surface Management (ASM)** pipeline in
 ```bash
 ASM_Manager/
 ASM_Target/
-Infrastructure/
+Supporting_Services/
+```
+
+## 👥 Contributors
+
+- **Adam Llado**  
+- **Kimani Gordon**  
+- **Austin Abeln**  
+- **Alec Sundby**  
