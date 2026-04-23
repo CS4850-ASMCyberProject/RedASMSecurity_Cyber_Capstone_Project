@@ -279,6 +279,8 @@ Provides:
 
 Lightweight desktop interface
 
+---
+
 ## 🖥️ Remote Desktop (RDP)
 ```bash
 xrdp
@@ -289,10 +291,49 @@ policykit-1
 network-manager
 ```
 
+---
+
+# ⚙️ XRDP Session Configuration (.xsession)
+
+To properly initialize the XFCE desktop environment over XRDP, a .xsession file must be created in the user's home directory.
+
+## 📁 File Location
+```bash
+/home/<your-user>/.xsession
+```
+
+##📄 Configuration
+```bash
+#!/bin/sh
+set -x
+exec > /tmp/xsession-<your-user>.log 2>&1
+
+# Ensure proper runtime dir + dbus for portals/snap
+export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
+
+# If the bus doesn't exist for some reason, fall back to dbus-launch
+if [ ! -S "$XDG_RUNTIME_DIR/bus" ]; then
+  exec dbus-launch --exit-with-session startxfce4
+else
+  exec startxfce4
+fi
+```
+
+🧠 Purpose
+Ensures XFCE starts correctly when connecting via XRDP
+Initializes required environment variables for GUI session stability
+Prevents common XRDP issues such as:
+blank screen after login
+immediate session disconnect
+missing desktop environment
+
 Enables:
 
 Remote GUI access via RDP
 Remote management of the VM
+
+---
 
 ## 🎨 UI / Fonts / Themes
 ```bash
