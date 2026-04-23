@@ -202,6 +202,8 @@ ASM scanning scripts
 Python listener (Slack automation)
 API services
 
+---
+
 ## 🌐 Networking & Diagnostics
 ```bash
 net-tools
@@ -218,6 +220,8 @@ DNS resolution
 Internal domain mapping
 Service validation and debugging
 
+---
+
 ## 🔍 Debugging & Monitoring
 ```bash
 strace
@@ -232,6 +236,8 @@ Process tracing
 Performance monitoring
 Debugging runtime issues
 
+---
+
 ## ⏱️ Time & System Sync
 ```bash
 chrony
@@ -240,6 +246,8 @@ chrony
 Critical for:
 
 Accurate timestamps (SIEM correlation)
+
+---
 
 ## 🔐 Firewall & Security
 ```bash
@@ -251,6 +259,8 @@ Used for:
 Persistent firewall rules
 Automated blocking via Python listener
 
+---
+
 ## 📡 File Systems / Services
 ```bash
 nfs-common
@@ -261,6 +271,8 @@ Enables:
 
 File mounting
 GUI file access
+
+---
 
 ## 🖥️ GUI / Desktop Environment
 ```bash
@@ -274,6 +286,8 @@ file-roller
 Provides:
 
 Lightweight desktop interface
+
+---
 
 ## 🖥️ Remote Desktop (RDP)
 ```bash
@@ -289,6 +303,8 @@ Enables:
 
 Remote GUI access via RDP
 
+---
+
 ## 🎨 UI / Fonts / Themes
 ```bash
 fonts-dejavu
@@ -302,6 +318,8 @@ firefox
 Used for:
 
 Accessing dashboards (Wazuh, Grafana, etc.)
+
+---
 
 ## 🛡️ SIEM / Security Stack (Wazuh)
 ```bash
@@ -317,6 +335,8 @@ Log ingestion
 Indexing
 Visualization
 
+---
+
 ## 🗄️ Database Layer
 ```bash
 mariadb-server
@@ -327,6 +347,8 @@ Used for:
 
 ASM scanning data storage
 
+---
+
 ## ⚙️ Programming / Tooling
 ```bash
 golang-go
@@ -335,6 +357,8 @@ golang-go
 Used for:
 
 Tools like ffuf
+
+---
 
 ## 🔎 Security / Scanning Tools
 ```bash
@@ -346,6 +370,8 @@ Used for:
 Directory fuzzing
 Endpoint discovery
 
+---
+
 ## 📊 Data Processing
 ```bash
 jq
@@ -355,6 +381,8 @@ Used for:
 
 Parsing JSON outputs (httpx, nuclei, etc.)
 
+---
+
 ## 🧰 Utilities
 ```bash
 libxml2-utils
@@ -363,6 +391,8 @@ libxml2-utils
 Used for:
 
 XML parsing / configuration handling
+
+---
 
 ## ⏲️ Automation
 ```bash
