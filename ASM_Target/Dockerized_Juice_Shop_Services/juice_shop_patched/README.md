@@ -41,3 +41,7 @@ docker build -t juice-shop:patched .
 
 sudo docker run -d --name juice-shop-patched --restart unless-stopped -p 127.0.0.1:3001:3000 juice-shop:patched
 ```
+
+-p 127.0.0.1:3000:3000 keeps local port 3000 secure, opening it up only to the ASM_Target's loopback address. The service is exposed to the Internet through an Nginx reverse proxy server; The server acts as a VPN for a service similar to a VPN for a user.
+
+--restart unless stopped keeps the service running automatically through system crashes and reboots
