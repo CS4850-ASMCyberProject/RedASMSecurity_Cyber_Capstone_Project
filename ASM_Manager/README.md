@@ -110,19 +110,20 @@ ASM Manager VM
 ## 🔁 Data Flow Architecture
 
 ```text
-                  Wazuh Manager (ASM Manager VM)
-                               │
-               ┌───────────────┴───────────────┐
-               │                               │
-               ▼                               ▼
-        Shuffle (SOAR)                ASM Scanning Script
-               │                               │
-               ▼                               ▼
-        TheHive (Cases)                MySQL Database
-               │                               │
-               ▼                               ▼
-        Python Listener               Grafana (Visualization)
-               │
-               ▼
- ASM Target VM (iptables + Nginx block rules)
+                      Wazuh Manager (ASM Manager VM)
+                                   │
+               ┌───────────────────┴───────────────────┐
+               │                                       │
+               ▼                                       ▼
+        Shuffle (SOAR)                         ASM Scanning Script
+               │                                       │
+   ┌────────────────────┬───────────┐                  ▼
+   │                    │           │            MySQL Database
+   ▼                    ▼           ▼                  │
+Slack (Primary)  Python Server   TheHive               ▼
+ (Case Mgmt)    (Slack Buttons)  (Cases)     Grafana (Visualization)
+                        │
+                        ▼
+     ASM Target VM (iptables + Nginx block rules)
 ```
+   
