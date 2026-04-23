@@ -334,7 +334,7 @@ missing desktop environment
 
 Enables:
 
-Remote GUI access via RDP
+Remote GUI access via RDP  
 Remote management of the VM
 
 ---
