@@ -181,7 +181,6 @@ docker-compose-plugin
 
 Used for:
 
-OWASP Juice Shop
 Shuffle
 TheHive
 Container orchestration
