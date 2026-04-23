@@ -4,7 +4,7 @@ From your Wazuh Manager, get:
 
 Manager IP → Determine your manager private IP
 
-⚙️ 1. Add Wazuh repository
+## ⚙️ 1. Add Wazuh repository
 ```bash
 curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | sudo apt-key add -
 
@@ -14,12 +14,12 @@ sudo tee /etc/apt/sources.list.d/wazuh.list
 sudo apt update
 ```
 
-📦 2. Install Wazuh agent
+## 📦 2. Install Wazuh agent
 ```bash
 sudo apt install wazuh-agent -y
 ```
 
-🧾 3. Configure agent
+## 🧾 3. Configure agent
 
 Edit config:
 ```bash
@@ -43,19 +43,19 @@ Option A (modern, easiest — recommended)
 sudo /var/ossec/bin/agent-auth -m 10.0.0.97
 ```
 
-🚀 5. Start the agent
+## 🚀 4. Start the agent
 ```bash
 sudo systemctl daemon-reexec
 sudo systemctl enable wazuh-agent
 sudo systemctl start wazuh-agent
 ```
 
-🔍 6. Verify it’s running
+## 🔍 5. Verify it’s running
 ```bash
 sudo systemctl status wazuh-agent
 ```
 
-🧪 7. Verify from Manager
+## 🧪 6. Verify from Manager
 ```bash
 sudo /var/ossec/bin/agent_control -l
 ```
