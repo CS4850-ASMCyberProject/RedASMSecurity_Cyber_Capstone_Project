@@ -128,7 +128,7 @@ Slack (Primary)  Python Server   TheHive               ▼
 ```
 ---
 
-# 🧱 Complete VM Package Installation Breakdown
+# 🧱 ASM_Manager Complete VM Package Installation Breakdown
 
 ## 🧾 Raw Commands (for reproducibility)
 
