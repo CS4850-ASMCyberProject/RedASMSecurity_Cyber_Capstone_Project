@@ -83,6 +83,7 @@ ASM Target VM
    ├── Nginx → Reverse Proxy (Ports 80/443)
    ├── ModSecurity → Web Application Firewall (WAF)
    ├── Wazuh Agent → Endpoint Monitoring
+```
 
 # 🧱 ASM Target VM Package Installation Breakdown
 
