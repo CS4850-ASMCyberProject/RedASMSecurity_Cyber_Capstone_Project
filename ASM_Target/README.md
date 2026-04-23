@@ -142,7 +142,7 @@ System configuration
 
 ---
 
-🐳 Containerization & Runtime
+## 🐳 Containerization & Runtime
 ```bash
 docker-ce
 docker-ce-cli
