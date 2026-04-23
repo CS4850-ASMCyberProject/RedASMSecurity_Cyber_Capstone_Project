@@ -148,8 +148,14 @@ apt install -y ffuf
 apt install -y jq
 apt install -y dnsmasq
 apt install -y cron
-🧠 Categorized Breakdown
-🔧 Core System & Development
+```
+
+---
+
+## 🧠 Categorized Breakdown
+
+## 🔧 Core System & Development
+```bash
 software-properties-common
 build-essential
 git
