@@ -71,6 +71,10 @@ This section defines the **network connectivity, IP addressing, and access contr
 
 - **Assignment Type:** Automatically Assign Public IPv4 Address
 
+## Create Instance
+
+- All Configurations have been made, now hit Create!
+
 ## 🌐 Intended Role in Architecture
 
 ```text
