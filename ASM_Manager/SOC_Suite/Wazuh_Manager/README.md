@@ -160,13 +160,13 @@ sudo /var/ossec/bin/wazuh-analysisd -t
 
 This setup gives you:
 
-🛡️ Wazuh Manager running
-🔌 Agent communication (1514)
-🔐 Agent enrollment (1515)
-📜 Log ingestion (journald + syslog)
-🚨 JSON alert output
-🔗 Shuffle webhook integration
-🧠 Capstone Fit
+🛡️ Wazuh Manager running  
+🔌 Agent communication (1514)  
+🔐 Agent enrollment (1515)  
+📜 Log ingestion (journald + syslog)  
+🚨 JSON alert output  
+🔗 Shuffle webhook integration  
+🧠 Capstone Fit  
 
 Perfect for your stack:
 
