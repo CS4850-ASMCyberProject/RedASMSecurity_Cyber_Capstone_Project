@@ -1,4 +1,4 @@
-🛡️ Wazuh Agent Setup (Target VM)
+## 🛡️ Wazuh Agent Setup (Target VM)
 
 From your Wazuh Manager, get:
 
