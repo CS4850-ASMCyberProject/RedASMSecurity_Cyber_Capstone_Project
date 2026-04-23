@@ -58,9 +58,9 @@ This section defines the *network connectivity, IP addressing, and access contro
   - Wazuh Manager
   - Shuffle (SOAR)
   - TheHive (Case Management)
-  - ASM_Scanning Script (Daily Scans for updated attack surface mapping)
-  - MySQL Database (Stores ASM Scanning Data)
-  - Python Server (Listens for Shuffle payload to automate Slack temporary blocks)
+  - ASM_Scanning Script (24 Hour Scans)
+  - MySQL Database (ASM Scanning Data)
+  - Python Server (Automate Slack buttons)
   - Grafana (Database Visualization)
 - Maintain secure internal communication with:
   - ASM Target VM (Wazuh Agent, logs, events)
