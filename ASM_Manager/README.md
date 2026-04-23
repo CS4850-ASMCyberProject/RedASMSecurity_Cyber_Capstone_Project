@@ -81,6 +81,7 @@ Local Machine
 ASM Target (Public VM / Bastion)
    ↓
 ASM Manager (Private VM)
+```
 
 ---
 
