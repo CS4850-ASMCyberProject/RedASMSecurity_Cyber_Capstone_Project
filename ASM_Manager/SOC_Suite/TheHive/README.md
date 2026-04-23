@@ -360,19 +360,19 @@ TheHive Community License
 
 Without this:
 
-Features will be restricted after trial expiration
-🧠 Notes for Your ASM Project
-This stack includes:
-Cassandra (DB)
-Elasticsearch (indexing)
-Cortex (SOAR-style analysis)
-Nginx (reverse proxy)
-Fully compatible with:
-Wazuh alerts → TheHive cases
-Shuffle → automation workflows
-Recommended minimum (testing):
-4 CPUs
-8 GB RAM
+Features will be restricted after trial expiration  
+🧠 Notes for Your ASM Project  
+This stack includes:  
+Cassandra (DB)  
+Elasticsearch (indexing)  
+Cortex (SOAR-style analysis)  
+Nginx (reverse proxy)  
+Fully compatible with:  
+Wazuh alerts → TheHive cases  
+Shuffle → automation workflows  
+Recommended minimum (testing):  
+4 CPUs  
+8 GB RAM  
 
 ## ✅ Summary
 
