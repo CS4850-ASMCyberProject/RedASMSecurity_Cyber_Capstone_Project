@@ -302,7 +302,7 @@ To properly initialize the XFCE desktop environment over XRDP, a .xsession file 
 /home/<your-user>/.xsession
 ```
 
-##📄 Configuration
+## 📄 Configuration
 ```bash
 #!/bin/sh
 set -x
