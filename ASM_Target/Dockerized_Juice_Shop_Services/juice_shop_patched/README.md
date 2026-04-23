@@ -22,7 +22,7 @@ Add a parameter which santizes user input. This treats user input as a string in
 
 Replace:
 ```bash
-models.sequelize.query(`SELECT * FROM Products WHERE ((name LIKE :criteria OR description LIKE :criteria) AND deletedAt IS NULL) ORDER BY name`{replacements: {criteria: likeCriteria}})
+models.sequelize.query(`SELECT * FROM Products WHERE ((name LIKE '%${criteria}%' OR description LIKE '%${criteria}%') AND deletedAt IS NULL) ORDER BY name`)
 ```
 With:
 ```bash
