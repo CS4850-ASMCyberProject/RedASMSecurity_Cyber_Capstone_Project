@@ -310,6 +310,35 @@ Remote GUI access via RDP
 
 ---
 
+# ⚙️ XRDP Session Configuration (.xsession)
+
+To properly initialize the XFCE desktop environment over XRDP, a .xsession file must be created in the user's home directory.
+
+## 📁 File Location
+```bash
+/home/<your-user>/.xsession
+```
+
+## 📄 Configuration
+```bash
+xfce-4-session
+```
+
+🧠 Purpose
+Ensures XFCE starts correctly when connecting via XRDP
+Initializes required environment variables for GUI session stability
+Prevents common XRDP issues such as:
+blank screen after login
+immediate session disconnect
+missing desktop environment
+
+Enables:
+
+Remote GUI access via RDP
+Remote management of the VM
+
+---
+
 ## 🎨 UI / Fonts / Themes
 ```bash
 fonts-dejavu
