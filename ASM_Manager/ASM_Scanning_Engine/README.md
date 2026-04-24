@@ -17,7 +17,8 @@ This workflow integrates:
 🚨 Nuclei – Vulnerability scanning engine  
 🔎 FFUF – Path and endpoint discovery  
 🐍 Python Engine – Orchestration, parsing, and enrichment logic  
-🎯 Purpose  
+
+## 🎯 Purpose  
 
 This system is designed to:
 
