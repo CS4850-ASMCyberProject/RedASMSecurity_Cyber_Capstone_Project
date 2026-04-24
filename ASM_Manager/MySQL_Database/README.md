@@ -89,6 +89,28 @@ CREATE TABLE assets (
 );
 ```
 
+Output:
+```bash
++----+------------------------------+----------------+------------------+-------------+-------------------------+--------------------------+------+------------+--------------------------------------+---------------------+---------------------+
+| id | subdomain                    | ip_address     | title            | status_code | webserver               | tech_stack               | port | cdn        | url                                  | first_seen          | last_changed        |
++----+------------------------------+----------------+------------------+-------------+-------------------------+--------------------------+------+------------+--------------------------------------+---------------------+---------------------+
+|  1 | shop.redasmsecurity.cloud    | 129.213.96.223 | OWASP Juice Shop |         200 | nginx/1.18.0 (Ubuntu)  | Nginx:1.18.0, Ubuntu     |  443 | oracle     | https://shop.redasmsecurity.cloud    | 2026-03-17 03:46:45 | 2026-04-16 00:44:38 |
+|  2 | admin.redasmsecurity.cloud   | 129.213.96.223 | OWASP Juice Shop |         200 | nginx/1.18.0 (Ubuntu)  | Nginx:1.18.0, Ubuntu     |  443 | oracle     | https://admin.redasmsecurity.cloud   | 2026-03-17 03:46:45 | 2026-04-16 00:44:38 |
+|  3 | api.redasmsecurity.cloud     | 129.213.96.223 | OWASP Juice Shop |         200 | nginx/1.18.0 (Ubuntu)  | Nginx:1.18.0, Ubuntu     |  443 | oracle     | https://api.redasmsecurity.cloud     | 2026-03-17 03:46:46 | 2026-04-16 00:44:39 |
+|  4 | dev.redasmsecurity.cloud     | 129.213.96.223 | OWASP Juice Shop |         200 | nginx/1.18.0 (Ubuntu)  | Nginx:1.18.0, Ubuntu     |  443 | oracle     | https://dev.redasmsecurity.cloud     | 2026-03-17 03:46:46 | 2026-04-16 00:44:39 |
+|  5 | files.redasmsecurity.cloud   | 129.213.96.223 | OWASP Juice Shop |         200 | nginx/1.18.0 (Ubuntu)  | Nginx:1.18.0, Ubuntu     |  443 | oracle     | https://files.redasmsecurity.cloud   | 2026-03-17 03:46:46 | 2026-04-16 00:44:39 |
+|  6 | git.redasmsecurity.cloud     | 129.213.96.223 | OWASP Juice Shop |         200 | nginx/1.18.0 (Ubuntu)  | Nginx:1.18.0, Ubuntu     |  443 | oracle     | https://git.redasmsecurity.cloud     | 2026-03-17 03:46:47 | 2026-04-16 00:44:39 |
+|  7 | grafana.redasmsecurity.cloud | 172.67.158.57  | Unknown          |         302 | cloudflare             | Cloudflare, HTTP/3       |  443 | cloudflare | https://grafana.redasmsecurity.cloud | 2026-03-17 03:46:47 | 2026-04-16 12:44:40 |
+|  8 | jenkins.redasmsecurity.cloud | 129.213.96.223 | OWASP Juice Shop |         200 | nginx/1.18.0 (Ubuntu)  | Nginx:1.18.0, Ubuntu     |  443 | oracle     | https://jenkins.redasmsecurity.cloud | 2026-03-17 03:46:47 | 2026-04-16 00:44:39 |
+|  9 | project.redasmsecurity.cloud | 129.213.96.223 | OWASP Juice Shop |         200 | nginx/1.18.0 (Ubuntu)  | Nginx:1.18.0, Ubuntu     |  443 | oracle     | https://project.redasmsecurity.cloud | 2026-03-17 03:46:47 | 2026-04-16 00:44:39 |
+| 10 | root.redasmsecurity.cloud    | 129.213.96.223 | OWASP Juice Shop |         200 | nginx/1.18.0 (Ubuntu)  | Nginx:1.18.0, Ubuntu     |  443 | oracle     | https://root.redasmsecurity.cloud    | 2026-03-17 03:46:48 | 2026-04-16 00:44:39 |
+| 11 | vpn.redasmsecurity.cloud     | 129.213.96.223 | OWASP Juice Shop |         200 | nginx/1.18.0 (Ubuntu)  | Nginx:1.18.0, Ubuntu     |  443 | oracle     | https://vpn.redasmsecurity.cloud     | 2026-03-17 03:46:48 | 2026-04-16 00:44:39 |
+| 12 | wazuh.redasmsecurity.cloud   | 104.21.82.132  | Unknown          |         302 | cloudflare             | Cloudflare, HTTP/3       |  443 | cloudflare | https://wazuh.redasmsecurity.cloud   | 2026-03-17 03:46:48 | 2026-04-16 00:44:39 |
+| 13 | www.redasmsecurity.cloud     | 172.67.158.57  | Unknown          |         525 | cloudflare             | Cloudflare, HTTP/3       |  443 | cloudflare | https://www.redasmsecurity.cloud     | 2026-03-17 03:46:49 | 2026-04-16 12:44:40 |
+| 14 | target.redasmsecurity.cloud  | 10.0.0.48      | OWASP Juice Shop |         200 | nginx/1.18.0 (Ubuntu)  | Nginx:1.18.0, Ubuntu     |  443 | Unknown    | https://target.redasmsecurity.cloud  | 2026-04-12 15:44:39 | 2026-04-12 15:44:39 |
++----+------------------------------+----------------+------------------+-------------+-------------------------+--------------------------+------+------------+--------------------------------------+---------------------+---------------------+
+```
+
 🍹 juice_shop_paths
 ```bash
 CREATE TABLE juice_shop_paths (
