@@ -19,7 +19,8 @@ This setup connects your:
 ASM Manager VM  
 ASM Target VM  
 SOC tooling (Wazuh, Shuffle, TheHive, Grafana)  
-🎯 Purpose  
+
+## 🎯 Purpose  
 
 This configuration enables:  
 
