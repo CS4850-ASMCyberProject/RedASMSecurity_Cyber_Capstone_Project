@@ -91,6 +91,8 @@ Feeds data into database and SOC pipeline
 🔗 ASM Scanning Engine Branch:
 https://github.com/CS4850-ASMCyberProject/RedASMSecurity_Cyber_Capstone_Project/tree/Llado_ASM_Scanning_Database_Upgrades
 
+---
+
 - **MySQL Database**
   - Stores:
     - Discovered assets
