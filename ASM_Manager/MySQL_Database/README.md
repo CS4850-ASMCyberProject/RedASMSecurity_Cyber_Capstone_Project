@@ -69,7 +69,7 @@ vulnerabilities_scan_history
   
 ## 🧱 4. Table Schemas
 
-🌐 assets (Core Asset Table)
+- 🌐 assets (Core Asset Table)
 ```bash
 CREATE TABLE assets (
   id int(11) NOT NULL AUTO_INCREMENT,
@@ -89,7 +89,7 @@ CREATE TABLE assets (
 );
 ```
 
-Output:
+- Output:
 ```bash
 +----+------------------------------+----------------+------------------+-------------+-------------------------+--------------------------+------+------------+--------------------------------------+---------------------+---------------------+
 | id | subdomain                    | ip_address     | title            | status_code | webserver               | tech_stack               | port | cdn        | url                                  | first_seen          | last_changed        |
