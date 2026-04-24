@@ -9,13 +9,13 @@ The ASM Scanning Engine branch implements a fully automated Attack Surface Manag
 
 This workflow integrates:
 
-🔍 Subfinder – Subdomain discovery
-🌐 DNSX – DNS validation & brute forcing
-🌍 HTTPX – Live service detection & metadata extraction
-🚨 Nuclei – Vulnerability scanning engine
-🔎 FFUF – Path and endpoint discovery
-🐍 Python Engine – Orchestration, parsing, and enrichment logic
-🎯 Purpose
+🔍 Subfinder – Subdomain discovery  
+🌐 DNSX – DNS validation & brute forcing  
+🌍 HTTPX – Live service detection & metadata extraction  
+🚨 Nuclei – Vulnerability scanning engine  
+🔎 FFUF – Path and endpoint discovery  
+🐍 Python Engine – Orchestration, parsing, and enrichment logic  
+🎯 Purpose  
 
 This system is designed to:
 
