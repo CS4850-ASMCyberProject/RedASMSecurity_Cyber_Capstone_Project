@@ -115,16 +115,16 @@ ASM Manager VM
                ┌───────────────────┴───────────────────┐
                │                                       │
                ▼                                       │
-      Wazuh Manager (SIEM)                             │
-               │                                       │
-               ▼                                       ▼
-        Shuffle (SOAR)                         ASM Scanning Script
-               │                                       │
-   ┌────────────────────┬───────────┐                  ▼
-   │                    │           │            MySQL Database
-   ▼                    ▼           ▼                  │
-Slack (Primary)  Python Server   TheHive               ▼
- (Case Mgmt)    (Slack Buttons)  (Cases)     Grafana (Visualization)
+      Wazuh Manager (SIEM)                             ▼
+               │                               ASM Scanning Script
+               ▼                                       │
+        Shuffle (SOAR)                                 ▼
+               │                                 MySQL Database
+   ┌────────────────────┬───────────┐                  │
+   │                    │           │                  ▼
+   ▼                    ▼           ▼          Grafana (Visualization)  
+Slack (Primary)  Python Server   TheHive               
+ (Case Mgmt)    (Slack Buttons)  (Cases)     
                         │
                         ▼
      ASM Target VM (iptables + Nginx block rules)
