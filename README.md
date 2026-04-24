@@ -56,7 +56,7 @@ This project demonstrates a full **Attack Surface Management (ASM)** pipeline in
 
 # 🔵 ASM Manager (Defensive Environment)
 
-## 🛡️ SOC Mini Suite (SIEM + SOAR + Case Management)
+### 🛡️ SOC Mini Suite (SIEM + SOAR + Case Management)
 
 🔗 Branch Link:
 https://github.com/CS4850-ASMCyberProject/RedASMSecurity_Cyber_Capstone_Project/tree/Llado_shuffle_slack
