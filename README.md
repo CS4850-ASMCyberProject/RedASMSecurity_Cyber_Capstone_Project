@@ -61,8 +61,6 @@ This project demonstrates a full **Attack Surface Management (ASM)** pipeline in
 🔗 Branch Link:
 https://github.com/CS4850-ASMCyberProject/RedASMSecurity_Cyber_Capstone_Project/tree/Llado_shuffle_slack
 
----
-
 - **Wazuh Manager (SIEM)**  
   → Detects threats from incoming logs  
 
