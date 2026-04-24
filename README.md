@@ -55,6 +55,14 @@ This project demonstrates a full **Attack Surface Management (ASM)** pipeline in
 ---
 
 ### 🔵 ASM Manager (Defensive Environment)
+
+## 🛡️ SOC Mini Suite (SIEM + SOAR + Case Management)
+
+🔗 Branch Link:
+https://github.com/CS4850-ASMCyberProject/RedASMSecurity_Cyber_Capstone_Project/tree/Llado_shuffle_slack
+
+---
+
 - **Wazuh Manager (SIEM)**  
   → Detects threats from incoming logs  
 
@@ -70,9 +78,18 @@ This project demonstrates a full **Attack Surface Management (ASM)** pipeline in
     - Block IPs
     - Disable vulnerable endpoints
 
-- **ASM Scanning Engine**
-  - Daily automated scans
-  - Detects new assets & vulnerabilities  
+---  
+
+# 🔍 ASM Scanning Engine
+
+Daily automated scans:
+
+Discovers new assets  
+Identifies vulnerabilities  
+Feeds data into database and SOC pipeline  
+
+🔗 ASM Scanning Engine Branch:
+https://github.com/CS4850-ASMCyberProject/RedASMSecurity_Cyber_Capstone_Project/tree/Llado_ASM_Scanning_Database_Upgrades
 
 - **MySQL Database**
   - Stores:
@@ -107,12 +124,27 @@ This project demonstrates a full **Attack Surface Management (ASM)** pipeline in
 
 ---
 
+## 🌐 Web Interface (Frontend Dashboard)
+
+A web-based dashboard provides visualization and interaction with ASM data, connecting backend systems to a user-friendly interface.
+
+Features: 
+
+Visualizes discovered assets and attack surface  
+Displays URL paths and endpoints  
+Shows vulnerabilities and scan results  
+Interfaces with FastAPI backend and MySQL database  
+
+🔗 Website Branch:
+https://github.com/CS4850-ASMCyberProject/RedASMSecurity_Cyber_Capstone_Project/tree/austin-website
+
 ## 🧩 Project Structure
 
 ```bash
 ASM_Manager/
 ASM_Target/
 Supporting_Services/
+Website/
 ```
 
 ## 👥 Contributors
