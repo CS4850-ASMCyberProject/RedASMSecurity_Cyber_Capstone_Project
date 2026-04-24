@@ -59,14 +59,14 @@ SHOW TABLES;
 
 Expected tables:
 
-assets
-assets_scan_history
-juice_shop_paths
-url_paths
-url_paths_scan_history
-vulnerabilities
-vulnerabilities_scan_history
-
+assets  
+assets_scan_history  
+juice_shop_paths  
+url_paths  
+url_paths_scan_history  
+vulnerabilities  
+vulnerabilities_scan_history  
+  
 ## 🧱 4. Table Schemas
 
 🌐 assets (Core Asset Table)
