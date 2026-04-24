@@ -39,7 +39,7 @@ This project demonstrates a full **Attack Surface Management (ASM)** pipeline in
 
 ## 🏗️ Architecture Overview
 
-### 🔴 ASM Target (Vulnerable Environment)
+# 🔴 ASM Target (Vulnerable Environment)
 - **Dockerized OWASP Juice Shop**
 - **Nginx Reverse Proxy**
 - **ModSecurity (WAF)**
@@ -54,7 +54,7 @@ This project demonstrates a full **Attack Surface Management (ASM)** pipeline in
 
 ---
 
-### 🔵 ASM Manager (Defensive Environment)
+# 🔵 ASM Manager (Defensive Environment)
 
 ## 🛡️ SOC Mini Suite (SIEM + SOAR + Case Management)
 
@@ -99,7 +99,7 @@ https://github.com/CS4850-ASMCyberProject/RedASMSecurity_Cyber_Capstone_Project/
 
 ---
 
-### ⚙️ Supporting Infrastructure
+# ⚙️ Supporting Infrastructure
 
 - 🌐 **Domain**
   - `redasmsecurity.cloud`
@@ -124,7 +124,7 @@ https://github.com/CS4850-ASMCyberProject/RedASMSecurity_Cyber_Capstone_Project/
 
 ---
 
-## 🌐 Web Interface (Frontend Dashboard)
+# 🌐 Web Interface (Frontend Dashboard)
 
 A web-based dashboard provides visualization and interaction with ASM data, connecting backend systems to a user-friendly interface.
 
