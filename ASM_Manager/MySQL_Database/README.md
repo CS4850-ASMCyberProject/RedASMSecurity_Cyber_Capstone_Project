@@ -8,10 +8,10 @@ The ASM Database stores all discovered assets, paths, vulnerabilities, and scan 
 
 It acts as the central data layer connecting:
 
-🌐 ASM Scanning Engine (discovery & scanning)
-🛡️ Wazuh (detection)
-🔄 Shuffle (automation)
-🐝 TheHive (case management)
+🌐 ASM Scanning Engine (discovery & scanning)  
+🛡️ Wazuh (detection)  
+🔄 Shuffle (automation)  
+🐝 TheHive (case management)  
 
 ## 🎯 Purpose
 
