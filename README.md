@@ -57,6 +57,7 @@ This project demonstrates a full **Attack Surface Management (ASM)** pipeline in
 # 🔵 ASM Manager (Defensive Environment)
 
 ### 🛡️ SOC Mini Suite (SIEM + SOAR + Case Management)
+By: Adam Llado
 
 🔗 Branch Link:
 https://github.com/CS4850-ASMCyberProject/RedASMSecurity_Cyber_Capstone_Project/tree/Llado_shuffle_slack
@@ -79,6 +80,7 @@ https://github.com/CS4850-ASMCyberProject/RedASMSecurity_Cyber_Capstone_Project/
 ---  
 
 ### 🔍 ASM Scanning Engine
+By: Adam Llado, Kimani Gordon, Alec Sundby
 
 🔗 Branch Link:
 https://github.com/CS4850-ASMCyberProject/RedASMSecurity_Cyber_Capstone_Project/tree/Llado_ASM_Scanning_Database_Upgrades
@@ -123,6 +125,10 @@ Feeds data into database and SOC pipeline
 ---
 
 # 🌐 Web Interface (Frontend Dashboard)
+By: Austin Abeln
+
+🔗 Website Link:
+https://cs4850-asmcyberproject.github.io/RedASMSecurity_Cyber_Capstone_Project/
 
 A web-based dashboard provides visualization and interaction with ASM data, connecting backend systems to a user-friendly interface.
 
@@ -133,7 +139,7 @@ Displays URL paths and endpoints
 Shows vulnerabilities and scan results  
 Interfaces with FastAPI backend and MySQL database  
 
-🔗 Website Branch:
+🔗 Branch Link:
 https://github.com/CS4850-ASMCyberProject/RedASMSecurity_Cyber_Capstone_Project/tree/austin-website
 
 ## 🧩 Project Structure
