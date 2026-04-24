@@ -1,5 +1,7 @@
 # 🛡️ SOC Automation Workflow – llado_shuffle_slack
 
+By: Adam Llado
+
 🔗 *Branch Link:*  
 https://github.com/CS4850-ASMCyberProject/RedASMSecurity_Cyber_Capstone_Project/tree/Llado_shuffle_slack
 
