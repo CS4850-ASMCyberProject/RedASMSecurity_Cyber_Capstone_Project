@@ -110,9 +110,12 @@ ASM Manager VM
 ## 🔁 Data Flow Architecture
 
 ```text
-                      Wazuh Manager (ASM Manager VM)
+                            ASM Manager VM
                                    │
                ┌───────────────────┴───────────────────┐
+               │                                       │
+               ▼                                       │
+      Wazuh Manager (SIEM)                             │
                │                                       │
                ▼                                       ▼
         Shuffle (SOAR)                         ASM Scanning Script
