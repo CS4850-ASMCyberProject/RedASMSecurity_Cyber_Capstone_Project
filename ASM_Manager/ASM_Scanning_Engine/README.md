@@ -1,4 +1,4 @@
-# 🌐 ASM Scanning Engine – Llado_ASM_Scanning_Database_Upgrades
+# 🌐 ASM Scanning Engine
 
 ## 🔗 Branch Link:
 https://github.com/CS4850-ASMCyberProject/RedASMSecurity_Cyber_Capstone_Project/tree/Llado_ASM_Scanning_Database_Upgrades
